@@ -1,4 +1,91 @@
-<!DOCTYPE html><html lang="zh"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>使用LLM和doccano进行关系抽取和验证 | long own NG</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">使用LLM和doccano进行关系抽取和验证</h1><a id="logo" href="/.">long own NG</a><p class="description"></p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Start</i></a><a href="/archives/"><i class="fa fa-archive"> Archiv</i></a><a href="/about/"><i class="fa fa-user"> Über</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">使用LLM和doccano进行关系抽取和验证</h1><div class="post-meta">2023-11-29</div><div class="post-content"><h1 id="关系抽取"><a href="#关系抽取" class="headerlink" title="关系抽取"></a><strong>关系抽取</strong></h1><p>在企业项目中，需要对制冷这一冷门领域的操作指南和说明文档进行关系抽取。为此笔者尝试了许多传统方法的模型，但效果都欠佳。受到当下在NLP（Natural Language Processing，自然语言处理）中流行且功能强大的LLM（Large Language Model，大语言模型）的启发，笔者尝试了使用本地和API的大模型进行关系抽取，取得了相对于传统方法较好的效果。</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用LLM和doccano进行关系抽取和验证 | long own NG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <link rel="icon" href="https://github.com/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+  
+  <meta name="description" content="关系抽取在企业项目中，需要对制冷这一冷门领域的操作指南和说明文档进行关系抽取。为此笔者尝试了许多传统方法的模型，但效果都欠佳。受到当下在NLP（Natural Language Processing，自然语言处理）中流行且功能强大的LLM（Large Language Model，大语言模型）的启发，笔者尝试了使用本地和API的大模型进行关系抽取，取得了相对于传统方法较好的效果。 使用传统深度学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用LLM和doccano进行关系抽取和验证">
+<meta property="og:url" content="http://blog.powerpeanut.top/2023/11/29/RE/index.html">
+<meta property="og:site_name" content="long own NG">
+<meta property="og:description" content="关系抽取在企业项目中，需要对制冷这一冷门领域的操作指南和说明文档进行关系抽取。为此笔者尝试了许多传统方法的模型，但效果都欠佳。受到当下在NLP（Natural Language Processing，自然语言处理）中流行且功能强大的LLM（Large Language Model，大语言模型）的启发，笔者尝试了使用本地和API的大模型进行关系抽取，取得了相对于传统方法较好的效果。 使用传统深度学习">
+<meta property="og:locale">
+<meta property="og:image" content="http://blog.powerpeanut.top/Aspose.Words.2f6cad52-b522-451f-bc0b-541f2ef53fa0.001.png">
+<meta property="og:image" content="http://blog.powerpeanut.top/Aspose.Words.2f6cad52-b522-451f-bc0b-541f2ef53fa0.002.png">
+<meta property="og:image" content="http://blog.powerpeanut.top/Aspose.Words.2f6cad52-b522-451f-bc0b-541f2ef53fa0.003.png">
+<meta property="og:image" content="http://blog.powerpeanut.top/Aspose.Words.2f6cad52-b522-451f-bc0b-541f2ef53fa0.004.png">
+<meta property="og:image" content="http://blog.powerpeanut.top/Aspose.Words.2f6cad52-b522-451f-bc0b-541f2ef53fa0.005.png">
+<meta property="og:image" content="http://blog.powerpeanut.top/Aspose.Words.2f6cad52-b522-451f-bc0b-541f2ef53fa0.006.png">
+<meta property="og:image" content="http://blog.powerpeanut.top/Aspose.Words.2f6cad52-b522-451f-bc0b-541f2ef53fa0.007.png">
+<meta property="og:image" content="http://blog.powerpeanut.top/Aspose.Words.2f6cad52-b522-451f-bc0b-541f2ef53fa0.008.png">
+<meta property="og:image" content="http://blog.powerpeanut.top/Aspose.Words.2f6cad52-b522-451f-bc0b-541f2ef53fa0.009.png">
+<meta property="og:image" content="http://blog.powerpeanut.top/Aspose.Words.2f6cad52-b522-451f-bc0b-541f2ef53fa0.010.png">
+<meta property="article:published_time" content="2023-11-29T03:57:41.000Z">
+<meta property="article:modified_time" content="2023-11-29T04:35:27.066Z">
+<meta property="article:author" content="10ng">
+<meta property="article:tag" content="知识图谱，大模型，doccano">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.powerpeanut.top/Aspose.Words.2f6cad52-b522-451f-bc0b-541f2ef53fa0.001.png"><meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="wrapper">
+    <header id="header">
+  <h1 id="title">
+    <a href="/">long own NG</a>
+  </h1>
+  <nav>
+    
+    
+      
+      <a class="nav-link" href="/">Home</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/archives">Archives</a>
+    
+    
+  </nav>
+</header>
+
+    <div id="content">
+      <article id="post-RE" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="headline name">
+      使用LLM和doccano进行关系抽取和验证
+    </h2>
+  
+
+
+        <div class="article-meta">
+          <time class="article-date" datetime="2023-11-29T03:57:41.000Z" itemprop="datePublished">November 29, 2023, 11:57 AM</time>
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        <h1 id="关系抽取"><a href="#关系抽取" class="headerlink" title="关系抽取"></a><strong>关系抽取</strong></h1><p>在企业项目中，需要对制冷这一冷门领域的操作指南和说明文档进行关系抽取。为此笔者尝试了许多传统方法的模型，但效果都欠佳。受到当下在NLP（Natural Language Processing，自然语言处理）中流行且功能强大的LLM（Large Language Model，大语言模型）的启发，笔者尝试了使用本地和API的大模型进行关系抽取，取得了相对于传统方法较好的效果。</p>
 <h2 id="使用传统深度学习方法的关系抽取的不足"><a href="#使用传统深度学习方法的关系抽取的不足" class="headerlink" title="使用传统深度学习方法的关系抽取的不足"></a><strong>使用传统深度学习方法的关系抽取的不足</strong></h2><p>起初，笔者尝试了使用传统深度学习方法进行关系抽取。基本思路是使用IDCNN&#x2F;biLSTM和CRF进行实体检测，然后使用biGRU和attention机制进行特征提取。但是传统深度学习方法有两个基本的问题：</p>
 <ul>
 <li>在冷门领域不具备zero-shot能力。训练这些模型的训练集（如DUIE）相对于LLM来说还是太少，而且预训练数据显然没有覆盖到制冷领域相关的知识。于是这些模型在制冷领域中都不能够提取出关系。</li>
@@ -61,4 +148,63 @@
 <p>这样做还有一个额外的好处。当程序因为各种原因断开时，笔者可以简单地从头执行这个程序，因为重复的实体不会被重复上传。</p>
 <h3 id="上传"><a href="#上传" class="headerlink" title="上传"></a><strong>上传</strong></h3><p>所有的上述工作做完后，笔者就可以上传实体和关系了。上传实体时只需要上传初始、结束偏移量和实体标签id，上传关系时只需要上传头尾实体id和标签id。对于重复的关系，doccano会自动过滤掉。</p>
 <p><img src="/./Aspose.Words.2f6cad52-b522-451f-bc0b-541f2ef53fa0.009.png"><img src="/./Aspose.Words.2f6cad52-b522-451f-bc0b-541f2ef53fa0.010.png"></p>
-</div><div class="tags"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%EF%BC%8C%E5%A4%A7%E6%A8%A1%E5%9E%8B%EF%BC%8Cdoccano/" rel="tag">知识图谱，大模型，doccano</a></li></ul></div><div class="post-nav"><a class="next" href="/2023/10/15/%E7%AC%94%E8%AE%B0%EF%BC%9AMultimodal-Machine-Learning-A-Survey-and-Taxonomy/">笔记：Multimodal Machine Learning: A Survey and Taxonomy</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://blog.powerpeanut.top"/></form></div><div class="widget"><div class="author-info"><a class="info-avatar" href="/about/" title="Über"><img class="nofancybox" src="/img/avatar.png"/></a><p>To be a better man.</p><a class="info-icon" href="https://twitter.com/username" title="Twitter" target="_blank" style="margin-inline:5px"> <i class="fa fa-twitter-square" style="margin-inline:5px"></i></a><a class="info-icon" href="mailto:admin@domain.com" title="Email" target="_blank" style="margin-inline:5px"> <i class="fa fa-envelope-square" style="margin-inline:5px"></i></a><a class="info-icon" href="https://github.com/username" title="Github" target="_blank" style="margin-inline:5px"> <i class="fa fa-github-square" style="margin-inline:5px"></i></a><a class="info-icon" href="/atom.xml" title="RSS" target="_blank" style="margin-inline:5px"> <i class="fa fa-rss-square" style="margin-inline:5px"></i></a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Kategorien</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/paper-note/" style="font-size: 15px;">paper note</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%EF%BC%8C%E5%A4%A7%E6%A8%A1%E5%9E%8B%EF%BC%8Cdoccano/" style="font-size: 15px;">知识图谱，大模型，doccano</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> Letzte</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2023/11/29/RE/">使用LLM和doccano进行关系抽取和验证</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/10/15/%E7%AC%94%E8%AE%B0%EF%BC%9AMultimodal-Machine-Learning-A-Survey-and-Taxonomy/">笔记：Multimodal Machine Learning: A Survey and Taxonomy</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Blogroll</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2023 <a href="/." rel="nofollow">long own NG.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.js"></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0"></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="Copy Successed!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>
+
+      
+    </div>
+    
+    
+    <div class="article-category">
+      
+      
+      
+        <b>Tags:</b>
+        <a class="article-tag-none-link" href="/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%EF%BC%8C%E5%A4%A7%E6%A8%A1%E5%9E%8B%EF%BC%8Cdoccano/" rel="tag">知识图谱，大模型，doccano</a>
+      
+    </div>
+    
+    
+  </div>
+</article>
+
+  
+<nav id="article-nav" class="article-nav">
+  
+    <span id="article-nav-newer" class="article-nav-link-wrap newer"></span>
+  
+  
+    <a href="/2023/10/15/%E7%AC%94%E8%AE%B0%EF%BC%9AMultimodal-Machine-Learning-A-Survey-and-Taxonomy/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          笔记：Multimodal Machine Learning: A Survey and Taxonomy
+        
+      </div>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+    </div>
+  </div>
+  
+
+
+
+
+<div id="settings-container">
+  <div id="dark-mode">dark</div>
+  <div id="sans-font">sans</div>
+</div>
+<script type="text/javascript">
+let d=document,r=d.documentElement.style,f=r.setProperty.bind(r),l=localStorage,s=l.getItem('s')||(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches),n=l.getItem('n'),m=d.getElementById("dark-mode"),b=()=>{f('--bg-color','#fafafa');f('--code-bg-color','#f4f4f4');f('--text-color','#212121');f('--secondary-color','#808080');f('--tertiary-color','#b0b0b0');f('--link-color','#b5c8cf');f('--link-hover-color','#618794');f('--link-bg-color','#dae4e7');f('--selection-color','#dae4e7');m.innerHTML="dark"},c=()=>{f('--bg-color','#212121');f('--code-bg-color','#292929');f('--text-color','#fff');f('--secondary-color','#c0c0c0');f('--tertiary-color','#6e6e6e');f('--link-color','#4d6b75');f('--link-hover-color','#96b1bb');f('--link-bg-color','#5d828e');f('--selection-color','#acc1c9');m.innerHTML="light"},o=d.getElementById("sans-font"),e=()=>{f('--body-stack','"Lora", "Georgia", "Times New Roman", serif');o.innerHTML="sans"},g=()=>{f('--body-stack','"Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif');o.innerHTML="serif"};m.onclick=()=>{if(s==2){s=1;l.setItem('s',s);c()}else{s=2;l.setItem('s',s);b()}};o.onclick=()=>{if(n==2){n=1;l.setItem('n',n);g()}else{n=2;l.setItem('n',n);e()}};if(!s){s=2;l.setItem('s',2)};if(s==1){c()};if(!n){n=2;l.setItem('n',2)};if(n==1){g()};
+</script>
+
+
+
+
+</body>
+</html>
