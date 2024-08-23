@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  
+  <title>笔记：Multimodal Machine Learning: A Survey and Taxonomy | long own NG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1 介绍一般来说，模态就是指，一种事情发生或者被经历的方法。 当一个研究的问题或者说数据集包含了多个模态时，就是多模态问题或者多模态数据集。 多模态数据主要有：自然语言；视觉信号；音频信号等。我认为多模态主要包括这些，是因为这些信息是日常生活红数据量最丰富、最有价值和最容易获取的信息，在当下最具有研究价值；而一些其他的信息，像是红外、超声、嗅觉、触觉、加速度信号等，可能只会在机器人等限定的领域有用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="笔记：Multimodal Machine Learning: A Survey and Taxonomy">
+<meta property="og:url" content="https://10ng1000.github.io/2023/10/15/%E7%AC%94%E8%AE%B0%EF%BC%9AMultimodal-Machine-Learning-A-Survey-and-Taxonomy/index.html">
+<meta property="og:site_name" content="long own NG">
+<meta property="og:description" content="1 介绍一般来说，模态就是指，一种事情发生或者被经历的方法。 当一个研究的问题或者说数据集包含了多个模态时，就是多模态问题或者多模态数据集。 多模态数据主要有：自然语言；视觉信号；音频信号等。我认为多模态主要包括这些，是因为这些信息是日常生活红数据量最丰富、最有价值和最容易获取的信息，在当下最具有研究价值；而一些其他的信息，像是红外、超声、嗅觉、触觉、加速度信号等，可能只会在机器人等限定的领域有用">
+<meta property="og:locale">
+<meta property="article:published_time" content="2023-10-15T03:19:31.000Z">
+<meta property="article:modified_time" content="2023-10-15T05:44:54.000Z">
+<meta property="article:author" content="10ng">
+<meta property="article:tag" content="paper note">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/typing.css">
+
+  
+<link rel="stylesheet" href="/css/donate.css">
+
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  
+    
+      <body>
+    
+  
+      <div id="container" class="container">
+        <article id="post-笔记：Multimodal-Machine-Learning-A-Survey-and-Taxonomy" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <header id="header" class="header">
+  <nav class="mobile-nav">
+    <h1 class="nickname">NickName</h1>
+    <ul class="mobile-nav-menu">
+      <label for="mobile-menu-toggle"><a id="menu-button">&#9776; Menu</a></label>
+      <input type="checkbox" id="mobile-menu-toggle"/>
+      <ul class="mobile-nav-link">
+        
+        <a href="/">Home</a>
+        
+        <a href="/archives">Archives</a>
+        
+        <a href="/about">About</a>
+        
+      </ul>
+    </ul>
+  </nav>
+	
+		<nav id="main-nav" class="main-nav nav-left">
+	
+	
+	  <a class="main-nav-link" href="/">Home</a>
+	
+	  <a class="main-nav-link" href="/archives">Archives</a>
+	
+	  <a class="main-nav-link" href="/about">About</a>
+	
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      笔记：Multimodal Machine Learning: A Survey and Taxonomy
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry typo" itemprop="articleBody">
+      
+        <h1 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1 介绍"></a>1 介绍</h1><p>一般来说，模态就是指，一种事情发生或者被经历的方法。</p>
+<p>当一个研究的问题或者说数据集包含了多个模态时，就是多模态问题或者多模态数据集。</p>
+<p>多模态数据主要有：自然语言；视觉信号；音频信号等。<br>我认为多模态主要包括这些，是因为这些信息是日常生活红数据量最丰富、最有价值和最容易获取的信息，在当下最具有研究价值；而一些其他的信息，像是红外、超声、嗅觉、触觉、加速度信号等，可能只会在机器人等限定的领域有用处，相对来说应用范围没有那么广泛，信号的局限性较大。</p>
+<p>多模态的五大挑战：表示，转换，对齐，融合，协同学习<br>这几大方面的挑战是：<br>表示：怎样表示、总结不同模态的信息。不同模态的数据经常是异质的，比如语言是符号性的，音频和视频是用信号表示的。<br>转换：不同模态之间的联系可能是开放的，比如一个图片可以有多种语言解释。<br>对齐：把不同的模态直接联系起来，比如把做菜的步骤关联到对应的视频。<br>融合：把不同模态的数据综合起来做预测。<br>协同学习：把一种模态的学习模型迁移到另一个模态的模型中</p>
+<p>我认为这几个问题中，表示主要是数据处理层面的，涉及到模型如何设计、数据怎样表示；翻译和对齐可以是模型的一部分能力，也可以是这个多模态模型的功能；融合主要是涉及到模型的输出部分；而协同学习则是和迁移学习相似，主要是对模型开发人员有用。我认为这几个问题中最有挑战性的可能是协同学习，因为不同模态之间的模型差异实在太大，感觉这样的机制很难实现。</p>
+<h1 id="2-多模态的应用："><a href="#2-多模态的应用：" class="headerlink" title="2 多模态的应用："></a>2 多模态的应用：</h1><p>1.视听结合的言语识别，图像注解等 V-A<br>多模态可以增强模型的鲁棒性<br>2.多媒体内容的索引和检索 V-A<br>3.人类社交时的多模态行为的理解 V-A<br>4.媒体解释 V-L<br>5.事件检测 V-L<br>6.多媒体生成 V-L</p>
+<p>跨模态检索会用到除了融合以外的所有技术</p>
+<h1 id="3-表示"><a href="#3-表示" class="headerlink" title="3 表示"></a>3 表示</h1><p>把多模态的数据用计算模型可以识别的格式表示出来，可以是向量&#x2F;张量表示。<br>困难  </p>
+<ol>
+<li>结合异质数据  </li>
+<li>处理不同的噪音  </li>
+<li>处理丢失的数据<br>现在很多的多模态数据的表示都是单模态数据的简单拼接。</li>
+</ol>
+<p>好的表示的特点：平滑、保留时空顺序、稀疏、自然聚类</p>
+<h3 id="联合表示："><a href="#联合表示：" class="headerlink" title="联合表示："></a>联合表示：</h3><p>联合表示把多个单模态数据结合到相同的表示空间 。<br>通常用在多模态数据要结合起来使用的时候<br>AVSR，情感分析，多模态手势识别等</p>
+<p>神经网络<br>通常把最后一层或者倒数第二层拿来用<br>1.先分别用独立层训练，然后通过一个隐藏层来把这些模态投影到一个联合的空间中<br>2.对于没有标签的数据，可以用自编码器<br>基于联合表示的神经网络的一大好处是：<br>可以学习无标签数据，而且可以微调来适应特殊的任务</p>
+<p>概率图模型<br>使用DBM等<br>优点：泛化性好，可以更好地处理缺失模态的数据<br>缺点：难以训练，计算代价高</p>
+<p>序列表示<br>使用RNN</p>
+<h3 id="协同表示："><a href="#协同表示：" class="headerlink" title="协同表示："></a>协同表示：</h3><p>协同表示分别处理单模态信号，同时保留有相似的约束。<br>通常用在一次只使用一种模态数据的时候<br>比如多模态检索、翻译、结合、零次学习</p>
+<p>相似模型：<br>最小化不同模态间在坐标空间的距离<br>可以使用神经网络，可以端到端学习协同表示(RNN\LSTM等)</p>
+<p>结构化坐标空间：<br>添加了额外的限制<br>主要形式有跨模态哈希、图像和语言的顺序嵌入、典型关联分析：<br>把高纬度数据压缩到低纬度，相似的对象有相似的码<br>可以使用神经网络</p>
+<h1 id="4-翻译"><a href="#4-翻译" class="headerlink" title="4.翻译"></a>4.翻译</h1><p>给出一个模态的实体，生成在另一个模态的相同的实体<br>例子：语音合成，视觉语音生成，视频描述，跨模态检索<br>两种类型：基于样例的，生成式的</p>
+<h2 id="4-1-基于样例的：使用字典"><a href="#4-1-基于样例的：使用字典" class="headerlink" title="4.1 基于样例的：使用字典"></a>4.1 基于样例的：使用字典</h2><p>使用两类算法：基于检索的，基于结合的<br>基于检索的：直接使用检索，可用单模态空间或者跨媒体语义空间，后者更好，可以双向翻译<br>基于结合的：使用更复杂的规则，把多个结果结合起来生成一个更好的翻译<br>缺点：模型大、查询慢、字典要求大、不一定有对应结果</p>
+<h2 id="4-2-生成式的：生成模型"><a href="#4-2-生成式的：生成模型" class="headerlink" title="4.2 生成式的：生成模型"></a>4.2 生成式的：生成模型</h2><p>类型：基于语法的，编码解码器（最常用），持续生成模型</p>
+<p>基于语法的：用语法限制目标域<br>优势：更可能生成语法和逻辑正确的结果<br>局限：智能产生公式化的结果，难以创新；训练过程要分段、复杂</p>
+<p>编码解码器：先编码到一个隐表示，然后再用解码器解码<br>使用端到端的神经网络，编码通常和模态本身有关，解码通常用RNN和LSTM。缺点是需要大量数据，而且神经网络可能是再记忆训练数据</p>
+<p>持续生成模型：基于源模态数据流持续生成目标模态，最适合时序序列，例如文字转语音</p>
+<h2 id="4-3-模型评估"><a href="#4-3-模型评估" class="headerlink" title="4.3 模型评估"></a>4.3 模型评估</h2><p>一种评估方法是人工判断：<br>语音合成：自然度，平均观点分数<br>VSS：真实度<br>媒体描述：语法语义正确，相关度，顺序，细节<br>自动评估效果一般</p>
+<p>也可以用检索来作为描述的评估方法</p>
+<h1 id="5-对齐"><a href="#5-对齐" class="headerlink" title="5 对齐"></a>5 对齐</h1><p>找到不同模态之间的子模块实体之间的联系和对应关系<br>两种对齐：显式和隐式</p>
+<h2 id="5-1-显式对齐"><a href="#5-1-显式对齐" class="headerlink" title="5.1 显式对齐"></a>5.1 显式对齐</h2><p>最重要的方式是用相似矩阵来评价</p>
+<p>无监督：不需要对齐的标签<br>假设对齐有限制，例如时间顺序，或者相似矩阵存在<br>DTW用于对齐多视角时间序列，CCA。可以同时学习相似矩阵和对齐<br>图模型，需要专家知识。</p>
+<p>有监督：需要有标签的对齐实例<br>方法和无监督的比较像</p>
+<p>深度学习也在显式对齐里面很好用，LSTM，CNN</p>
+<h2 id="5-2-隐式对齐"><a href="#5-2-隐式对齐" class="headerlink" title="5.2 隐式对齐"></a>5.2 隐式对齐</h2><p>是其他任务中间的步骤，通常是隐式的<br>不依赖于有监督的样本</p>
+<p>图模型：需要人工设定对齐方式，比较不常用</p>
+<p>神经网络：最常用的方法，尤其是在翻译的中间步骤，可以给翻译带来很大的提升，加入注意力机制效果更好</p>
+<h2 id="5-3-难点"><a href="#5-3-难点" class="headerlink" title="5.3 难点"></a>5.3 难点</h2><p>标签数据少，相似矩阵难设计，对齐关系可能是多对多，或者不存在</p>
+<h1 id="6-融合"><a href="#6-融合" class="headerlink" title="6 融合"></a>6 融合</h1><p>集成多个模态的信息来做预测，一般认为是在预测的后部阶段</p>
+<ol>
+<li>更健壮的预测结果</li>
+<li>可以捕捉到补充的信息</li>
+<li>缺失一个维度的信息时仍可以起作用</li>
+</ol>
+<h2 id="6-1-模型无关的方法"><a href="#6-1-模型无关的方法" class="headerlink" title="6.1 模型无关的方法"></a>6.1 模型无关的方法</h2><p>可以分为早期，晚期和杂交融合<br>比较简单，但是不能充分利用多模态的特点</p>
+<h2 id="6-2-基于模型的方法"><a href="#6-2-基于模型的方法" class="headerlink" title="6.2 基于模型的方法"></a>6.2 基于模型的方法</h2><p>基于核的方法：<br>不同的模态使用不同的核，核可以看成数据点的相似函数<br>优点是损失函数是凸的，好优化；<br>缺点是测试时也要用训练数据，查询慢，内存消耗大</p>
+<p>图模型：<br>生成式的：建模联合概率<br>判别式的：建模条件概率<br>优点：容易利用数据的时间和空间结构，所以在AVSR和情感检测常用；可以加入专家知识</p>
+<p>神经网络：最常用<br>优势：可以从大量的数据中学习；端到端训练；效果好<br>缺点：可解释性差，需要大量数据</p>
+<p>融合的困难：<br>数据可能没有在时间上对齐<br>难以捕捉互补的信息<br>每个模态都可能会有噪音</p>
+<h1 id="7-共同学习"><a href="#7-共同学习" class="headerlink" title="7 共同学习"></a>7 共同学习</h1><p>用另一个模态的模型知识来辅助一个模态的模型学习<br>这是与任务无关的，因此可以在多模态融合、翻译、对齐模型中使用</p>
+<h2 id="7-1-平行数据"><a href="#7-1-平行数据" class="headerlink" title="7.1 平行数据"></a>7.1 平行数据</h2><p>不同模态使用一个数据集，对应关系已经确定<br>共同训练：创建更多有标签数据<br>迁移学习：可以多模态表示，单模态的时候也更好</p>
+<h2 id="7-2-不平行数据"><a href="#7-2-不平行数据" class="headerlink" title="7.2 不平行数据"></a>7.2 不平行数据</h2><p>不需要有共享的实例，只需要有共享的概念或类别<br>迁移学习<br>概念建构：通过不仅仅是语言，也包含其他模态的数据来学习语义<br>零次学习：不需要之前见过任何相关的有标签的数据，就识别出一个概念<br>单模态：通过部分特征来推出实体<br>多模态：使用另一个模态来推出没有认识的模态</p>
+<h2 id="7-3-混合数据"><a href="#7-3-混合数据" class="headerlink" title="7.3 混合数据"></a>7.3 混合数据</h2><p>两个模态用一个共享的模态或者数据集来桥接</p>
+
+      
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2023/10/15/%E7%AC%94%E8%AE%B0%EF%BC%9AMultimodal-Machine-Learning-A-Survey-and-Taxonomy/" class="article-date">
+  <time class="dt-published" datetime="2023-10-15T03:19:31.000Z" itemprop="datePublished">2023-10-15</time>
+</a>
+
+        </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/paper-note/" rel="tag">paper note</a></li></ul>
+
+
+          </li>
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2023/11/29/RE/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          使用LLM和doccano进行关系抽取和验证
+        
+      </div>
+    </a>
+  
+  
+    <span id="article-nav-older" class="article-nav-link-wrap older"></span>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>ipsum dolor sit amet, <strong>consectetur adipiscing elit.</strong> Fusce eget urna vitae velit <em>eleifend interdum at ac nisi. In nec ligula lacus. Cum sociis natoque</em> penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed eu cursus erat, ut dapibus quam. Post</p>
+
+
+      </div>
+    </footer>
+
+      
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/typing.js"></script>
+
+<!--[if lt IE 9]>
+<script src="https://cdn.jsdelivr.net/npm/html5shiv@3/dist/html5shiv.min.js"></script>
+<![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>
