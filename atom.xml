@@ -6,7 +6,7 @@
   <link href="https://10ng1000.github.io/atom.xml" rel="self"/>
   
   <link href="https://10ng1000.github.io/"/>
-  <updated>2024-08-23T07:37:44.135Z</updated>
+  <updated>2024-08-24T12:46:09.638Z</updated>
   <id>https://10ng1000.github.io/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>55.跳跃游戏</title>
+    <link href="https://10ng1000.github.io/2024/08/24/55.%20%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F/"/>
+    <id>https://10ng1000.github.io/2024/08/24/55.%20%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F/</id>
+    <published>2024-08-24T12:34:07.000Z</published>
+    <updated>2024-08-24T12:46:09.638Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>Problem: <a href="https://leetcode.cn/problems/jump-game/description/">55. 跳跃游戏</a></p></blockquote><h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>在遍历数组的过程中，易知可跳到的范围会随着遍历的深入越来越远，因此只需在遍历过程中维护可跳到的最远距离，看是否能遍历完整个数组即可。</p><h1 id="解题过程"><a href="#解题过程" class="headerlink" title="解题过程"></a>解题过程</h1><p>设max为从数组起点能到达的最远距离，在遍历到某一点时，若该点可及，也就是说max&lt;i，则尝试更新在加入这一点后的所能到达的最远距离i + nums[i]。</p><h1 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h1><p>时间复杂度: O(n)：最多遍历一遍数组。<br>空间复杂度: O(1)：若干常量。</p><h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">canJump</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">max</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        max = nums[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (max &lt; i) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            max = Math.max(max, i + nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/jump-game/description/&quot;&gt;55. 跳跃游戏&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;思路&quot;&gt;&lt;a href=&quot;#</summary>
+      
+    
+    
+    
+    
+    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
+    
+  </entry>
+  
+  <entry>
     <title>121 &amp;&amp; 122. 买卖股票的最佳时机</title>
     <link href="https://10ng1000.github.io/2024/08/23/121-122-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA/"/>
     <id>https://10ng1000.github.io/2024/08/23/121-122-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA/</id>
     <published>2024-08-23T07:37:14.000Z</published>
-    <updated>2024-08-23T07:37:44.135Z</updated>
+    <updated>2024-08-23T07:44:59.521Z</updated>
     
     <content type="html"><![CDATA[<h2 id="第一题："><a href="#第一题：" class="headerlink" title="第一题："></a>第一题：</h2><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>题目要求只能在某一天买入股票，在另一天卖出，把股票的价格看成一个<strong>高度图</strong>，只要求出只能从前向后走的情况下最大下降量即可。</p><p>因此，在第一题中，我们从后向前遍历数组，保存到目前为止<strong>价格的最小值</strong>和<strong>结果的预估值</strong>。然后尝试在当前位置购入股票，并更新价格最小值。从前向后做的话方法类似。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxProfit</span><span class="params">(<span class="type">int</span>[] prices)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> prices.length;</span><br><span class="line">        <span class="type">int</span> <span class="variable">curMax</span> <span class="operator">=</span> prices[n - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> n - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            ans = Math.max(ans, curMax - prices[i]);</span><br><span class="line">            curMax = Math.max(prices[i], curMax);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h3><p>起初使用过动态规划的思想来做，多开了一个最小值数组。后面发现<code>dp[i]</code>只和<code>dp[i + 1]</code>有关，注意到这个数组是不必要的。</p><h2 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h2><h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><p>本题和上一题的区别是可以选择多次购入卖出股票。和上一题一样，思考一个下山的过程，只要下山就可以获得奖励，上山也<strong>没有</strong>惩罚。</p><p>因此使用贪心的思想，对于某一天的股票，只要价格比上一天低就可以售出，用反证法就可以证明。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxProfit</span><span class="params">(<span class="type">int</span>[] prices)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> prices.length;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; n;i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (prices[i] &gt; prices[i - <span class="number">1</span>]) &#123;</span><br><span class="line">                ans += prices[i] - prices[i - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
     
@@ -29,6 +54,29 @@
       
       
     <summary type="html">&lt;h2 id=&quot;第一题：&quot;&gt;&lt;a href=&quot;#第一题：&quot; class=&quot;headerlink&quot; title=&quot;第一题：&quot;&gt;&lt;/a&gt;第一题：&lt;/h2&gt;&lt;h3 id=&quot;思路&quot;&gt;&lt;a href=&quot;#思路&quot; class=&quot;headerlink&quot; title=&quot;思路&quot;&gt;&lt;/a&gt;思路&lt;/h</summary>
+      
+    
+    
+    
+    
+    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>121 &amp;&amp; 122. 买卖股票的最佳时机</title>
+    <link href="https://10ng1000.github.io/2024/08/23/121%20&amp;&amp;%20122.%20%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA/"/>
+    <id>https://10ng1000.github.io/2024/08/23/121%20&amp;&amp;%20122.%20%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA/</id>
+    <published>2024-08-23T07:37:14.000Z</published>
+    <updated>2024-08-23T10:10:30.591Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="第一题："><a href="#第一题：" class="headerlink" title="第一题："></a>第一题：</h1><blockquote><p>Problem: <a href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/description/">121. 买卖股票的最佳时机</a></p></blockquote><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>题目要求只能在某一天买入股票，在另一天卖出，把股票的价格看成一个<strong>高度图</strong>，只要求出只能从前向后走的情况下最大下降量即可。</p><p>因此，在第一题中，我们从后向前遍历数组，保存到目前为止<strong>价格的最小值</strong>和<strong>结果的预估值</strong>。然后尝试在当前位置购入股票，并更新价格最小值。从前向后做的话方法类似。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxProfit</span><span class="params">(<span class="type">int</span>[] prices)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> prices.length;</span><br><span class="line">        <span class="type">int</span> <span class="variable">curMax</span> <span class="operator">=</span> prices[n - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> n - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            ans = Math.max(ans, curMax - prices[i]);</span><br><span class="line">            curMax = Math.max(prices[i], curMax);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h2><p>起初使用过动态规划的思想来做，多开了一个最小值数组。后面发现<code>dp[i]</code>只和<code>dp[i + 1]</code>有关，注意到这个数组是不必要的。</p><h1 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h1><blockquote><p>Problem: <a href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/description/">122. 买卖股票的最佳时机 II</a></p></blockquote><h2 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h2><p>本题和上一题的区别是可以选择多次购入卖出股票。和上一题一样，思考一个下山的过程，只要下山就可以获得奖励，上山也<strong>没有</strong>惩罚。</p><p>因此使用贪心的思想，对于某一天的股票，只要价格比上一天低就可以售出，用反证法就可以证明。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxProfit</span><span class="params">(<span class="type">int</span>[] prices)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> prices.length;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; n;i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (prices[i] &gt; prices[i - <span class="number">1</span>]) &#123;</span><br><span class="line">                ans += prices[i] - prices[i - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;第一题：&quot;&gt;&lt;a href=&quot;#第一题：&quot; class=&quot;headerlink&quot; title=&quot;第一题：&quot;&gt;&lt;/a&gt;第一题：&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/be</summary>
       
     
     
