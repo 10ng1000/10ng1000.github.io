@@ -15,8 +15,8 @@
   
   <title>
     
-      标签 
-       : LeetCode
+      【动态规划】3144.分割字符频率相等的最少子字符串 
+      
       
       |
     
@@ -111,75 +111,206 @@
 
 
       <div class="flex-container">
-        <!-- 标签详情页，展示某个标签下的文章列表，url形式：https://yoursite/tags/某个标签/ -->
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
 
-<div class="container tag-details">
-  <div class="content-title">
-    <h2>
-      <span>LeetCode</span>
-    </h2>
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">【动态规划】3144.分割字符频率相等的最少子字符串</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+          2024-08-29 10:58:39
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="标签"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/LeetCode/" title="LeetCode">
+                    #LeetCode
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <blockquote>
+<p>Problem: <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-substring-partition-of-equal-character-frequency/description/">3144. 分割字符频率相等的最少子字符串</a><br>难度分1917，记录官解的理解</p>
+</blockquote>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>观察题目要求为最少平衡子字符串的划分方法，可以发现如果设子结构<code>dp[i]</code>为截止到<code>i</code>的子字符串的解，对于这个问题：</p>
+<ol>
+<li>没有后效性，即<em>已经求解的子问题不受后续决策的影响</em>。</li>
+<li>存在最优子结构，即<em>原问题的最优解可以从子问题的最优解构建得来</em></li>
+</ol>
+<p>对于小于<code>i</code>的<code>j</code>，有<code>dp[i] = Math.min(dp[i], dp[j] + 1)</code>，即试图在<code>j+1</code>的位置进行一次划分，如果更优则更新<code>dp[i]</code>的值。</p>
+<blockquote>
+<p>在思考dp问题的时候，需要注意到这种通过<strong>尝试更新</strong>来求解dp值的方法，很多问题都无法直接断定地从一个子状态更新。这种尝试更新一般来说带着一次遍历的复杂度。</p>
+</blockquote>
+<p>这样，问题就转为了如何判断<code>j+1</code>到<code>i</code>的字符串是否为平衡字符串，若不是平衡字符串则不能更新。最直观的想法是我们维护一个哈希表，通过不断往哈希表里加入元素，并判断某个元素出现的次数是否等于其他所有元素出现的次数，满足即可，这样每次判断都要遍历一遍哈希表。</p>
+<p>仔细观察哈希表，我们发现，只需要出现最多次数的元素乘以哈希表的长度等于<code>j+1</code>到<code>i</code>的字符串长度即可，因此可以将时间优化到常数级。</p>
+<blockquote>
+<p>要注意一个性质可能带来的另外其他性质。</p>
+</blockquote>
+<h1 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h1><ul>
+<li>时间复杂度: $O(n^2)$，其中<code>n</code>为数组<code>s</code>长度。</li>
+<li>空间复杂度: $O(n+C)$，其中<code>n</code>是数组<code>s</code>长度，C是<code>s</code>中的字符数。</li>
+</ul>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><pre><code class="Java">class Solution &#123;
+    static final int INF = 0x3f3f3f3f;
+    public int minimumSubstringsInPartition(String s) &#123;
+        int n = s.length();
+        int[] d = new int[n + 1];
+        Arrays.fill(d, INF);
+        d[0] = 0;
+        for (int i = 1; i &lt;= n; i++) &#123;
+            Map&lt;Character, Integer&gt; occCnt = new HashMap&lt;Character, Integer&gt;();
+            int maxCnt = 0;
+            for (int j = i; j &gt;= 1; j--) &#123;
+                occCnt.put(s.charAt(j - 1), occCnt.getOrDefault(s.charAt(j - 1), 0) + 1);
+                maxCnt = Math.max(maxCnt, occCnt.get(s.charAt(j - 1)));
+                if (maxCnt * occCnt.size() == (i - j + 1) &amp;&amp; d[j - 1] != INF) &#123;
+                    d[i] = Math.min(d[i], d[j - 1] + 1);
+                &#125;
+            &#125;
+        &#125;
+        return d[n];
+    &#125;
+&#125;
+</code></pre>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2024/08/27/%E3%80%90%E4%BA%8C%E5%88%86%E6%B3%95%EF%BC%8C%E5%8F%8C%E6%8C%87%E9%92%88%E3%80%913134-%E6%89%BE%E5%87%BA%E5%94%AF%E4%B8%80%E6%80%A7%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+              2024-08-29 10:58:39
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="标签"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/LeetCode/" title="LeetCode">
+                        #LeetCode
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
   </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="【动态规划】3144.分割字符频率相等的最少子字符串">
-        <span class="time-m-d">2024-08-29</span>
-        <a href="/2024/08/29/%E3%80%90%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E3%80%913144-%E5%88%86%E5%89%B2%E5%AD%97%E7%AC%A6%E9%A2%91%E7%8E%87%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%91%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2/">
-          <span>【动态规划】3144.分割字符频率相等的最少子字符串</span>
-        </a>
-      </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-text">复杂度</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li></ol>
+      
     </div>
+  </div>
+
   
-    <div class="post-list">
-      <div class="post-item" title="【二分法，双指针】3134.找出唯一性数组的中位数">
-        <span class="time-m-d">2024-08-27</span>
-        <a href="/2024/08/27/%E3%80%90%E4%BA%8C%E5%88%86%E6%B3%95%EF%BC%8C%E5%8F%8C%E6%8C%87%E9%92%88%E3%80%913134-%E6%89%BE%E5%87%BA%E5%94%AF%E4%B8%80%E6%80%A7%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/">
-          <span>【二分法，双指针】3134.找出唯一性数组的中位数</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="690.员工的重要性">
-        <span class="time-m-d">2024-08-26</span>
-        <a href="/2024/08/26/690-%E5%91%98%E5%B7%A5%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7/">
-          <span>690.员工的重要性</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="【状压dp】698.划分为k个相等的子集">
-        <span class="time-m-d">2024-08-26</span>
-        <a href="/2024/08/26/%E3%80%90%E7%8A%B6%E5%8E%8Bdp%E3%80%91698-%E5%88%92%E5%88%86%E4%B8%BAk%E4%B8%AA%E7%9B%B8%E7%AD%89%E7%9A%84%E5%AD%90%E9%9B%86/">
-          <span>【状压dp】698.划分为k个相等的子集</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="55.跳跃游戏">
-        <span class="time-m-d">2024-08-24</span>
-        <a href="/2024/08/24/55-%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F/">
-          <span>55.跳跃游戏</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="121 && 122. 买卖股票的最佳时机">
-        <span class="time-m-d">2024-08-23</span>
-        <a href="/2024/08/23/121%20&&%20122-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA/">
-          <span>121 && 122. 买卖股票的最佳时机</span>
-        </a>
-      </div>
-    </div>
-  
-  <nav class="post-navigation">
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-    <span class="page-num">1 / 1</span>
+      <div class="comments-container">
+        
+
+
+
+
+
+
+  <div id="gitalk-container"></div>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script>
+    function loadGitalkSuc() {
+      const gitalk = new Gitalk({
+        clientID: 'Ov23liEsmNxfQRDqWAJb',
+        clientSecret: '6353d100eda3d9beeb1755680c7406f982b60e9e',
+        repo: '10ng1000.github.io',
+        owner: '10ng1000',
+        admin: ['10ng1000'],
+        id: md5(location.pathname),
+        distractionFreeMode: false
+      })
+
+      gitalk.render('gitalk-container')
+    }
+  </script>
+  
+    <link rel="stylesheet" href="/plugins/gitalk.css">
+    <script type="text/javascript" src="/plugins/gitalk.min.js" onload="loadGitalkSuc(this)"></script>
+  
+
+
+
+      </div>
     
-  </nav>
-</div>
+  </div>
+
 
         
 <div class="footer">
@@ -445,6 +576,24 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E3%80%90%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E3%80%913144.%E5%88%86%E5%89%B2%E5%AD%97%E7%AC%A6%E9%A2%91%E7%8E%87%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%91%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2 + '&url=' + https%3A%2F%2F10ng1000.github.io%2F2024%2F08%2F29%2F%25E3%2580%2590%25E5%258A%25A8%25E6%2580%2581%25E8%25A7%2584%25E5%2588%2592%25E3%2580%25913144-%25E5%2588%2586%25E5%2589%25B2%25E5%25AD%2597%25E7%25AC%25A6%25E9%25A2%2591%25E7%258E%2587%25E7%259B%25B8%25E7%25AD%2589%25E7%259A%2584%25E6%259C%2580%25E5%25B0%2591%25E5%25AD%2590%25E5%25AD%2597%25E7%25AC%25A6%25E4%25B8%25B2%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://10ng1000.github.io/2024/08/29/%E3%80%90%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E3%80%913144-%E5%88%86%E5%89%B2%E5%AD%97%E7%AC%A6%E9%A2%91%E7%8E%87%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%91%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>

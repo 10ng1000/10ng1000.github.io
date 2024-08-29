@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>【动态规划】3144.分割字符频率相等的最少子字符串</title>
+      <link href="/2024/08/29/%E3%80%90%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E3%80%913144-%E5%88%86%E5%89%B2%E5%AD%97%E7%AC%A6%E9%A2%91%E7%8E%87%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%91%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+      <url>/2024/08/29/%E3%80%90%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E3%80%913144-%E5%88%86%E5%89%B2%E5%AD%97%E7%AC%A6%E9%A2%91%E7%8E%87%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%91%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>Problem: <a href="https://leetcode.cn/problems/minimum-substring-partition-of-equal-character-frequency/description/">3144. 分割字符频率相等的最少子字符串</a><br>难度分1917，记录官解的理解</p></blockquote><h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>观察题目要求为最少平衡子字符串的划分方法，可以发现如果设子结构<code>dp[i]</code>为截止到<code>i</code>的子字符串的解，对于这个问题：</p><ol><li>没有后效性，即<em>已经求解的子问题不受后续决策的影响</em>。</li><li>存在最优子结构，即<em>原问题的最优解可以从子问题的最优解构建得来</em></li></ol><p>对于小于<code>i</code>的<code>j</code>，有<code>dp[i] = Math.min(dp[i], dp[j] + 1)</code>，即试图在<code>j+1</code>的位置进行一次划分，如果更优则更新<code>dp[i]</code>的值。</p><blockquote><p>在思考dp问题的时候，需要注意到这种通过<strong>尝试更新</strong>来求解dp值的方法，很多问题都无法直接断定地从一个子状态更新。这种尝试更新一般来说带着一次遍历的复杂度。</p></blockquote><p>这样，问题就转为了如何判断<code>j+1</code>到<code>i</code>的字符串是否为平衡字符串，若不是平衡字符串则不能更新。最直观的想法是我们维护一个哈希表，通过不断往哈希表里加入元素，并判断某个元素出现的次数是否等于其他所有元素出现的次数，满足即可，这样每次判断都要遍历一遍哈希表。</p><p>仔细观察哈希表，我们发现，只需要出现最多次数的元素乘以哈希表的长度等于<code>j+1</code>到<code>i</code>的字符串长度即可，因此可以将时间优化到常数级。</p><blockquote><p>要注意一个性质可能带来的另外其他性质。</p></blockquote><h1 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h1><ul><li>时间复杂度: $O(n^2)$，其中<code>n</code>为数组<code>s</code>长度。</li><li>空间复杂度: $O(n+C)$，其中<code>n</code>是数组<code>s</code>长度，C是<code>s</code>中的字符数。</li></ul><h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><pre><code class="Java">class Solution &#123;    static final int INF = 0x3f3f3f3f;    public int minimumSubstringsInPartition(String s) &#123;        int n = s.length();        int[] d = new int[n + 1];        Arrays.fill(d, INF);        d[0] = 0;        for (int i = 1; i &lt;= n; i++) &#123;            Map&lt;Character, Integer&gt; occCnt = new HashMap&lt;Character, Integer&gt;();            int maxCnt = 0;            for (int j = i; j &gt;= 1; j--) &#123;                occCnt.put(s.charAt(j - 1), occCnt.getOrDefault(s.charAt(j - 1), 0) + 1);                maxCnt = Math.max(maxCnt, occCnt.get(s.charAt(j - 1)));                if (maxCnt * occCnt.size() == (i - j + 1) &amp;&amp; d[j - 1] != INF) &#123;                    d[i] = Math.min(d[i], d[j - 1] + 1);                &#125;            &#125;        &#125;        return d[n];    &#125;&#125;</code></pre>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【二分法，双指针】3134.找出唯一性数组的中位数</title>
       <link href="/2024/08/27/%E3%80%90%E4%BA%8C%E5%88%86%E6%B3%95%EF%BC%8C%E5%8F%8C%E6%8C%87%E9%92%88%E3%80%913134-%E6%89%BE%E5%87%BA%E5%94%AF%E4%B8%80%E6%80%A7%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/"/>
       <url>/2024/08/27/%E3%80%90%E4%BA%8C%E5%88%86%E6%B3%95%EF%BC%8C%E5%8F%8C%E6%8C%87%E9%92%88%E3%80%913134-%E6%89%BE%E5%87%BA%E5%94%AF%E4%B8%80%E6%80%A7%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/</url>
