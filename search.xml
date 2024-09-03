@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>2024. 考试的最大困扰度</title>
+      <link href="/2024/09/03/2024-%E8%80%83%E8%AF%95%E7%9A%84%E6%9C%80%E5%A4%A7%E5%9B%B0%E6%89%B0%E5%BA%A6/"/>
+      <url>/2024/09/03/2024-%E8%80%83%E8%AF%95%E7%9A%84%E6%9C%80%E5%A4%A7%E5%9B%B0%E6%89%B0%E5%BA%A6/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>Problem: <a href="https://leetcode.cn/problems/maximize-the-confusion-of-an-exam/description/">2024. 考试的最大困扰度</a><br>尝试了滑动窗口没做出来，这里记录官解的理解</p></blockquote><h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>由于字符串中的字符只有<code>t</code>和<code>f</code>，我们可以遍历每种字符最长串的长度，然后取最大值即可。</p><blockquote><p>之前在用滑动窗口做的时候没有想到这个做法，然后就很难想。</p></blockquote><p>给定指定字符，我们可以使用滑动窗口的方法，维护<code>left</code>到<code>right</code>这个区间为更改数量范围内的连续字符串。当<code>right</code>位置的字符不同时，如果更改字符的次数小于<code>k</code>，使用次数加一，否则不断右移<code>left</code>位置，直到找到第一个更改的地方为止。在<code>right</code>不断右移的过程中，记录能够到达的最大长度。</p><h1 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h1><ul><li>时间复杂度: $O(n)$，n为字符串长度，遍历字符串两次。</li><li>空间复杂度: $O(1)$。</li></ul><h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxConsecutiveAnswers</span><span class="params">(String answerKey, <span class="type">int</span> k)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> Math.max(maxConsecutiveChar(answerKey, k, <span class="string">&#x27;T&#x27;</span>), maxConsecutiveChar(answerKey, k, <span class="string">&#x27;F&#x27;</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxConsecutiveChar</span><span class="params">(String answerKey, <span class="type">int</span> k, <span class="type">char</span> ch)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> answerKey.length();</span><br><span class="line">        <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> <span class="number">0</span>, right = <span class="number">0</span>, sum = <span class="number">0</span>; right &lt; n; right++) &#123;</span><br><span class="line">            sum += answerKey.charAt(right) != ch ? <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span> (sum &gt; k) &#123;</span><br><span class="line">                sum -= answerKey.charAt(left++) != ch ? <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            ans = Math.max(ans, right - left + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>3142.判断矩阵是否满足条件</title>
       <link href="/2024/08/29/3142-%E5%88%A4%E6%96%AD%E7%9F%A9%E9%98%B5%E6%98%AF%E5%90%A6%E6%BB%A1%E8%B6%B3%E6%9D%A1%E4%BB%B6/"/>
       <url>/2024/08/29/3142-%E5%88%A4%E6%96%AD%E7%9F%A9%E9%98%B5%E6%98%AF%E5%90%A6%E6%BB%A1%E8%B6%B3%E6%9D%A1%E4%BB%B6/</url>
