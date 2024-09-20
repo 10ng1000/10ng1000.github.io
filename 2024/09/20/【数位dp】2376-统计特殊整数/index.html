@@ -15,7 +15,7 @@
   
   <title>
     
-      Spring和MybatisPlus踩坑 
+      2376. 统计特殊整数 
       
       
       |
@@ -156,40 +156,50 @@
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">Spring和MybatisPlus踩坑</div>
+      <div class="post-title">2376. 统计特殊整数</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-          2024-09-16 17:31:25
+          2024-09-20 17:09:36
         </span>
         
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="标签"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/LeetCode/" title="LeetCode">
+                    #LeetCode
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
       <div class="markdown-body">
-        <h1 id="发现build后还有原来的代码"><a href="#发现build后还有原来的代码" class="headerlink" title="发现build后还有原来的代码"></a>发现build后还有原来的代码</h1><p>build只会加缓存，不会减缓存，因此如果删除文件，需要rebuild。</p>
-<h1 id="Bean冲突"><a href="#Bean冲突" class="headerlink" title="Bean冲突"></a>Bean冲突</h1><p>遇到了processBean冲突，排查后发现是框架文件里有这个名称的bean，因此换个名称就可以解决。不要把名称设的太宽泛。</p>
-<h1 id="MybatisPlus学习"><a href="#MybatisPlus学习" class="headerlink" title="MybatisPlus学习"></a>MybatisPlus学习</h1><p>过于细化的框架损失自由度，并且会引起很多难以解决的bug，只有在组里有前人对框架非常熟悉，且框架经过检验时，使用框架才好。</p>
-<p>所以采用适用性相对较广的MybatisPlus。</p>
-<p>后端设置UUID：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@TableId(type = IdType.ASSIGN_UUID)</span>  </span><br><span class="line"><span class="keyword">private</span> String id;</span><br></pre></td></tr></table></figure>
-
-<p>后端分页：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ProcessingMapper.java</span></span><br><span class="line"><span class="meta">@Select(&quot;SELECT * FROM &quot; + TABLE_NAME)</span>  </span><br><span class="line">IPage&lt;Processing&gt; <span class="title function_">selectPageVo</span><span class="params">(IPage&lt;?&gt; page)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//ProcessingService.java</span></span><br><span class="line"><span class="keyword">public</span> IPage&lt;Processing&gt; <span class="title function_">getProcessingPage</span><span class="params">(<span class="type">int</span> currentPage, <span class="type">int</span> pageSize)</span>&#123;  </span><br><span class="line">    Page&lt;Processing&gt; page = <span class="keyword">new</span> <span class="title class_">Page</span>&lt;&gt;(currentPage, pageSize);  </span><br><span class="line">    <span class="keyword">return</span> processingMapper.selectPageVo(page);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Post的时候后端一直报错"><a href="#Post的时候后端一直报错" class="headerlink" title="Post的时候后端一直报错"></a>Post的时候后端一直报错</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">错误: nested exception is org.apache.ibatis.reflection.ReflectionException: There is no getter <span class="keyword">for</span> property named <span class="string">&#x27;rawData&#x27;</span> in <span class="string">&#x27;class com.jeeplus.processmanage.domain.Processing&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>一直在前端找，都没找到哪里有rawData这个东西，后来发现是后端的<code>Mapper</code>当时复制了另一个文件，里面有insert这个东西，自己没有注意到。所以，出现莫名其妙的错误时，<strong>要回想一下自己所没有注意到，特别是复制黏贴的事物</strong>。<del>复制黏贴还是少用为好。</del></p>
-<h2 id="报SQL语句错误"><a href="#报SQL语句错误" class="headerlink" title="报SQL语句错误"></a>报SQL语句错误</h2><p>procedure是一个保留关键字，不能作为列名。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">错误: ### Error updating database. Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version <span class="keyword">for</span> the right syntax to use near <span class="string">&#x27;procedure, equipment_used, operator_info, material_id ) VALUES ( &#x27;</span><span class="number">183558877960</span><span class="string">&#x27; at line 4 ### The error may exist in com/jeeplus/processmanage/mapper/ProcessingMapper.java (best guess) ### The error may involve com.jeeplus.processmanage.mapper.ProcessingMapper.insert-Inline ### The error occurred while setting parameters ### SQL: INSERT INTO process_process ( id, technique, procedure, equipment_used, operator_info, material_id ) VALUES ( ?, ?, ?, ?, ?, ? ) ### Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#x27;</span>procedure, equipment_used, operator_info, material_id ) VALUES ( <span class="string">&#x27;183558877960&#x27;</span> at line <span class="number">4</span> ; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version <span class="keyword">for</span> the right syntax to use near <span class="string">&#x27;procedure, equipment_used, operator_info, material_id ) VALUES ( &#x27;</span><span class="number">183558877960</span><span class="string">&#x27; at line 4</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>在 SQL 语言中，<code>PROCEDURE</code> 是一个保留字，用于定义存储过程。存储过程是一组为了完成特定功能的 SQL 语句集合，它可以在数据库中被保存和重用。</p>
+        <blockquote>
+<p>Problem: <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-special-integers/description/">2376. 统计特殊整数</a><br>记录新学到的知识点，思路见<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-special-integers/solutions/1746956/shu-wei-dp-mo-ban-by-endlesscheng-xtgx/">灵茶山艾府</a></p>
 </blockquote>
-<p>可见sql和spring是要注意命名错误的。</p>
-
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><h2 id="位运算和集合论"><a href="#位运算和集合论" class="headerlink" title="位运算和集合论"></a>位运算和集合论</h2><p>通过将位运算和集合论结合，可以用来表示<strong>数位状态</strong>，用来作为数位dp的一部分使用。</p>
+<p>具体方法是，对于从右到左第<code>i</code>位数，如果为1就代表<code>i</code>这个数在集合中。对于要枚举的范围不大（例如数位D，范围为0-9）的数来说，可以很方便地用一个整数来存储数位的访问状态。</p>
+<p>取出第<code>i</code>位数和加入第<code>i</code>位数都是$O(D)$的时间复杂度。设集合为x，则取出放入操作可以用位运算求解：</p>
+<ol>
+<li>取出：<code>x &gt;&gt; i &amp; 1</code></li>
+<li>放入：<code>1 &lt;&lt; i | x</code></li>
+</ol>
+<h2 id="数位dp"><a href="#数位dp" class="headerlink" title="数位dp"></a>数位dp</h2><p>通过记忆化搜索来找出所有可能的状态，这样可以把需要遍历的情况压缩到状态数乘以单个状态计算时间的大小，状态数在本体中为位数（很小）乘以$O(2^D)$，后者是集合可能有的所有情况。同时单个状态的计算时间通常是很小的。这样就大大减小了计算的量，可以高效地找出所有符合条件的情况。</p>
+<h2 id="对于数位问题的技巧"><a href="#对于数位问题的技巧" class="headerlink" title="对于数位问题的技巧"></a>对于数位问题的技巧</h2><h3 id="1-对于不能超过最大数n的解决方式"><a href="#1-对于不能超过最大数n的解决方式" class="headerlink" title="1.对于不能超过最大数n的解决方式"></a>1.对于不能超过最大数<code>n</code>的解决方式</h3><p>设置一个<code>isLimit</code>标志，表示当前位置是否受到约束，即如果超过<code>s[i]</code>则非法。若<code>isLimit</code>为true，则当前可以遍历的数就存在一个上限<code>s[i]</code>，否则为9。在记忆化搜索的过程中维护和更新这个标志。</p>
+<h3 id="2-对于前置不能存在0，又可能为空的解决方式"><a href="#2-对于前置不能存在0，又可能为空的解决方式" class="headerlink" title="2.对于前置不能存在0，又可能为空的解决方式"></a>2.对于前置不能存在0，又可能为空的解决方式</h3><p>设置一个<code>isNum</code>标志，表示前一位是否有填数字。如果前一位空，则这一位可以空（直接遍历下一位），也可以填1-9；如果前一位不空，则这一位只能填0-9。</p>
+<h1 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h1><ul>
+<li>时间复杂度: $O(mD2^D)$。其中<code>m</code>为<code>s</code>的长度，<code>D</code>为10。</li>
+<li>空间复杂度: $O(m2^D)$。</li>
+</ul>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">countSpecialNumbers</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">        <span class="type">char</span>[] s = Integer.toString(n).toCharArray();</span><br><span class="line">        <span class="type">int</span>[][] memo = <span class="keyword">new</span> <span class="title class_">int</span>[s.length][<span class="number">1</span> &lt;&lt; <span class="number">10</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span>[] row : memo) &#123;</span><br><span class="line">            Arrays.fill(row, -<span class="number">1</span>); <span class="comment">// -1 表示没有计算过</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dfs(<span class="number">0</span>, <span class="number">0</span>, <span class="literal">true</span>, <span class="literal">false</span>, s, memo);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="title function_">dfs</span><span class="params">(<span class="type">int</span> i, <span class="type">int</span> mask, <span class="type">boolean</span> isLimit, <span class="type">boolean</span> isNum, <span class="type">char</span>[] s, <span class="type">int</span>[][] memo)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (i == s.length) &#123;</span><br><span class="line">            <span class="keyword">return</span> isNum ? <span class="number">1</span> : <span class="number">0</span>; <span class="comment">// isNum 为 true 表示得到了一个合法数字</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!isLimit &amp;&amp; isNum &amp;&amp; memo[i][mask] != -<span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> memo[i][mask]; <span class="comment">// 之前计算过</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> <span class="variable">res</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (!isNum) &#123; <span class="comment">// 可以跳过当前数位</span></span><br><span class="line">            res = dfs(i + <span class="number">1</span>, mask, <span class="literal">false</span>, <span class="literal">false</span>, s, memo);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 如果前面填的数字都和 n 的一样，那么这一位至多填数字 s[i]（否则就超过 n 啦）</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">up</span> <span class="operator">=</span> isLimit ? s[i] - <span class="string">&#x27;0&#x27;</span> : <span class="number">9</span>;</span><br><span class="line">        <span class="comment">// 枚举要填入的数字 d</span></span><br><span class="line">        <span class="comment">// 如果前面没有填数字，则必须从 1 开始（因为不能有前导零）</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">d</span> <span class="operator">=</span> isNum ? <span class="number">0</span> : <span class="number">1</span>; d &lt;= up; d++) &#123;</span><br><span class="line">            <span class="keyword">if</span> ((mask &gt;&gt; d &amp; <span class="number">1</span>) == <span class="number">0</span>) &#123; <span class="comment">// d 不在 mask 中，说明之前没有填过 d</span></span><br><span class="line">                res += dfs(i + <span class="number">1</span>, mask | (<span class="number">1</span> &lt;&lt; d), isLimit &amp;&amp; d == up, <span class="literal">true</span>, s, memo);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (!isLimit &amp;&amp; isNum) &#123;</span><br><span class="line">            memo[i][mask] = res; <span class="comment">// 记忆化</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
       </div>
       
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2024/09/14/%E3%80%90%E6%A0%88%E3%80%912390-%E4%BB%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%A7%BB%E9%99%A4%E6%98%9F%E5%8F%B7/" target="_self">
+              <a href="/2024/09/16/Spring%E5%92%8CMybatisPlus%E8%B8%A9%E5%9D%91/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>上一页</span>
               </a>
@@ -198,16 +208,22 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-              2024-09-16 17:31:25
+              2024-09-20 17:09:36
             </span>
             
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="标签"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/LeetCode/" title="LeetCode">
+                        #LeetCode
+                      </a>
+                    </span>
+                    
+                  </span>
+              
           </div>
           <div class="post-foot-prev">
-            
-              <a href="/2024/09/20/%E3%80%90%E6%95%B0%E4%BD%8Ddp%E3%80%912376-%E7%BB%9F%E8%AE%A1%E7%89%B9%E6%AE%8A%E6%95%B4%E6%95%B0/" target="_self">
-                <span>下一页</span>
-                <i class="iconfont icon-chevronright"></i>
-              </a>
             
           </div>
         </div>
@@ -221,7 +237,7 @@
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%91%E7%8E%B0build%E5%90%8E%E8%BF%98%E6%9C%89%E5%8E%9F%E6%9D%A5%E7%9A%84%E4%BB%A3%E7%A0%81"><span class="toc-text">发现build后还有原来的代码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Bean%E5%86%B2%E7%AA%81"><span class="toc-text">Bean冲突</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MybatisPlus%E5%AD%A6%E4%B9%A0"><span class="toc-text">MybatisPlus学习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Post%E7%9A%84%E6%97%B6%E5%80%99%E5%90%8E%E7%AB%AF%E4%B8%80%E7%9B%B4%E6%8A%A5%E9%94%99"><span class="toc-text">Post的时候后端一直报错</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%A5SQL%E8%AF%AD%E5%8F%A5%E9%94%99%E8%AF%AF"><span class="toc-text">报SQL语句错误</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-text">思路</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%8D%E8%BF%90%E7%AE%97%E5%92%8C%E9%9B%86%E5%90%88%E8%AE%BA"><span class="toc-text">位运算和集合论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E4%BD%8Ddp"><span class="toc-text">数位dp</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8E%E6%95%B0%E4%BD%8D%E9%97%AE%E9%A2%98%E7%9A%84%E6%8A%80%E5%B7%A7"><span class="toc-text">对于数位问题的技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AF%B9%E4%BA%8E%E4%B8%8D%E8%83%BD%E8%B6%85%E8%BF%87%E6%9C%80%E5%A4%A7%E6%95%B0n%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F"><span class="toc-text">1.对于不能超过最大数n的解决方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AF%B9%E4%BA%8E%E5%89%8D%E7%BD%AE%E4%B8%8D%E8%83%BD%E5%AD%98%E5%9C%A80%EF%BC%8C%E5%8F%88%E5%8F%AF%E8%83%BD%E4%B8%BA%E7%A9%BA%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F"><span class="toc-text">2.对于前置不能存在0，又可能为空的解决方式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-text">复杂度</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li></ol>
       
     </div>
   </div>
@@ -541,12 +557,12 @@
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + Spring%E5%92%8CMybatisPlus%E8%B8%A9%E5%9D%91 + '&url=' + https%3A%2F%2F10ng1000.github.io%2F2024%2F09%2F16%2FSpring%25E5%2592%258CMybatisPlus%25E8%25B8%25A9%25E5%259D%2591%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + 2376.%20%E7%BB%9F%E8%AE%A1%E7%89%B9%E6%AE%8A%E6%95%B4%E6%95%B0 + '&url=' + https%3A%2F%2F10ng1000.github.io%2F2024%2F09%2F20%2F%25E3%2580%2590%25E6%2595%25B0%25E4%25BD%258Ddp%25E3%2580%25912376-%25E7%25BB%259F%25E8%25AE%25A1%25E7%2589%25B9%25E6%25AE%258A%25E6%2595%25B4%25E6%2595%25B0%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://10ng1000.github.io/2024/09/16/Spring%E5%92%8CMybatisPlus%E8%B8%A9%E5%9D%91/" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://10ng1000.github.io/2024/09/20/%E3%80%90%E6%95%B0%E4%BD%8Ddp%E3%80%912376-%E7%BB%9F%E8%AE%A1%E7%89%B9%E6%AE%8A%E6%95%B4%E6%95%B0/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         

@@ -6,7 +6,7 @@
   <link href="https://10ng1000.github.io/atom.xml" rel="self"/>
   
   <link href="https://10ng1000.github.io/"/>
-  <updated>2024-09-16T09:31:25.479Z</updated>
+  <updated>2024-09-20T09:09:36.545Z</updated>
   <id>https://10ng1000.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2376. 统计特殊整数</title>
+    <link href="https://10ng1000.github.io/2024/09/20/%E3%80%90%E6%95%B0%E4%BD%8Ddp%E3%80%912376-%E7%BB%9F%E8%AE%A1%E7%89%B9%E6%AE%8A%E6%95%B4%E6%95%B0/"/>
+    <id>https://10ng1000.github.io/2024/09/20/%E3%80%90%E6%95%B0%E4%BD%8Ddp%E3%80%912376-%E7%BB%9F%E8%AE%A1%E7%89%B9%E6%AE%8A%E6%95%B4%E6%95%B0/</id>
+    <published>2024-09-20T08:45:31.000Z</published>
+    <updated>2024-09-20T09:09:36.545Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/count-special-integers/description/&quot;&gt;2376. 统计特殊整数&lt;/a&gt;&lt;br&gt;记录新学到的知识点，思路见&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring和MybatisPlus踩坑</title>
