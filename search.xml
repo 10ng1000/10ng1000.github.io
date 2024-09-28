@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>274. H指数</title>
+      <link href="/2024/09/28/274-H%E6%8C%87%E6%95%B0/"/>
+      <url>/2024/09/28/274-H%E6%8C%87%E6%95%B0/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>Problem: <a href="https://leetcode.cn/problems/h-index/description/">274. H 指数</a></p></blockquote><h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>看到题目中有<code>至少h篇大于等于h</code>这样的比大小字样，可以想到排序数组，这样可以使数组具有单调性。</p><p>将数组<strong>从大到小</strong>排序，用指针<code>i</code>遍历数组，如果有第<code>i</code>大的引用小于<code>i + 1</code>（个数），那么显然就不存在<code>i + 1</code>个大于等于<code>i + 1</code>的文章（之后的文章都比它小），这样所求的<code>i</code>就是H指数。</p><h1 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h1><ul><li>时间复杂度: $O(nlogn)$，排序的时间消耗，在本题里数据范围较小，如果使用计数排序可以降到$O(n+k)$</li><li>空间复杂度: $O(1)$，只需若干常量。</li></ul><h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight java"><figcaption><span>[]</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">hIndex</span><span class="params">(<span class="type">int</span>[] citations)</span> &#123;</span><br><span class="line">        Arrays.sort(citations);</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> citations.length;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">if</span> (citations[i] &lt; n - i) &#123;</span><br><span class="line">                <span class="keyword">return</span> n - i - <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> n;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>2516. 每种字符至少取 K 个</title>
       <link href="/2024/09/27/2516-%E6%AF%8F%E7%A7%8D%E5%AD%97%E7%AC%A6%E8%87%B3%E5%B0%91%E5%8F%96K%E4%B8%AA/"/>
       <url>/2024/09/27/2516-%E6%AF%8F%E7%A7%8D%E5%AD%97%E7%AC%A6%E8%87%B3%E5%B0%91%E5%8F%96K%E4%B8%AA/</url>
