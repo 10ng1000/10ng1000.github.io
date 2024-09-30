@@ -15,8 +15,8 @@
   
   <title>
     
-      标签 
-       : LeetCode
+      1845. 座位预约管理系统 
+      
       
       |
     
@@ -111,95 +111,180 @@
 
 
       <div class="flex-container">
-        <!-- 标签详情页，展示某个标签下的文章列表，url形式：https://yoursite/tags/某个标签/ -->
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
 
-<div class="container tag-details">
-  <div class="content-title">
-    <h2>
-      <span>LeetCode</span>
-    </h2>
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">1845. 座位预约管理系统</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+          2024-09-30 09:51:11
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="标签"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/LeetCode/" title="LeetCode">
+                    #LeetCode
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <blockquote>
+<p>Problem: <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/seat-reservation-manager/description/">1845. 座位预约管理系统</a></p>
+</blockquote>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>首先想到的是使用最小堆来模拟，因为题目的<code>reserve</code>返回的是最小可预约座位，并把座位变为不可预约。如果用最小堆来维护<strong>可预约座位</strong>，那么<code>reserve</code>操作就是出堆操作；<code>unreserve</code>就是入堆操作。出入堆操作时间复杂度为$O(logn)$。</p>
+<p>但是如果<code>n</code>太大，初始化操作就会消耗太多的时间。我们可以用逆向思维：如果我们维护<strong>曾经被预约过，又被释放的座位</strong>，就不需要初始化操作。当执行预约操作时，如果堆里有座位，就将执行出堆操作。否则返回<code>已被预约的座位数+1</code>；当执行取消预约时，将该座位入堆。</p>
+<blockquote>
+<p>优化的方法参考<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/seat-reservation-manager/solutions/2838121/liang-chong-fang-fa-wei-hu-ke-yu-yue-de-tmub8/">灵茶山艾府</a></p>
+</blockquote>
+<h1 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h1><ul>
+<li>时间复杂度: 初始化$O(1)$,<code>reserve</code>和<code>unreserve</code>为$O(log q)$，<code>q</code>为<code>reserve</code>的调用次数。</li>
+<li>空间复杂度: $O(q)$。</li>
+</ul>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SeatManager</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> PriorityQueue&lt;Integer&gt; available = <span class="keyword">new</span> <span class="title class_">PriorityQueue</span>&lt;&gt;();</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> seats;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">SeatManager</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">reserve</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (!available.isEmpty()) &#123; <span class="comment">// 有空出来的椅子</span></span><br><span class="line">            <span class="keyword">return</span> available.poll(); <span class="comment">// 坐编号最小的</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ++seats; <span class="comment">// 添加一把新的椅子</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">unreserve</span><span class="params">(<span class="type">int</span> seatNumber)</span> &#123;</span><br><span class="line">        available.add(seatNumber); <span class="comment">// 有人离开了椅子</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2024/09/29/238-%E9%99%A4%E8%87%AA%E8%BA%AB%E4%BB%A5%E5%A4%96%E6%95%B0%E7%BB%84%E7%9A%84%E4%B9%98%E7%A7%AF/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+              2024-09-30 09:51:11
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="标签"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/LeetCode/" title="LeetCode">
+                        #LeetCode
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2024/09/30/%E5%81%9A%E5%8A%9B%E6%89%A3%E7%9A%84%E6%80%9D%E8%80%83/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
   </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="2024. 考试的最大困扰度">
-        <span class="time-m-d">2024-09-03</span>
-        <a href="/2024/09/03/2024-%E8%80%83%E8%AF%95%E7%9A%84%E6%9C%80%E5%A4%A7%E5%9B%B0%E6%89%B0%E5%BA%A6/">
-          <span>2024. 考试的最大困扰度</span>
-        </a>
-      </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-text">复杂度</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li></ol>
+      
     </div>
+  </div>
+
   
-    <div class="post-list">
-      <div class="post-item" title="3142.判断矩阵是否满足条件">
-        <span class="time-m-d">2024-08-29</span>
-        <a href="/2024/08/29/3142-%E5%88%A4%E6%96%AD%E7%9F%A9%E9%98%B5%E6%98%AF%E5%90%A6%E6%BB%A1%E8%B6%B3%E6%9D%A1%E4%BB%B6/">
-          <span>3142.判断矩阵是否满足条件</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="【动态规划】3144.分割字符频率相等的最少子字符串">
-        <span class="time-m-d">2024-08-29</span>
-        <a href="/2024/08/29/%E3%80%90%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E3%80%913144-%E5%88%86%E5%89%B2%E5%AD%97%E7%AC%A6%E9%A2%91%E7%8E%87%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%91%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2/">
-          <span>【动态规划】3144.分割字符频率相等的最少子字符串</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="【二分法，双指针】3134.找出唯一性数组的中位数">
-        <span class="time-m-d">2024-08-27</span>
-        <a href="/2024/08/27/%E3%80%90%E4%BA%8C%E5%88%86%E6%B3%95%EF%BC%8C%E5%8F%8C%E6%8C%87%E9%92%88%E3%80%913134-%E6%89%BE%E5%87%BA%E5%94%AF%E4%B8%80%E6%80%A7%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/">
-          <span>【二分法，双指针】3134.找出唯一性数组的中位数</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="690.员工的重要性">
-        <span class="time-m-d">2024-08-26</span>
-        <a href="/2024/08/26/690-%E5%91%98%E5%B7%A5%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7/">
-          <span>690.员工的重要性</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="【状压dp】698.划分为k个相等的子集">
-        <span class="time-m-d">2024-08-26</span>
-        <a href="/2024/08/26/%E3%80%90%E7%8A%B6%E5%8E%8Bdp%E3%80%91698-%E5%88%92%E5%88%86%E4%B8%BAk%E4%B8%AA%E7%9B%B8%E7%AD%89%E7%9A%84%E5%AD%90%E9%9B%86/">
-          <span>【状压dp】698.划分为k个相等的子集</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="55.跳跃游戏">
-        <span class="time-m-d">2024-08-24</span>
-        <a href="/2024/08/24/55-%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F/">
-          <span>55.跳跃游戏</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="121 && 122. 买卖股票的最佳时机">
-        <span class="time-m-d">2024-08-23</span>
-        <a href="/2024/08/23/121%20&&%20122-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA/">
-          <span>121 && 122. 买卖股票的最佳时机</span>
-        </a>
-      </div>
-    </div>
-  
-  <nav class="post-navigation">
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <a href="/tags/LeetCode/"><i class="iconfont icon-angleleft"></i></a>
+      <div class="comments-container">
+        
+
+
+
+
+
+
+  <div id="gitalk-container"></div>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script>
+    function loadGitalkSuc() {
+      const gitalk = new Gitalk({
+        clientID: 'Ov23liEsmNxfQRDqWAJb',
+        clientSecret: '6353d100eda3d9beeb1755680c7406f982b60e9e',
+        repo: '10ng1000.github.io',
+        owner: '10ng1000',
+        admin: ['10ng1000'],
+        id: md5(location.pathname),
+        distractionFreeMode: false
+      })
+
+      gitalk.render('gitalk-container')
+    }
+  </script>
+  
+    <link rel="stylesheet" href="/plugins/gitalk.css">
+    <script type="text/javascript" src="/plugins/gitalk.min.js" onload="loadGitalkSuc(this)"></script>
+  
+
+
+
+      </div>
     
-    <span class="page-num">2 / 2</span>
-    
-  </nav>
-</div>
+  </div>
+
 
         
 <div class="footer">
@@ -465,6 +550,24 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + 1845.%20%E5%BA%A7%E4%BD%8D%E9%A2%84%E7%BA%A6%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F + '&url=' + https%3A%2F%2F10ng1000.github.io%2F2024%2F09%2F30%2F1845-%25E5%25BA%25A7%25E4%25BD%258D%25E9%25A2%2584%25E7%25BA%25A6%25E7%25AE%25A1%25E7%2590%2586%25E7%25B3%25BB%25E7%25BB%259F%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://10ng1000.github.io/2024/09/30/1845-%E5%BA%A7%E4%BD%8D%E9%A2%84%E7%BA%A6%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>

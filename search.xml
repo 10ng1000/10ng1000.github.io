@@ -4,9 +4,104 @@
   
     
     <entry>
+      <title>做力扣的思考</title>
+      <link href="/2024/09/30/%E5%81%9A%E5%8A%9B%E6%89%A3%E7%9A%84%E6%80%9D%E8%80%83/"/>
+      <url>/2024/09/30/%E5%81%9A%E5%8A%9B%E6%89%A3%E7%9A%84%E6%80%9D%E8%80%83/</url>
+      
+        <content type="html"><![CDATA[<p>到目前为止，做的题目大多是中等题，从没做出的题的经验中，略微感觉有些思路可循。</p><p>在我看来，要做出一道题目需要想到以下几点：</p><ol><li>读题目，观察是否符合某一数据结构或者算法模式。</li><li>如果第一步想到的方法效率不高或者找不到直接对应的模式，思考题目是否隐含了什么可推导出的条件。</li><li>尝试将题目的说法进行等价转换，以符合算法或者数据结构的模式。</li><li>尝试使用逆向思维、转换做法等方式，以优化。</li></ol><p>然后，对于算法和数据机构的掌握就是核心的基础了，需要多多做题磨练。也希望在练习的途中，能发现更多解题的新思路。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Idea </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>1845. 座位预约管理系统</title>
+      <link href="/2024/09/30/1845-%E5%BA%A7%E4%BD%8D%E9%A2%84%E7%BA%A6%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/"/>
+      <url>/2024/09/30/1845-%E5%BA%A7%E4%BD%8D%E9%A2%84%E7%BA%A6%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>Problem: <a href="https://leetcode.cn/problems/seat-reservation-manager/description/">1845. 座位预约管理系统</a></p></blockquote><h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>首先想到的是使用最小堆来模拟，因为题目的<code>reserve</code>返回的是最小可预约座位，并把座位变为不可预约。如果用最小堆来维护<strong>可预约座位</strong>，那么<code>reserve</code>操作就是出堆操作；<code>unreserve</code>就是入堆操作。出入堆操作时间复杂度为$O(logn)$。</p><p>但是如果<code>n</code>太大，初始化操作就会消耗太多的时间。我们可以用逆向思维：如果我们维护<strong>曾经被预约过，又被释放的座位</strong>，就不需要初始化操作。当执行预约操作时，如果堆里有座位，就将执行出堆操作。否则返回<code>已被预约的座位数+1</code>；当执行取消预约时，将该座位入堆。</p><blockquote><p>优化的方法参考<a href="https://leetcode.cn/problems/seat-reservation-manager/solutions/2838121/liang-chong-fang-fa-wei-hu-ke-yu-yue-de-tmub8/">灵茶山艾府</a></p></blockquote><h1 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h1><ul><li>时间复杂度: 初始化$O(1)$,<code>reserve</code>和<code>unreserve</code>为$O(log q)$，<code>q</code>为<code>reserve</code>的调用次数。</li><li>空间复杂度: $O(q)$。</li></ul><h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SeatManager</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> PriorityQueue&lt;Integer&gt; available = <span class="keyword">new</span> <span class="title class_">PriorityQueue</span>&lt;&gt;();</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> seats;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">SeatManager</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">reserve</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (!available.isEmpty()) &#123; <span class="comment">// 有空出来的椅子</span></span><br><span class="line">            <span class="keyword">return</span> available.poll(); <span class="comment">// 坐编号最小的</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ++seats; <span class="comment">// 添加一把新的椅子</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">unreserve</span><span class="params">(<span class="type">int</span> seatNumber)</span> &#123;</span><br><span class="line">        available.add(seatNumber); <span class="comment">// 有人离开了椅子</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>238. 除自身以外数组的乘积</title>
+      <link href="/2024/09/29/238-%E9%99%A4%E8%87%AA%E8%BA%AB%E4%BB%A5%E5%A4%96%E6%95%B0%E7%BB%84%E7%9A%84%E4%B9%98%E7%A7%AF/"/>
+      <url>/2024/09/29/238-%E9%99%A4%E8%87%AA%E8%BA%AB%E4%BB%A5%E5%A4%96%E6%95%B0%E7%BB%84%E7%9A%84%E4%B9%98%E7%A7%AF/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>Problem: <a href="https://leetcode.cn/problems/product-of-array-except-self/description/">238. 除自身以外数组的乘积</a></p></blockquote><h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>在不能使用除法的情况下，考虑每个答案的组成方式：第<code>i</code>位的结果为其前缀乘积和后缀乘积之积。离线求解前后缀乘积时间复杂度为$O(n)$，符合题目要求。</p><p>题目中给了个提示，可以在$O(1)$（不考虑返回数组）的情况下完成。但是完全不存储前后缀是没法在$O(n)$的复杂度下完成的，应该想到可以暂时把数据存在返回数组里。</p><p>这样，我们只需先计算一遍后缀积，然后在计算结果时，保留当前前缀和即可。</p><h1 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h1><ul><li>时间复杂度: $O(n)$：遍历两次数组。</li><li>空间复杂度: $O(1)$：实际上是$O(n)$，如题目所说不考虑返回数组空间时$O(1)$。</li></ul><h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[] productExceptSelf(<span class="type">int</span>[] nums) &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> nums.length;</span><br><span class="line">        <span class="type">int</span> r[] = <span class="keyword">new</span> <span class="title class_">int</span>[n];</span><br><span class="line">        r[n - <span class="number">1</span>] = nums[n - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> n - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            r[i] = r[i + <span class="number">1</span>] * nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        r[<span class="number">0</span>] = r[<span class="number">1</span>];</span><br><span class="line">        <span class="type">int</span> <span class="variable">pre</span> <span class="operator">=</span> nums[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; n - <span class="number">1</span>; i++) &#123;</span><br><span class="line">            r[i] = pre * r[i + <span class="number">1</span>];</span><br><span class="line">            pre *= nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        r[n - <span class="number">1</span>] = pre;</span><br><span class="line">        <span class="keyword">return</span> r;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>2073. 买票需要的时间</title>
+      <link href="/2024/09/29/2073-%E4%B9%B0%E7%A5%A8%E9%9C%80%E8%A6%81%E7%9A%84%E6%97%B6%E9%97%B4/"/>
+      <url>/2024/09/29/2073-%E4%B9%B0%E7%A5%A8%E9%9C%80%E8%A6%81%E7%9A%84%E6%97%B6%E9%97%B4/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>Problem: <a href="https://leetcode.cn/problems/time-needed-to-buy-tickets/description/">2073. 买票需要的时间</a></p></blockquote><h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>先分两段来考虑：</p><ol><li>刚开始第k个人及之前的人买票，需要<code>k + 1</code>的时间，并且这些人需要的票减一。</li><li>接下来每轮，前方的人若是需要买的票少于第二段开始<code>k</code>的票，则他们一定会买完自己的票；反之，则购买第二段开始<code>k</code>的票数的票。</li></ol><h1 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h1><ul><li>时间复杂度: $O(n)$：一次遍历数组。</li><li>空间复杂度: $O(n)$：若干变量。</li></ul><h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight java"><figcaption><span>[]</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">timeRequiredToBuy</span><span class="params">(<span class="type">int</span>[] tickets, <span class="type">int</span> k)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">ret</span> <span class="operator">=</span> k + <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> tickets.length;</span><br><span class="line">        tickets[k]--;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i &lt; k) &#123;</span><br><span class="line">                tickets[i]--;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (tickets[i] &gt; tickets[k]) &#123;</span><br><span class="line">                ret += tickets[k];</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                ret += tickets[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>380. O(1) 时间插入、删除和获取随机元素</title>
+      <link href="/2024/09/28/380-O(1)%E6%97%B6%E9%97%B4%E6%8F%92%E5%85%A5%E3%80%81%E5%88%A0%E9%99%A4%E5%92%8C%E8%8E%B7%E5%8F%96%E9%9A%8F%E6%9C%BA%E5%85%83%E7%B4%A0/"/>
+      <url>/2024/09/28/380-O(1)%E6%97%B6%E9%97%B4%E6%8F%92%E5%85%A5%E3%80%81%E5%88%A0%E9%99%A4%E5%92%8C%E8%8E%B7%E5%8F%96%E9%9A%8F%E6%9C%BA%E5%85%83%E7%B4%A0/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>Problem: <a href="https://leetcode.cn/problems/insert-delete-getrandom-o1/description/">380. O(1) 时间插入、删除和获取随机元素</a></p></blockquote><h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>哈希表可以完成$O(1)$的插入和删除，但是无法用下标获得元素。考虑到<strong>变长数组</strong>可以在$O(1)$的时间完成获取元素，我们只需要再维护一个变长数组即可。用哈希表维护元素即它们在变长数组的位置。在添加元素时，把元素添加到变长数组的末端；在删除元素时，更新数组末端元素在哈下表的位置，用末端元素替换数组被删除元素。</p><h1 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h1><ul><li>时间复杂度: $O(1)$，哈希表插入删除时间都是$O(1)$，删除数组最后一个元素也是$O(1)$。</li><li>空间复杂度: $O(n)$，哈希表和数组。</li></ul><h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight java"><figcaption><span>[]</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">RandomizedSet</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Map&lt;Integer, Integer&gt; s;</span><br><span class="line">    <span class="keyword">private</span> List&lt;Integer&gt; a;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> count;</span><br><span class="line">    <span class="keyword">private</span> Random random;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">RandomizedSet</span><span class="params">()</span> &#123;</span><br><span class="line">        s = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        a = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        random = <span class="keyword">new</span> <span class="title class_">Random</span>();</span><br><span class="line">        count = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">insert</span><span class="params">(<span class="type">int</span> val)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (s.containsKey(val)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        s.put(val, count);</span><br><span class="line">        a.add(val);</span><br><span class="line">        count++;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">remove</span><span class="params">(<span class="type">int</span> val)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (!s.containsKey(val)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        count--;</span><br><span class="line">        s.put(a.get(count), s.get(val));</span><br><span class="line">        a.set(s.get(val), a.get(count));</span><br><span class="line">        a.remove(count);</span><br><span class="line">        s.remove(val);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getRandom</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> a.get(random.nextInt(count));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>274. H指数</title>
-      <link href="/2024/09/28/274-H%E6%8C%87%E6%95%B0/"/>
-      <url>/2024/09/28/274-H%E6%8C%87%E6%95%B0/</url>
+      <link href="/2024/09/28/274-H%20%E6%8C%87%E6%95%B0/"/>
+      <url>/2024/09/28/274-H%20%E6%8C%87%E6%95%B0/</url>
       
         <content type="html"><![CDATA[<blockquote><p>Problem: <a href="https://leetcode.cn/problems/h-index/description/">274. H 指数</a></p></blockquote><h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>看到题目中有<code>至少h篇大于等于h</code>这样的比大小字样，可以想到排序数组，这样可以使数组具有单调性。</p><p>将数组<strong>从大到小</strong>排序，用指针<code>i</code>遍历数组，如果有第<code>i</code>大的引用小于<code>i + 1</code>（个数），那么显然就不存在<code>i + 1</code>个大于等于<code>i + 1</code>的文章（之后的文章都比它小），这样所求的<code>i</code>就是H指数。</p><h1 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h1><ul><li>时间复杂度: $O(nlogn)$，排序的时间消耗，在本题里数据范围较小，如果使用计数排序可以降到$O(n+k)$</li><li>空间复杂度: $O(1)$，只需若干常量。</li></ul><h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight java"><figcaption><span>[]</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">hIndex</span><span class="params">(<span class="type">int</span>[] citations)</span> &#123;</span><br><span class="line">        Arrays.sort(citations);</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> citations.length;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">if</span> (citations[i] &lt; n - i) &#123;</span><br><span class="line">                <span class="keyword">return</span> n - i - <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> n;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       

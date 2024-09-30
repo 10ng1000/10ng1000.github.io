@@ -15,7 +15,7 @@
   
   <title>
     
-      2516. 每种字符至少取 K 个 
+      380. O(1) 时间插入、删除和获取随机元素 
       
       
       |
@@ -156,11 +156,11 @@
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">2516. 每种字符至少取 K 个</div>
+      <div class="post-title">380. O(1) 时间插入、删除和获取随机元素</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-          2024-09-27 16:48:26
+          2024-09-28 16:52:30
         </span>
         
               <span class="post-tags">
@@ -177,24 +177,20 @@
       </div>
       <div class="markdown-body">
         <blockquote>
-<p>Problem: <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/take-k-of-each-character-from-left-and-right/description/">2516. 每种字符至少取 K 个</a></p>
+<p>Problem: <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/insert-delete-getrandom-o1/description/">380. O(1) 时间插入、删除和获取随机元素</a></p>
 </blockquote>
-<h1 id="错误思路"><a href="#错误思路" class="headerlink" title="错误思路"></a>错误思路</h1><p>看到从两边求解，我首先想到的是，先尝试贪心试试？每次如果某个字符未达到上限就取，在两边都没有时，哪边离得最近就取：但这样显然是不正确的。</p>
-<p>接下来想到的是记忆化搜索或者说动态规划。但是这题又不大满足<strong>无后效性</strong>这一特点，前面的操作对于后面子字符串是有影响的。</p>
-<p>于是我尝试了暴力搜索，但是效率太低，最后超时了。</p>
-<h1 id="正确思路"><a href="#正确思路" class="headerlink" title="正确思路"></a>正确思路</h1><p>很多题目都不能直接从他本身的描述直接开始做，需要发掘其中的隐藏要点。本题中由于从两边考虑多种方法都难以求解，归根结底原因很大程度就是两边求解是不连续的，那么反过来想，中间的字符串不就是连续的吗？</p>
-<p>而只要字符串是连续的，我们就可以自然而然想到双指针滑动窗口的解决方法。对于所给问题，实际上可以首先转为求解<strong>余下符合条件的最长中间子字符串</strong>，本质上也是对于每个要求的字符，要找出正好符合一定数量的字串。这样考虑双指针就很容易了，我们维护<code>i</code>到<code>j</code>为除去两端的中间子串，每次若<code>j</code>位置字符没有达到所需数量就自增<code>j</code>，否则自增<code>i</code>的位置，以减少<code>j</code>位置字符的计数，同时维护最长的中间字串长度，这样即可求解。</p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>哈希表可以完成$O(1)$的插入和删除，但是无法用下标获得元素。考虑到<strong>变长数组</strong>可以在$O(1)$的时间完成获取元素，我们只需要再维护一个变长数组即可。用哈希表维护元素即它们在变长数组的位置。在添加元素时，把元素添加到变长数组的末端；在删除元素时，更新数组末端元素在哈下表的位置，用末端元素替换数组被删除元素。</p>
 <h1 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h1><ul>
-<li>时间复杂度: $O(n)$，遍历两次数组。</li>
-<li>空间复杂度: $O(1)$，若干常量，和常量大小map。</li>
+<li>时间复杂度: $O(1)$，哈希表插入删除时间都是$O(1)$，删除数组最后一个元素也是$O(1)$。</li>
+<li>空间复杂度: $O(n)$，哈希表和数组。</li>
 </ul>
-<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">takeCharacters</span><span class="params">(String s, <span class="type">int</span> k)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> s.length();</span><br><span class="line">        <span class="type">char</span> [] cs = s.toCharArray();</span><br><span class="line">        Map&lt;Character, Integer&gt; m = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        m.put(<span class="string">&#x27;a&#x27;</span>, -k);</span><br><span class="line">        m.put(<span class="string">&#x27;b&#x27;</span>, -k);</span><br><span class="line">        m.put(<span class="string">&#x27;c&#x27;</span>, -k);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            m.put(cs[i], m.get(cs[i]) + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (Integer value : m.values()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (value &lt; <span class="number">0</span>) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &lt; n &amp;&amp; j &lt; n) &#123;</span><br><span class="line">            m.put(cs[j], m.get(cs[j]) - <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">while</span> (i &lt;= j &amp;&amp; m.get(cs[j]) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                m.put(cs[i], m.get(cs[i]) + <span class="number">1</span>);</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            count = Math.max(count, j - i + <span class="number">1</span>);</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> n - count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight java"><figcaption><span>[]</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">RandomizedSet</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Map&lt;Integer, Integer&gt; s;</span><br><span class="line">    <span class="keyword">private</span> List&lt;Integer&gt; a;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> count;</span><br><span class="line">    <span class="keyword">private</span> Random random;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">RandomizedSet</span><span class="params">()</span> &#123;</span><br><span class="line">        s = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        a = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        random = <span class="keyword">new</span> <span class="title class_">Random</span>();</span><br><span class="line">        count = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">insert</span><span class="params">(<span class="type">int</span> val)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (s.containsKey(val)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        s.put(val, count);</span><br><span class="line">        a.add(val);</span><br><span class="line">        count++;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">remove</span><span class="params">(<span class="type">int</span> val)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (!s.containsKey(val)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        count--;</span><br><span class="line">        s.put(a.get(count), s.get(val));</span><br><span class="line">        a.set(s.get(val), a.get(count));</span><br><span class="line">        a.remove(count);</span><br><span class="line">        s.remove(val);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getRandom</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> a.get(random.nextInt(count));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
       </div>
       
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2024/09/21/45-%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F-II/" target="_self">
+              <a href="/2024/09/28/274-H%20%E6%8C%87%E6%95%B0/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>上一页</span>
               </a>
@@ -203,7 +199,7 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-              2024-09-27 16:48:26
+              2024-09-28 16:52:30
             </span>
             
                   <span class="post-tags">
@@ -220,7 +216,7 @@
           </div>
           <div class="post-foot-prev">
             
-              <a href="/2024/09/28/274-H%20%E6%8C%87%E6%95%B0/" target="_self">
+              <a href="/2024/09/29/2073-%E4%B9%B0%E7%A5%A8%E9%9C%80%E8%A6%81%E7%9A%84%E6%97%B6%E9%97%B4/" target="_self">
                 <span>下一页</span>
                 <i class="iconfont icon-chevronright"></i>
               </a>
@@ -237,7 +233,7 @@
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E6%80%9D%E8%B7%AF"><span class="toc-text">错误思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AD%A3%E7%A1%AE%E6%80%9D%E8%B7%AF"><span class="toc-text">正确思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-text">复杂度</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-text">复杂度</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li></ol>
       
     </div>
   </div>
@@ -557,12 +553,12 @@
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + 2516.%20%E6%AF%8F%E7%A7%8D%E5%AD%97%E7%AC%A6%E8%87%B3%E5%B0%91%E5%8F%96%20K%20%E4%B8%AA + '&url=' + https%3A%2F%2F10ng1000.github.io%2F2024%2F09%2F27%2F2516-%25E6%25AF%258F%25E7%25A7%258D%25E5%25AD%2597%25E7%25AC%25A6%25E8%2587%25B3%25E5%25B0%2591%25E5%258F%2596K%25E4%25B8%25AA%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + 380.%20O(1)%20%E6%97%B6%E9%97%B4%E6%8F%92%E5%85%A5%E3%80%81%E5%88%A0%E9%99%A4%E5%92%8C%E8%8E%B7%E5%8F%96%E9%9A%8F%E6%9C%BA%E5%85%83%E7%B4%A0 + '&url=' + https%3A%2F%2F10ng1000.github.io%2F2024%2F09%2F28%2F380-O(1)%25E6%2597%25B6%25E9%2597%25B4%25E6%258F%2592%25E5%2585%25A5%25E3%2580%2581%25E5%2588%25A0%25E9%2599%25A4%25E5%2592%258C%25E8%258E%25B7%25E5%258F%2596%25E9%259A%258F%25E6%259C%25BA%25E5%2585%2583%25E7%25B4%25A0%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://10ng1000.github.io/2024/09/27/2516-%E6%AF%8F%E7%A7%8D%E5%AD%97%E7%AC%A6%E8%87%B3%E5%B0%91%E5%8F%96K%E4%B8%AA/" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://10ng1000.github.io/2024/09/28/380-O(1)%E6%97%B6%E9%97%B4%E6%8F%92%E5%85%A5%E3%80%81%E5%88%A0%E9%99%A4%E5%92%8C%E8%8E%B7%E5%8F%96%E9%9A%8F%E6%9C%BA%E5%85%83%E7%B4%A0/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         
