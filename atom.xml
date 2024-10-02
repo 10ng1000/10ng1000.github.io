@@ -6,7 +6,7 @@
   <link href="https://10ng1000.github.io/atom.xml" rel="self"/>
   
   <link href="https://10ng1000.github.io/"/>
-  <updated>2024-10-02T03:28:32.311Z</updated>
+  <updated>2024-10-02T07:29:29.569Z</updated>
   <id>https://10ng1000.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>3306. 元音辅音字符串计数 II</title>
+    <link href="https://10ng1000.github.io/2024/10/02/%E3%80%90%E6%81%B0%E5%A5%BD%E5%9E%8B%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E3%80%913306-%E5%85%83%E9%9F%B3%E8%BE%85%E9%9F%B3%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%AE%A1%E6%95%B0-II/"/>
+    <id>https://10ng1000.github.io/2024/10/02/%E3%80%90%E6%81%B0%E5%A5%BD%E5%9E%8B%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E3%80%913306-%E5%85%83%E9%9F%B3%E8%BE%85%E9%9F%B3%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%AE%A1%E6%95%B0-II/</id>
+    <published>2024-10-02T07:08:43.000Z</published>
+    <updated>2024-10-02T07:29:29.569Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Problem: &lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title>1870. 准时到达的列车最小时速</title>
@@ -467,32 +491,6 @@
         
     <summary type="html">&lt;blockquote&gt;
 &lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/find-the-median-of-the-uniqueness-array/description/&quot;&gt;3134.</summary>
-        
-      
-    
-    
-    
-    
-    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>690.员工的重要性</title>
-    <link href="https://10ng1000.github.io/2024/08/26/690-%E5%91%98%E5%B7%A5%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7/"/>
-    <id>https://10ng1000.github.io/2024/08/26/690-%E5%91%98%E5%B7%A5%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7/</id>
-    <published>2024-08-26T04:05:52.000Z</published>
-    <updated>2024-08-27T06:33:13.876Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/employee-importance/description/&quot;&gt;690. 员工的重要性&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1</summary>
         
       
     
