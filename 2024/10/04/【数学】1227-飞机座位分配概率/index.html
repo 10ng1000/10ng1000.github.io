@@ -15,7 +15,7 @@
   
   <title>
     
-      Spring和MybatisPlus踩坑 
+      1227. 飞机座位分配概率 
       
       
       |
@@ -156,19 +156,19 @@
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">Spring和MybatisPlus踩坑</div>
+      <div class="post-title">1227. 飞机座位分配概率</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-          2024-10-06 11:44:10
+          2024-10-04 15:01:44
         </span>
         
               <span class="post-tags">
                 <i class="iconfont icon-tags mr-10" title="标签"></i>
                 
                 <span class="span--tag mr-8">
-                  <a href="/tags/%E5%90%8E%E7%AB%AF/" title="后端">
-                    #后端
+                  <a href="/tags/LeetCode/" title="LeetCode">
+                    #LeetCode
                   </a>
                 </span>
                 
@@ -176,31 +176,32 @@
           
       </div>
       <div class="markdown-body">
-        <h1 id="发现build后还有原来的代码"><a href="#发现build后还有原来的代码" class="headerlink" title="发现build后还有原来的代码"></a>发现build后还有原来的代码</h1><p>build只会加缓存，不会减缓存，因此如果删除文件，需要rebuild。</p>
-<h1 id="Bean冲突"><a href="#Bean冲突" class="headerlink" title="Bean冲突"></a>Bean冲突</h1><p>遇到了processBean冲突，排查后发现是框架文件里有这个名称的bean，因此换个名称就可以解决。不要把名称设的太宽泛。</p>
-<h1 id="MybatisPlus学习"><a href="#MybatisPlus学习" class="headerlink" title="MybatisPlus学习"></a>MybatisPlus学习</h1><p>过于细化的框架损失自由度，并且会引起很多难以解决的bug，只有在组里有前人对框架非常熟悉，且框架经过检验时，使用框架才好。</p>
-<p>所以采用适用性相对较广的MybatisPlus。</p>
-<p>后端设置UUID：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@TableId(type = IdType.ASSIGN_UUID)</span>  </span><br><span class="line"><span class="keyword">private</span> String id;</span><br></pre></td></tr></table></figure>
-
-<p>后端分页：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ProcessingMapper.java</span></span><br><span class="line"><span class="meta">@Select(&quot;SELECT * FROM &quot; + TABLE_NAME)</span>  </span><br><span class="line">IPage&lt;Processing&gt; <span class="title function_">selectPageVo</span><span class="params">(IPage&lt;?&gt; page)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//ProcessingService.java</span></span><br><span class="line"><span class="keyword">public</span> IPage&lt;Processing&gt; <span class="title function_">getProcessingPage</span><span class="params">(<span class="type">int</span> currentPage, <span class="type">int</span> pageSize)</span>&#123;  </span><br><span class="line">    Page&lt;Processing&gt; page = <span class="keyword">new</span> <span class="title class_">Page</span>&lt;&gt;(currentPage, pageSize);  </span><br><span class="line">    <span class="keyword">return</span> processingMapper.selectPageVo(page);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Post的时候后端一直报错"><a href="#Post的时候后端一直报错" class="headerlink" title="Post的时候后端一直报错"></a>Post的时候后端一直报错</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">错误: nested exception is org.apache.ibatis.reflection.ReflectionException: There is no getter <span class="keyword">for</span> property named <span class="string">&#x27;rawData&#x27;</span> in <span class="string">&#x27;class com.jeeplus.processmanage.domain.Processing&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>一直在前端找，都没找到哪里有rawData这个东西，后来发现是后端的<code>Mapper</code>当时复制了另一个文件，里面有insert这个东西，自己没有注意到。所以，出现莫名其妙的错误时，<strong>要回想一下自己所没有注意到，特别是复制黏贴的事物</strong>。<del>复制黏贴还是少用为好。</del></p>
-<h2 id="报SQL语句错误"><a href="#报SQL语句错误" class="headerlink" title="报SQL语句错误"></a>报SQL语句错误</h2><p>procedure是一个保留关键字，不能作为列名。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">错误: ### Error updating database. Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version <span class="keyword">for</span> the right syntax to use near <span class="string">&#x27;procedure, equipment_used, operator_info, material_id ) VALUES ( &#x27;</span><span class="number">183558877960</span><span class="string">&#x27; at line 4 ### The error may exist in com/jeeplus/processmanage/mapper/ProcessingMapper.java (best guess) ### The error may involve com.jeeplus.processmanage.mapper.ProcessingMapper.insert-Inline ### The error occurred while setting parameters ### SQL: INSERT INTO process_process ( id, technique, procedure, equipment_used, operator_info, material_id ) VALUES ( ?, ?, ?, ?, ?, ? ) ### Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#x27;</span>procedure, equipment_used, operator_info, material_id ) VALUES ( <span class="string">&#x27;183558877960&#x27;</span> at line <span class="number">4</span> ; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version <span class="keyword">for</span> the right syntax to use near <span class="string">&#x27;procedure, equipment_used, operator_info, material_id ) VALUES ( &#x27;</span><span class="number">183558877960</span><span class="string">&#x27; at line 4</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>在 SQL 语言中，<code>PROCEDURE</code> 是一个保留字，用于定义存储过程。存储过程是一组为了完成特定功能的 SQL 语句集合，它可以在数据库中被保存和重用。</p>
+        <blockquote>
+<p>Problem: <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/airplane-seat-assignment-probability/description/">1227. 飞机座位分配概率</a></p>
 </blockquote>
-<p>可见sql和spring是要注意命名错误的。</p>
-
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>由于这道题后面人的选择对前面人的选择没有影响，而且题目中隐约可以看出存在利用更小规模的最优子结构来求解的可能，这道题可以尝试用动态规划的思路来求解，设<code>f(n)</code>为截止到第<code>n</code>个人时，第<code>n</code>个人坐到自己位置的概率。</p>
+<p>这样，当<code>n&gt;=3</code>时，就可以根据第一个人坐的情况分为三种情况：</p>
+<ol>
+<li>坐到自己的位置，$\frac 1n$的概率，此时<code>n</code>坐到自己位置的概率为<code>1</code>。</li>
+<li>坐到n的位置，$\frac 1n$的概率，此时<code>n</code>坐到自己位置的概率为<code>0</code>。</li>
+<li>坐到其他的位置，每个位置$\frac 1n$的概率，设该位置为<code>i</code>，则<code>1</code>之后、<code>i</code>之前的位置一定是正确的，<code>1</code>和<code>i</code>之后一共有<code>n - i + 1</code>个位置，同时还有同样多的人没有入场，而且第<code>i</code>号面临和1一样的情况，即他也要随机坐一个位置，并且他不是最后一个人，因此转换为规模为<code>n - i + 1</code>的子问题。</li>
+</ol>
+<p>这样，就可以得出递推式，将<code>n-1</code>带入递推式，再将两式相减即可求出解。</p>
+<blockquote>
+<p>详见<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/airplane-seat-assignment-probability/solutions/664495/fei-ji-zuo-wei-fen-pei-gai-lu-by-leetcod-gyw4/">官解</a>。</p>
+</blockquote>
+<h1 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h1><p>当时觉得动态规划难解，没有想出正确的最优子结构，就开始选择尝试模拟所有情况来暴力求解，但是这样时间复杂度非常高（阶乘）。在做题的时候一定不能蛮做，首先要排除时间复杂度不够的做法，如果全是不够的话需要看是否没有找出其中的数学关系。</p>
+<h1 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h1><ul>
+<li>时间复杂度: $O(1)$</li>
+<li>空间复杂度: $O(1)$</li>
+</ul>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">double</span> <span class="title function_">nthPersonGetsNthSeat</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> n == <span class="number">1</span> ? <span class="number">1</span> : <span class="number">0.5</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       </div>
       
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2024/09/14/%E3%80%90%E6%A0%88%E3%80%912390-%E4%BB%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%A7%BB%E9%99%A4%E6%98%9F%E5%8F%B7/" target="_self">
+              <a href="/2024/10/02/%E3%80%90%E6%81%B0%E5%A5%BD%E5%9E%8B%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E3%80%913306-%E5%85%83%E9%9F%B3%E8%BE%85%E9%9F%B3%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%AE%A1%E6%95%B0-II/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>上一页</span>
               </a>
@@ -209,15 +210,15 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-              2024-10-06 11:44:10
+              2024-10-04 15:01:44
             </span>
             
                   <span class="post-tags">
                     <i class="iconfont icon-tags mr-10" title="标签"></i>
                     
                     <span class="span--tag mr-8">
-                      <a href="/tags/%E5%90%8E%E7%AB%AF/" title="后端">
-                        #后端
+                      <a href="/tags/LeetCode/" title="LeetCode">
+                        #LeetCode
                       </a>
                     </span>
                     
@@ -226,7 +227,7 @@
           </div>
           <div class="post-foot-prev">
             
-              <a href="/2024/09/20/%E3%80%90%E6%95%B0%E4%BD%8Ddp%E3%80%912376-%E7%BB%9F%E8%AE%A1%E7%89%B9%E6%AE%8A%E6%95%B4%E6%95%B0/" target="_self">
+              <a href="/2024/10/06/135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/" target="_self">
                 <span>下一页</span>
                 <i class="iconfont icon-chevronright"></i>
               </a>
@@ -243,7 +244,7 @@
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%91%E7%8E%B0build%E5%90%8E%E8%BF%98%E6%9C%89%E5%8E%9F%E6%9D%A5%E7%9A%84%E4%BB%A3%E7%A0%81"><span class="toc-text">发现build后还有原来的代码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Bean%E5%86%B2%E7%AA%81"><span class="toc-text">Bean冲突</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MybatisPlus%E5%AD%A6%E4%B9%A0"><span class="toc-text">MybatisPlus学习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Post%E7%9A%84%E6%97%B6%E5%80%99%E5%90%8E%E7%AB%AF%E4%B8%80%E7%9B%B4%E6%8A%A5%E9%94%99"><span class="toc-text">Post的时候后端一直报错</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%A5SQL%E8%AF%AD%E5%8F%A5%E9%94%99%E8%AF%AF"><span class="toc-text">报SQL语句错误</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B8%A9%E5%9D%91"><span class="toc-text">踩坑</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-text">复杂度</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li></ol>
       
     </div>
   </div>
@@ -563,12 +564,12 @@
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + Spring%E5%92%8CMybatisPlus%E8%B8%A9%E5%9D%91 + '&url=' + https%3A%2F%2F10ng1000.github.io%2F2024%2F09%2F16%2FSpring%25E5%2592%258CMybatisPlus%25E8%25B8%25A9%25E5%259D%2591%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + 1227.%20%E9%A3%9E%E6%9C%BA%E5%BA%A7%E4%BD%8D%E5%88%86%E9%85%8D%E6%A6%82%E7%8E%87 + '&url=' + https%3A%2F%2F10ng1000.github.io%2F2024%2F10%2F04%2F%25E3%2580%2590%25E6%2595%25B0%25E5%25AD%25A6%25E3%2580%25911227-%25E9%25A3%259E%25E6%259C%25BA%25E5%25BA%25A7%25E4%25BD%258D%25E5%2588%2586%25E9%2585%258D%25E6%25A6%2582%25E7%258E%2587%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://10ng1000.github.io/2024/09/16/Spring%E5%92%8CMybatisPlus%E8%B8%A9%E5%9D%91/" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://10ng1000.github.io/2024/10/04/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%911227-%E9%A3%9E%E6%9C%BA%E5%BA%A7%E4%BD%8D%E5%88%86%E9%85%8D%E6%A6%82%E7%8E%87/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         

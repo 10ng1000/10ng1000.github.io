@@ -15,7 +15,7 @@
   
   <title>
     
-      Spring和MybatisPlus踩坑 
+      yarn run serve无法运行 
       
       
       |
@@ -156,19 +156,19 @@
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">Spring和MybatisPlus踩坑</div>
+      <div class="post-title">yarn run serve无法运行</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-          2024-10-06 11:44:10
+          2024-10-06 11:44:05
         </span>
         
               <span class="post-tags">
                 <i class="iconfont icon-tags mr-10" title="标签"></i>
                 
                 <span class="span--tag mr-8">
-                  <a href="/tags/%E5%90%8E%E7%AB%AF/" title="后端">
-                    #后端
+                  <a href="/tags/%E5%89%8D%E7%AB%AF/" title="前端">
+                    #前端
                   </a>
                 </span>
                 
@@ -176,31 +176,19 @@
           
       </div>
       <div class="markdown-body">
-        <h1 id="发现build后还有原来的代码"><a href="#发现build后还有原来的代码" class="headerlink" title="发现build后还有原来的代码"></a>发现build后还有原来的代码</h1><p>build只会加缓存，不会减缓存，因此如果删除文件，需要rebuild。</p>
-<h1 id="Bean冲突"><a href="#Bean冲突" class="headerlink" title="Bean冲突"></a>Bean冲突</h1><p>遇到了processBean冲突，排查后发现是框架文件里有这个名称的bean，因此换个名称就可以解决。不要把名称设的太宽泛。</p>
-<h1 id="MybatisPlus学习"><a href="#MybatisPlus学习" class="headerlink" title="MybatisPlus学习"></a>MybatisPlus学习</h1><p>过于细化的框架损失自由度，并且会引起很多难以解决的bug，只有在组里有前人对框架非常熟悉，且框架经过检验时，使用框架才好。</p>
-<p>所以采用适用性相对较广的MybatisPlus。</p>
-<p>后端设置UUID：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@TableId(type = IdType.ASSIGN_UUID)</span>  </span><br><span class="line"><span class="keyword">private</span> String id;</span><br></pre></td></tr></table></figure>
+        <p>这几天出现了一个bug，之前vscode可以运行的前端程序，在使用<code>yarn run serve</code>之后会报错</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">yarn run v1.22.22</span><br><span class="line">$ vue-cli-service serve</span><br><span class="line">&#x27;vue-cli-service&#x27; is not recognized as an internal or external command,</span><br><span class="line">operable program or batch file.</span><br><span class="line">error Command failed with exit code 1.</span><br><span class="line">info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.</span><br></pre></td></tr></table></figure>
 
-<p>后端分页：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ProcessingMapper.java</span></span><br><span class="line"><span class="meta">@Select(&quot;SELECT * FROM &quot; + TABLE_NAME)</span>  </span><br><span class="line">IPage&lt;Processing&gt; <span class="title function_">selectPageVo</span><span class="params">(IPage&lt;?&gt; page)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//ProcessingService.java</span></span><br><span class="line"><span class="keyword">public</span> IPage&lt;Processing&gt; <span class="title function_">getProcessingPage</span><span class="params">(<span class="type">int</span> currentPage, <span class="type">int</span> pageSize)</span>&#123;  </span><br><span class="line">    Page&lt;Processing&gt; page = <span class="keyword">new</span> <span class="title class_">Page</span>&lt;&gt;(currentPage, pageSize);  </span><br><span class="line">    <span class="keyword">return</span> processingMapper.selectPageVo(page);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Post的时候后端一直报错"><a href="#Post的时候后端一直报错" class="headerlink" title="Post的时候后端一直报错"></a>Post的时候后端一直报错</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">错误: nested exception is org.apache.ibatis.reflection.ReflectionException: There is no getter <span class="keyword">for</span> property named <span class="string">&#x27;rawData&#x27;</span> in <span class="string">&#x27;class com.jeeplus.processmanage.domain.Processing&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>一直在前端找，都没找到哪里有rawData这个东西，后来发现是后端的<code>Mapper</code>当时复制了另一个文件，里面有insert这个东西，自己没有注意到。所以，出现莫名其妙的错误时，<strong>要回想一下自己所没有注意到，特别是复制黏贴的事物</strong>。<del>复制黏贴还是少用为好。</del></p>
-<h2 id="报SQL语句错误"><a href="#报SQL语句错误" class="headerlink" title="报SQL语句错误"></a>报SQL语句错误</h2><p>procedure是一个保留关键字，不能作为列名。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">错误: ### Error updating database. Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version <span class="keyword">for</span> the right syntax to use near <span class="string">&#x27;procedure, equipment_used, operator_info, material_id ) VALUES ( &#x27;</span><span class="number">183558877960</span><span class="string">&#x27; at line 4 ### The error may exist in com/jeeplus/processmanage/mapper/ProcessingMapper.java (best guess) ### The error may involve com.jeeplus.processmanage.mapper.ProcessingMapper.insert-Inline ### The error occurred while setting parameters ### SQL: INSERT INTO process_process ( id, technique, procedure, equipment_used, operator_info, material_id ) VALUES ( ?, ?, ?, ?, ?, ? ) ### Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#x27;</span>procedure, equipment_used, operator_info, material_id ) VALUES ( <span class="string">&#x27;183558877960&#x27;</span> at line <span class="number">4</span> ; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version <span class="keyword">for</span> the right syntax to use near <span class="string">&#x27;procedure, equipment_used, operator_info, material_id ) VALUES ( &#x27;</span><span class="number">183558877960</span><span class="string">&#x27; at line 4</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>在 SQL 语言中，<code>PROCEDURE</code> 是一个保留字，用于定义存储过程。存储过程是一组为了完成特定功能的 SQL 语句集合，它可以在数据库中被保存和重用。</p>
-</blockquote>
-<p>可见sql和spring是要注意命名错误的。</p>
+<p>后来，我根据网上的提示，尝试了删除node_modules重新安装，删除node环境重新安装，都不行。甚至npm install都出现了问题。</p>
+<p>后来，碰巧使用系统终端（而不是vscode里的）来云心npm install，发现竟然可以了。于是我也在该终端运行yarn run serve，发现果然也可以。</p>
+<p>于是就可以知道问题出在vscode上。我查看了vscode的权限，并使用管理员打开，以及在vscode里打开pwsh，都不能成功运行，这样暂时只能用系统终端来运行了。</p>
 
       </div>
       
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2024/09/14/%E3%80%90%E6%A0%88%E3%80%912390-%E4%BB%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%A7%BB%E9%99%A4%E6%98%9F%E5%8F%B7/" target="_self">
+              <a href="/2024/10/06/135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>上一页</span>
               </a>
@@ -209,15 +197,15 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-              2024-10-06 11:44:10
+              2024-10-06 11:44:05
             </span>
             
                   <span class="post-tags">
                     <i class="iconfont icon-tags mr-10" title="标签"></i>
                     
                     <span class="span--tag mr-8">
-                      <a href="/tags/%E5%90%8E%E7%AB%AF/" title="后端">
-                        #后端
+                      <a href="/tags/%E5%89%8D%E7%AB%AF/" title="前端">
+                        #前端
                       </a>
                     </span>
                     
@@ -226,33 +214,11 @@
           </div>
           <div class="post-foot-prev">
             
-              <a href="/2024/09/20/%E3%80%90%E6%95%B0%E4%BD%8Ddp%E3%80%912376-%E7%BB%9F%E8%AE%A1%E7%89%B9%E6%AE%8A%E6%95%B4%E6%95%B0/" target="_self">
-                <span>下一页</span>
-                <i class="iconfont icon-chevronright"></i>
-              </a>
-            
           </div>
         </div>
       
     </div>
     
-  <div id="btn-catalog" class="btn-catalog">
-    <i class="iconfont icon-catalog"></i>
-  </div>
-  <div class="post-catalog hidden" id="catalog">
-    <div class="title">目录</div>
-    <div class="catalog-content">
-      
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%91%E7%8E%B0build%E5%90%8E%E8%BF%98%E6%9C%89%E5%8E%9F%E6%9D%A5%E7%9A%84%E4%BB%A3%E7%A0%81"><span class="toc-text">发现build后还有原来的代码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Bean%E5%86%B2%E7%AA%81"><span class="toc-text">Bean冲突</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MybatisPlus%E5%AD%A6%E4%B9%A0"><span class="toc-text">MybatisPlus学习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Post%E7%9A%84%E6%97%B6%E5%80%99%E5%90%8E%E7%AB%AF%E4%B8%80%E7%9B%B4%E6%8A%A5%E9%94%99"><span class="toc-text">Post的时候后端一直报错</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%A5SQL%E8%AF%AD%E5%8F%A5%E9%94%99%E8%AF%AF"><span class="toc-text">报SQL语句错误</span></a></li></ol></li></ol>
-      
-    </div>
-  </div>
-
-  
-<script src="/js/catalog.js"></script>
-
-
-
 
     
       <div class="comments-container">
@@ -563,12 +529,12 @@
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + Spring%E5%92%8CMybatisPlus%E8%B8%A9%E5%9D%91 + '&url=' + https%3A%2F%2F10ng1000.github.io%2F2024%2F09%2F16%2FSpring%25E5%2592%258CMybatisPlus%25E8%25B8%25A9%25E5%259D%2591%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + yarn%20run%20serve%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8C + '&url=' + https%3A%2F%2F10ng1000.github.io%2F2024%2F10%2F06%2Fyarn-run-serve%25E5%259C%25A8vscode%25E4%25B8%25AD%25E6%2597%25A0%25E6%25B3%2595%25E8%25BF%2590%25E8%25A1%258C%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://10ng1000.github.io/2024/09/16/Spring%E5%92%8CMybatisPlus%E8%B8%A9%E5%9D%91/" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://10ng1000.github.io/2024/10/06/yarn-run-serve%E5%9C%A8vscode%E4%B8%AD%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8C/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         

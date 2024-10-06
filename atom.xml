@@ -6,7 +6,7 @@
   <link href="https://10ng1000.github.io/atom.xml" rel="self"/>
   
   <link href="https://10ng1000.github.io/"/>
-  <updated>2024-10-02T07:29:29.569Z</updated>
+  <updated>2024-10-06T03:44:05.790Z</updated>
   <id>https://10ng1000.github.io/</id>
   
   <author>
@@ -15,6 +15,80 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>yarn run serve无法运行</title>
+    <link href="https://10ng1000.github.io/2024/10/06/yarn-run-serve%E5%9C%A8vscode%E4%B8%AD%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8C/"/>
+    <id>https://10ng1000.github.io/2024/10/06/yarn-run-serve%E5%9C%A8vscode%E4%B8%AD%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8C/</id>
+    <published>2024-10-06T03:20:09.000Z</published>
+    <updated>2024-10-06T03:44:05.790Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;这几天出现了一个bug，之前vscode可以运行的前端程序，在使用&lt;code&gt;yarn run serve&lt;/code&gt;之后会报错&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td</summary>
+        
+      
+    
+    
+    
+    
+    <category term="前端" scheme="https://10ng1000.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>135. 分发糖果</title>
+    <link href="https://10ng1000.github.io/2024/10/06/135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/"/>
+    <id>https://10ng1000.github.io/2024/10/06/135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/</id>
+    <published>2024-10-06T02:39:44.000Z</published>
+    <updated>2024-10-06T06:54:07.662Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/candy/description/&quot;&gt;135. 分发糖果&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;思路&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>1227. 飞机座位分配概率</title>
+    <link href="https://10ng1000.github.io/2024/10/04/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%911227-%E9%A3%9E%E6%9C%BA%E5%BA%A7%E4%BD%8D%E5%88%86%E9%85%8D%E6%A6%82%E7%8E%87/"/>
+    <id>https://10ng1000.github.io/2024/10/04/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%911227-%E9%A3%9E%E6%9C%BA%E5%BA%A7%E4%BD%8D%E5%88%86%E9%85%8D%E6%A6%82%E7%8E%87/</id>
+    <published>2024-10-04T06:32:48.000Z</published>
+    <updated>2024-10-04T07:01:44.206Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/airplane-seat-assignment-probability/description/&quot;&gt;1227.</summary>
+        
+      
+    
+    
+    
+    
+    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title>3306. 元音辅音字符串计数 II</title>
@@ -292,7 +366,7 @@
     <link href="https://10ng1000.github.io/2024/09/16/Spring%E5%92%8CMybatisPlus%E8%B8%A9%E5%9D%91/"/>
     <id>https://10ng1000.github.io/2024/09/16/Spring%E5%92%8CMybatisPlus%E8%B8%A9%E5%9D%91/</id>
     <published>2024-09-16T09:31:18.000Z</published>
-    <updated>2024-09-16T09:31:25.479Z</updated>
+    <updated>2024-10-06T03:44:10.421Z</updated>
     
     
       
@@ -305,6 +379,8 @@
     
     
     
+    
+    <category term="后端" scheme="https://10ng1000.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
     
   </entry>
   
@@ -419,78 +495,6 @@
         
     <summary type="html">&lt;blockquote&gt;
 &lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/maximize-the-confusion-of-an-exam/description/&quot;&gt;2024.</summary>
-        
-      
-    
-    
-    
-    
-    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>3142.判断矩阵是否满足条件</title>
-    <link href="https://10ng1000.github.io/2024/08/29/3142-%E5%88%A4%E6%96%AD%E7%9F%A9%E9%98%B5%E6%98%AF%E5%90%A6%E6%BB%A1%E8%B6%B3%E6%9D%A1%E4%BB%B6/"/>
-    <id>https://10ng1000.github.io/2024/08/29/3142-%E5%88%A4%E6%96%AD%E7%9F%A9%E9%98%B5%E6%98%AF%E5%90%A6%E6%BB%A1%E8%B6%B3%E6%9D%A1%E4%BB%B6/</id>
-    <published>2024-08-29T08:21:39.000Z</published>
-    <updated>2024-08-29T08:27:28.813Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/check-if-grid-satisfies-conditions/description/&quot;&gt;3142.</summary>
-        
-      
-    
-    
-    
-    
-    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【动态规划】3144.分割字符频率相等的最少子字符串</title>
-    <link href="https://10ng1000.github.io/2024/08/29/%E3%80%90%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E3%80%913144-%E5%88%86%E5%89%B2%E5%AD%97%E7%AC%A6%E9%A2%91%E7%8E%87%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%91%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
-    <id>https://10ng1000.github.io/2024/08/29/%E3%80%90%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E3%80%913144-%E5%88%86%E5%89%B2%E5%AD%97%E7%AC%A6%E9%A2%91%E7%8E%87%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%91%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2/</id>
-    <published>2024-08-29T01:57:03.000Z</published>
-    <updated>2024-08-29T03:10:38.260Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/minimum-substring-partition-of-equal-character-frequency/description/&quot;&gt;3144.</summary>
-        
-      
-    
-    
-    
-    
-    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【二分法，双指针】3134.找出唯一性数组的中位数</title>
-    <link href="https://10ng1000.github.io/2024/08/27/%E3%80%90%E4%BA%8C%E5%88%86%E6%B3%95%EF%BC%8C%E5%8F%8C%E6%8C%87%E9%92%88%E3%80%913134-%E6%89%BE%E5%87%BA%E5%94%AF%E4%B8%80%E6%80%A7%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/"/>
-    <id>https://10ng1000.github.io/2024/08/27/%E3%80%90%E4%BA%8C%E5%88%86%E6%B3%95%EF%BC%8C%E5%8F%8C%E6%8C%87%E9%92%88%E3%80%913134-%E6%89%BE%E5%87%BA%E5%94%AF%E4%B8%80%E6%80%A7%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/</id>
-    <published>2024-08-27T06:10:54.000Z</published>
-    <updated>2024-08-27T08:04:28.055Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/find-the-median-of-the-uniqueness-array/description/&quot;&gt;3134.</summary>
         
       
     
