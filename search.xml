@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>134. 加油站</title>
+      <link href="/2024/10/06/134-%E5%8A%A0%E6%B2%B9%E7%AB%99/"/>
+      <url>/2024/10/06/134-%E5%8A%A0%E6%B2%B9%E7%AB%99/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>Problem: <a href="https://leetcode.cn/problems/gas-station/description/">134. 加油站</a></p></blockquote><h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>首先能想到的直观做法是，把<code>gas</code>和<code>cost</code>相减，求出一个每到一站的油量变化，然后我们尝试从某个油量变化为正的站开始，如果能走一圈则答案为该油站，否则从下一个正油站继续尝试遍历。</p><p>这样做也能以$O(n)$的复杂度完成，但是代码相对难写，而且还需要判断是否能够走完。</p><p>进一步考虑我们可以发现，如果把所有相减值求和，求得的结果为负，那么无论怎样都不能走完，显然是返回-1。</p><p>那么对于相减值大于等于零的情况呢？</p><p>实际上这样是一定可以走完的。我们利用大于零的性质进行以下推导：</p><p>假设到<code>i</code>位，当前的总油量变为了负数，由于所有站的相减值总和大于0，我们可以知道在<code>i+1</code>到<code>n - 1</code>中间的和加上当前累计值肯定大于0，因此我们选择下一个相减值大于0的点，从这个点出发，若能走到<code>n-1</code>，则该点即为答案；否则继续寻找下一个点，而这一直保持了之后的和加上当前累计值一定大于0的性质，所以一定可以找到一个满足要求的点。</p><p>在这个过程中我们可以发现，我们只需要找到一个点，从这个点开始能走到结尾即可。</p><h1 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h1><ul><li>时间复杂度: $O(n)$，n为数组长度。</li><li>空间复杂度: $O(1)$。</li></ul><h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight java"><figcaption><span>[]</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">canCompleteCircuit</span><span class="params">(<span class="type">int</span>[] gas, <span class="type">int</span>[] cost)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> gas.length;</span><br><span class="line">        <span class="type">int</span> <span class="variable">total</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            total += gas[i] - cost[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (total &lt; <span class="number">0</span>) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &lt; n) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">            <span class="type">int</span> <span class="variable">start</span> <span class="operator">=</span> i;</span><br><span class="line">            <span class="keyword">while</span> (i &lt; n &amp;&amp; sum &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                sum += gas[i] - cost[i];</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (sum &gt;= <span class="number">0</span>) <span class="keyword">return</span> start;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>yarn run serve无法运行</title>
       <link href="/2024/10/06/yarn-run-serve%E5%9C%A8vscode%E4%B8%AD%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8C/"/>
       <url>/2024/10/06/yarn-run-serve%E5%9C%A8vscode%E4%B8%AD%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8C/</url>

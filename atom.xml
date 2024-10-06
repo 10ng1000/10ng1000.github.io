@@ -6,7 +6,7 @@
   <link href="https://10ng1000.github.io/atom.xml" rel="self"/>
   
   <link href="https://10ng1000.github.io/"/>
-  <updated>2024-10-06T03:44:05.790Z</updated>
+  <updated>2024-10-06T07:38:19.677Z</updated>
   <id>https://10ng1000.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>134. 加油站</title>
+    <link href="https://10ng1000.github.io/2024/10/06/134-%E5%8A%A0%E6%B2%B9%E7%AB%99/"/>
+    <id>https://10ng1000.github.io/2024/10/06/134-%E5%8A%A0%E6%B2%B9%E7%AB%99/</id>
+    <published>2024-10-06T07:20:20.000Z</published>
+    <updated>2024-10-06T07:38:19.677Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/gas-station/description/&quot;&gt;134. 加油站&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;思路&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title>yarn run serve无法运行</title>
@@ -478,30 +504,6 @@
     <category term="doccano" scheme="https://10ng1000.github.io/tags/doccano/"/>
     
     <category term="docker" scheme="https://10ng1000.github.io/tags/docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2024. 考试的最大困扰度</title>
-    <link href="https://10ng1000.github.io/2024/09/03/2024-%E8%80%83%E8%AF%95%E7%9A%84%E6%9C%80%E5%A4%A7%E5%9B%B0%E6%89%B0%E5%BA%A6/"/>
-    <id>https://10ng1000.github.io/2024/09/03/2024-%E8%80%83%E8%AF%95%E7%9A%84%E6%9C%80%E5%A4%A7%E5%9B%B0%E6%89%B0%E5%BA%A6/</id>
-    <published>2024-09-03T02:48:35.000Z</published>
-    <updated>2024-09-03T03:06:06.445Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/maximize-the-confusion-of-an-exam/description/&quot;&gt;2024.</summary>
-        
-      
-    
-    
-    
-    
-    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
     
   </entry>
   
