@@ -6,7 +6,7 @@
   <link href="https://10ng1000.github.io/atom.xml" rel="self"/>
   
   <link href="https://10ng1000.github.io/"/>
-  <updated>2024-10-08T09:05:23.961Z</updated>
+  <updated>2024-10-11T01:32:42.877Z</updated>
   <id>https://10ng1000.github.io/</id>
   
   <author>
@@ -15,6 +15,56 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>12. 整数转罗马数字</title>
+    <link href="https://10ng1000.github.io/2024/10/11/12-%E6%95%B4%E6%95%B0%E8%BD%AC%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97/"/>
+    <id>https://10ng1000.github.io/2024/10/11/12-%E6%95%B4%E6%95%B0%E8%BD%AC%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97/</id>
+    <published>2024-10-11T01:26:29.000Z</published>
+    <updated>2024-10-11T01:32:42.877Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/integer-to-roman/description/&quot;&gt;12. 整数转罗马数字&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1</summary>
+        
+      
+    
+    
+    
+    
+    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>3164. 优质数对的总数 II</title>
+    <link href="https://10ng1000.github.io/2024/10/11/3164-%E4%BC%98%E8%B4%A8%E6%95%B0%E5%AF%B9%E7%9A%84%E6%80%BB%E6%95%B0-II/"/>
+    <id>https://10ng1000.github.io/2024/10/11/3164-%E4%BC%98%E8%B4%A8%E6%95%B0%E5%AF%B9%E7%9A%84%E6%80%BB%E6%95%B0-II/</id>
+    <published>2024-10-11T01:05:32.000Z</published>
+    <updated>2024-10-11T01:19:48.524Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/find-the-number-of-good-pairs-ii/description/&quot;&gt;3164. 优质数对的总数</summary>
+        
+      
+    
+    
+    
+    
+    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title>1436. 旅行终点站</title>
@@ -455,54 +505,6 @@
     
     
     <category term="后端" scheme="https://10ng1000.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2390. 从字符串中移除星号</title>
-    <link href="https://10ng1000.github.io/2024/09/14/%E3%80%90%E6%A0%88%E3%80%912390-%E4%BB%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%A7%BB%E9%99%A4%E6%98%9F%E5%8F%B7/"/>
-    <id>https://10ng1000.github.io/2024/09/14/%E3%80%90%E6%A0%88%E3%80%912390-%E4%BB%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%A7%BB%E9%99%A4%E6%98%9F%E5%8F%B7/</id>
-    <published>2024-09-14T03:20:41.000Z</published>
-    <updated>2024-09-14T03:32:35.225Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/removing-stars-from-a-string/description/&quot;&gt;2390.</summary>
-        
-      
-    
-    
-    
-    
-    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2576.求出最多标记的下标</title>
-    <link href="https://10ng1000.github.io/2024/09/13/%E3%80%90%E4%BA%8C%E5%88%86%E7%AD%94%E6%A1%88%E3%80%912576-%E6%B1%82%E5%87%BA%E6%9C%80%E5%A4%9A%E6%A0%87%E8%AE%B0%E4%B8%8B%E6%A0%87/"/>
-    <id>https://10ng1000.github.io/2024/09/13/%E3%80%90%E4%BA%8C%E5%88%86%E7%AD%94%E6%A1%88%E3%80%912576-%E6%B1%82%E5%87%BA%E6%9C%80%E5%A4%9A%E6%A0%87%E8%AE%B0%E4%B8%8B%E6%A0%87/</id>
-    <published>2024-09-13T03:22:13.000Z</published>
-    <updated>2024-09-13T08:01:45.702Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/find-the-maximum-number-of-marked-indices/description/&quot;&gt;2576.</summary>
-        
-      
-    
-    
-    
-    
-    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
     
   </entry>
   
