@@ -15,6 +15,11 @@
   
   <title>
     
+      42. 接雨水 
+      
+      
+      |
+    
      10ng&#39;s Own eNGine
   </title>
 
@@ -106,149 +111,179 @@
 
 
       <div class="flex-container">
-        <div class="container index">
-  <div class="post-list">
-    <!-- 遍历渲染文章 -->
-    
-      <div class="post-item" title="46. 全排列">
-        <div class="time-m-d">2024-10-11</div>
-        <div class="title">
-          <a href="/2024/10/11/46-%E5%85%A8%E6%8E%92%E5%88%97/">
-            
-              
-                <span>46. 全排列</span>
-              
-            
-          </a>
-        </div>
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">42. 接雨水</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+          2024-10-11 10:42:44
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="标签"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/LeetCode/" title="LeetCode">
+                    #LeetCode
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
-    
-      <div class="post-item" title="42. 接雨水">
-        <div class="time-m-d">2024-10-11</div>
-        <div class="title">
-          <a href="/2024/10/11/42-%E6%8E%A5%E9%9B%A8%E6%B0%B4/">
-            
-              
-                <span>42. 接雨水</span>
-              
-            
-          </a>
-        </div>
+      <div class="markdown-body">
+        <blockquote>
+<p>Problem: <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/trapping-rain-water/description/">42. 接雨水</a>。比较朴素的做法。</p>
+</blockquote>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>我们用列的方式看这道题，先从左向右看，用双指针维护一个区间，这个区间满足区<strong>间右端点的高度大于等于左端点</strong>，这样这个区间内的水量可以用左端点高度乘以开区间宽度减去开区间内柱子高度求得。</p>
+<p>但是这个求法可能无法解决最右边的区间水量。显然，从左往右看和从右往左看是一样的，我们只需要从右往左看到最后一个区间的开头，求出那一部分的水量，再加上去即可。</p>
+<p>第二个做法为什么可行呢？因为当我们求不出最后一个区间的水量时，区间开头的高度一定是大于区间内的所有点的，这样从右往左算一定可以算出来。</p>
+<h1 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h1><ul>
+<li>时间复杂度: $O(n)$。最坏情况遍历两次数组，<code>n</code>为数组长度。</li>
+<li>空间复杂度: $O(1)$。</li>
+</ul>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">trap</span><span class="params">(<span class="type">int</span>[] height)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> height.length;</span><br><span class="line">        <span class="type">int</span> <span class="variable">ret</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &lt; n &amp;&amp; height[i] == <span class="number">0</span>) i++;</span><br><span class="line">        <span class="keyword">while</span> (i &lt; n) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">start</span> <span class="operator">=</span> i;</span><br><span class="line">            <span class="type">int</span> <span class="variable">curSum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">            i++;</span><br><span class="line">            <span class="keyword">while</span> (i &lt; n &amp;&amp; height[i] &lt; height[start]) &#123;</span><br><span class="line">                curSum += height[i];</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (i == n) &#123;</span><br><span class="line">                i = start;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            ret = ret + (i - start - <span class="number">1</span>) * Math.min(height[start], height[i]) - curSum;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> n - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (j &gt; i) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">start</span> <span class="operator">=</span> j;</span><br><span class="line">            <span class="type">int</span> <span class="variable">curSum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">            j--;</span><br><span class="line">            <span class="keyword">while</span> (j &gt; i &amp;&amp; height[j] &lt; height[start]) &#123;</span><br><span class="line">                curSum += height[j];</span><br><span class="line">                j--;</span><br><span class="line">            &#125;</span><br><span class="line">            ret = ret + (start - j - <span class="number">1</span>) * Math.min(height[start], height[j]) - curSum;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       </div>
-    
-      <div class="post-item" title="12. 整数转罗马数字">
-        <div class="time-m-d">2024-10-11</div>
-        <div class="title">
-          <a href="/2024/10/11/12-%E6%95%B4%E6%95%B0%E8%BD%AC%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97/">
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
             
-              
-                <span>12. 整数转罗马数字</span>
-              
+              <a href="/2024/10/11/12-%E6%95%B4%E6%95%B0%E8%BD%AC%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
             
-          </a>
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+              2024-10-11 10:42:44
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="标签"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/LeetCode/" title="LeetCode">
+                        #LeetCode
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2024/10/11/46-%E5%85%A8%E6%8E%92%E5%88%97/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
         </div>
-      </div>
+      
+    </div>
     
-      <div class="post-item" title="3164. 优质数对的总数 II">
-        <div class="time-m-d">2024-10-11</div>
-        <div class="title">
-          <a href="/2024/10/11/3164-%E4%BC%98%E8%B4%A8%E6%95%B0%E5%AF%B9%E7%9A%84%E6%80%BB%E6%95%B0-II/">
-            
-              
-                <span>3164. 优质数对的总数 II</span>
-              
-            
-          </a>
-        </div>
-      </div>
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-text">复杂度</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <div class="post-item" title="1436. 旅行终点站">
-        <div class="time-m-d">2024-10-08</div>
-        <div class="title">
-          <a href="/2024/10/08/1436-%E6%97%85%E8%A1%8C%E7%BB%88%E7%82%B9%E7%AB%99/">
-            
-              
-                <span>1436. 旅行终点站</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="871. 最低加油次数">
-        <div class="time-m-d">2024-10-08</div>
-        <div class="title">
-          <a href="/2024/10/08/871-%E6%9C%80%E4%BD%8E%E5%8A%A0%E6%B2%B9%E6%AC%A1%E6%95%B0/">
-            
-              
-                <span>871. 最低加油次数</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="134. 加油站">
-        <div class="time-m-d">2024-10-06</div>
-        <div class="title">
-          <a href="/2024/10/06/134-%E5%8A%A0%E6%B2%B9%E7%AB%99/">
-            
-              
-                <span>134. 加油站</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="yarn run serve无法运行">
-        <div class="time-m-d">2024-10-06</div>
-        <div class="title">
-          <a href="/2024/10/06/yarn-run-serve%E5%9C%A8vscode%E4%B8%AD%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8C/">
-            
-              
-                <span>yarn run serve无法运行</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="135. 分发糖果">
-        <div class="time-m-d">2024-10-06</div>
-        <div class="title">
-          <a href="/2024/10/06/135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/">
-            
-              
-                <span>135. 分发糖果</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="1227. 飞机座位分配概率">
-        <div class="time-m-d">2024-10-04</div>
-        <div class="title">
-          <a href="/2024/10/04/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%911227-%E9%A3%9E%E6%9C%BA%E5%BA%A7%E4%BD%8D%E5%88%86%E9%85%8D%E6%A6%82%E7%8E%87/">
-            
-              
-                <span>1227. 飞机座位分配概率</span>
-              
-            
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+
+
+  <div id="gitalk-container"></div>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script>
+    function loadGitalkSuc() {
+      const gitalk = new Gitalk({
+        clientID: 'Ov23liEsmNxfQRDqWAJb',
+        clientSecret: '6353d100eda3d9beeb1755680c7406f982b60e9e',
+        repo: '10ng1000.github.io',
+        owner: '10ng1000',
+        admin: ['10ng1000'],
+        id: md5(location.pathname),
+        distractionFreeMode: false
+      })
+
+      gitalk.render('gitalk-container')
+    }
+  </script>
+  
+    <link rel="stylesheet" href="/plugins/gitalk.css">
+    <script type="text/javascript" src="/plugins/gitalk.min.js" onload="loadGitalkSuc(this)"></script>
+  
+
+
+
       </div>
     
   </div>
-  <nav class="post-navigation">
-    
-    <span class="page-num">1 / 4</span>
-    
-      <a href="/page/2/"><i class="iconfont icon-angleright"></i></a>
-    
-  </nav>
-</div>
+
 
         
 <div class="footer">
@@ -514,6 +549,24 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + 42.%20%E6%8E%A5%E9%9B%A8%E6%B0%B4 + '&url=' + https%3A%2F%2F10ng1000.github.io%2F2024%2F10%2F11%2F42-%25E6%258E%25A5%25E9%259B%25A8%25E6%25B0%25B4%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://10ng1000.github.io/2024/10/11/42-%E6%8E%A5%E9%9B%A8%E6%B0%B4/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
