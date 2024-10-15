@@ -15,7 +15,7 @@
   
   <title>
     
-      46. 全排列 
+      批量任务的JS异步问题 
       
       
       |
@@ -156,19 +156,25 @@
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">46. 全排列</div>
+      <div class="post-title">批量任务的JS异步问题</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-          2024-10-11 11:21:52
+          2024-10-15 16:05:11
         </span>
         
               <span class="post-tags">
                 <i class="iconfont icon-tags mr-10" title="标签"></i>
                 
                 <span class="span--tag mr-8">
-                  <a href="/tags/LeetCode/" title="LeetCode">
-                    #LeetCode
+                  <a href="/tags/%E5%89%8D%E7%AB%AF/" title="前端">
+                    #前端
+                  </a>
+                </span>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/" title="异步编程">
+                    #异步编程
                   </a>
                 </span>
                 
@@ -176,26 +182,29 @@
           
       </div>
       <div class="markdown-body">
-        <blockquote>
-<p>Problem: <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/permutations/description/">46. 全排列</a></p>
+        <h1 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h1><p>项目中遇到了这样一个情景，需要先向后端查询一个表的所有数据，然后这个表的每行数据都向后端查询这行数据的<code>id</code>是否在另一个表中存在。</p>
+<blockquote>
+<p>实际上为了减少网络传输的开支，这个动作应该在后端完成，但是正好借此机会学习这种情况的解决方式。</p>
 </blockquote>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>本题可以用回溯的思路来解决。对于搜索函数<code>dfs</code>，我们记录当前搜索进行到的位置，然后遍历所有可能的选项，继续调用<code>dfs</code>函数进行搜索，在搜索完毕后回溯回原来的状态，继续遍历。当搜索完全部位置时，<code>dfs</code>函数返回搜索的值。</p>
-<h2 id="小tips"><a href="#小tips" class="headerlink" title="小tips"></a>小tips</h2><p>本题由于可以直接覆盖当前位置的选项，可以不用移除最后一个元素，同时把增加一个元素改成修改一个元素。</p>
-<p>使用</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p = Arrays.asList(<span class="keyword">new</span> <span class="title class_">Integer</span>[nums.length]);</span><br></pre></td></tr></table></figure>
-<p>可以用n个整数初始化ArrayList，以使得set函数可用。</p>
-<h1 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h1><ul>
-<li>时间复杂度: $O(n×n!)$，，其中 n 为序列的长度。</li>
-<li>空间复杂度: $O(n)$。</li>
-</ul>
-<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">boolean</span>[] vis;</span><br><span class="line">    <span class="keyword">private</span> List&lt;List&lt;Integer&gt;&gt; l = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    <span class="keyword">private</span> List&lt;Integer&gt; p;</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; <span class="title function_">permute</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> nums.length;</span><br><span class="line">        p = Arrays.asList(<span class="keyword">new</span> <span class="title class_">Integer</span>[nums.length]);</span><br><span class="line">        vis = <span class="keyword">new</span> <span class="title class_">boolean</span>[n];</span><br><span class="line">        dfs(nums, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> l;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">dfs</span><span class="params">(<span class="type">int</span> [] nums, <span class="type">int</span> nowPos)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (nowPos == nums.length) &#123;</span><br><span class="line">            l.add(<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;(p));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (vis[i] == <span class="literal">false</span>) &#123;</span><br><span class="line">                p.set(nowPos, nums[i]);</span><br><span class="line">                vis[i] = <span class="literal">true</span>;</span><br><span class="line">                dfs(nums, nowPos + <span class="number">1</span>);</span><br><span class="line">                vis[i] = <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>起初我在第一个调用后的<code>then</code>范围内用<code>for</code>循环调用了若干个Promise请求。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">refreshList</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">loading</span> = <span class="literal">true</span></span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">processService</span>.<span class="title function_">list</span>(&#123;</span><br><span class="line">        <span class="attr">currentPage</span>: <span class="variable language_">this</span>.<span class="property">tablePage</span>.<span class="property">currentPage</span>,</span><br><span class="line">        <span class="attr">pageSize</span>: <span class="variable language_">this</span>.<span class="property">tablePage</span>.<span class="property">pageSize</span></span><br><span class="line">      &#125;).<span class="title function_">then</span>(<span class="function">(<span class="params">&#123; data &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">records</span> = data.<span class="property">records</span></span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="variable language_">this</span>.<span class="property">records</span>.<span class="property">length</span>; i++) &#123;</span><br><span class="line">     <span class="variable language_">this</span>.<span class="property">processService</span>.<span class="title function_">isFinish</span>(<span class="variable language_">this</span>.<span class="property">records</span>[i].<span class="property">id</span>).<span class="title function_">then</span>(<span class="function">(<span class="params">&#123; data &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="variable language_">this</span>.<span class="property">records</span>[i].<span class="property">done</span> = data.<span class="property">done</span></span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">tablePage</span>.<span class="property">total</span> = <span class="variable language_">this</span>.<span class="property">records</span>.<span class="property">length</span></span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">loading</span> = <span class="literal">false</span></span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>但是这样做之后，前端显示的数据会先短暂闪烁，最终不显示。起初我以为是前端控件的问题，排除了很久都找不出问题的原因所在。后来才想到可能是异步程序的问题。</p>
+<h1 id="异步问题"><a href="#异步问题" class="headerlink" title="异步问题"></a>异步问题</h1><p>首先，即使没有调用多个Promise，这个程序也存在问题。首先<code>.then</code>不会默认等待，在最外层的<code>list</code>调用链中，<code>this.records[i].done</code>的操作是需要异步请求的，这就导致了在这个操作完成前，<code>this.records</code>的值就已经读取完成并且<code>this.loading = false</code>，因此表格已经认为加载完毕，之后等待值传来时就没有完成响应式更新。</p>
+<h1 id="问题修复"><a href="#问题修复" class="headerlink" title="问题修复"></a>问题修复</h1><p>之后我堆代码进行了如下更改：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">async</span> <span class="title function_">refreshList</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">loading</span> = <span class="literal">true</span></span><br><span class="line">   <span class="keyword">const</span> &#123; data &#125; = <span class="keyword">await</span> <span class="variable language_">this</span>.<span class="property">processService</span>.<span class="title function_">list</span>(&#123;</span><br><span class="line">     <span class="attr">currentPage</span>: <span class="variable language_">this</span>.<span class="property">tablePage</span>.<span class="property">currentPage</span>,</span><br><span class="line">     <span class="attr">pageSize</span>: <span class="variable language_">this</span>.<span class="property">tablePage</span>.<span class="property">pageSize</span></span><br><span class="line">   &#125;)</span><br><span class="line">	    <span class="variable language_">this</span>.<span class="property">records</span> = data.<span class="property">records</span></span><br><span class="line"><span class="keyword">const</span> promises = <span class="variable language_">this</span>.<span class="property">records</span>.<span class="title function_">map</span>(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">processService</span>.<span class="title function_">isFinish</span>(item.<span class="property">id</span>).<span class="title function_">then</span>(<span class="function">(<span class="params">&#123; data &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">	item.<span class="property">done</span> = data;</span><br><span class="line">	<span class="keyword">return</span> item;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="variable language_">this</span>.<span class="property">records</span> = <span class="keyword">await</span> <span class="title class_">Promise</span>.<span class="title function_">all</span>(promises)</span><br><span class="line"><span class="variable language_">this</span>.<span class="property">tablePage</span>.<span class="property">total</span> = <span class="variable language_">this</span>.<span class="property">records</span>.<span class="property">length</span></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">loading</span> = <span class="literal">false</span></span><br><span class="line"> &#125;)</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>首先第一点就是我增加了<code>async/await</code>。通过<code>await</code>等待可以防止异步程序出现乱序的错误。</p>
+<p>然后就是Array.prototype.<strong>map</strong>()可以返回一个数组，这个数组的每个元素都是原数组每个元素调用一次提供的函数的返回值后形成的。使用这个语法可以简化开发。</p>
+<p>再者，学习到了一个新的知识点，<code>Promise.all()</code>支持对多个<code>promise</code>进行集中处理，聚合多个<code>promise</code>。这样也可以对多个<code>promise</code>进行<code>await</code>了。</p>
+<p>这次的错误确实加深了对异步编程的印象。</p>
 
       </div>
       
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2024/10/11/42-%E6%8E%A5%E9%9B%A8%E6%B0%B4/" target="_self">
+              <a href="/2024/10/11/46-%E5%85%A8%E6%8E%92%E5%88%97/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>上一页</span>
               </a>
@@ -204,15 +213,21 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-              2024-10-11 11:21:52
+              2024-10-15 16:05:11
             </span>
             
                   <span class="post-tags">
                     <i class="iconfont icon-tags mr-10" title="标签"></i>
                     
                     <span class="span--tag mr-8">
-                      <a href="/tags/LeetCode/" title="LeetCode">
-                        #LeetCode
+                      <a href="/tags/%E5%89%8D%E7%AB%AF/" title="前端">
+                        #前端
+                      </a>
+                    </span>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/" title="异步编程">
+                        #异步编程
                       </a>
                     </span>
                     
@@ -220,11 +235,6 @@
               
           </div>
           <div class="post-foot-prev">
-            
-              <a href="/2024/10/15/%E6%89%B9%E9%87%8F%E4%BB%BB%E5%8A%A1%E7%9A%84JS%E5%BC%82%E6%AD%A5%E9%97%AE%E9%A2%98/" target="_self">
-                <span>下一页</span>
-                <i class="iconfont icon-chevronright"></i>
-              </a>
             
           </div>
         </div>
@@ -238,7 +248,7 @@
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-text">思路</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8Ftips"><span class="toc-text">小tips</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-text">复杂度</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E5%85%A5"><span class="toc-text">引入</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%AE%E9%A2%98"><span class="toc-text">问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5%E9%97%AE%E9%A2%98"><span class="toc-text">异步问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D"><span class="toc-text">问题修复</span></a></li></ol>
       
     </div>
   </div>
@@ -558,12 +568,12 @@
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + 46.%20%E5%85%A8%E6%8E%92%E5%88%97 + '&url=' + https%3A%2F%2F10ng1000.github.io%2F2024%2F10%2F11%2F46-%25E5%2585%25A8%25E6%258E%2592%25E5%2588%2597%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E6%89%B9%E9%87%8F%E4%BB%BB%E5%8A%A1%E7%9A%84JS%E5%BC%82%E6%AD%A5%E9%97%AE%E9%A2%98 + '&url=' + https%3A%2F%2F10ng1000.github.io%2F2024%2F10%2F15%2F%25E6%2589%25B9%25E9%2587%258F%25E4%25BB%25BB%25E5%258A%25A1%25E7%259A%2584JS%25E5%25BC%2582%25E6%25AD%25A5%25E9%2597%25AE%25E9%25A2%2598%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://10ng1000.github.io/2024/10/11/46-%E5%85%A8%E6%8E%92%E5%88%97/" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://10ng1000.github.io/2024/10/15/%E6%89%B9%E9%87%8F%E4%BB%BB%E5%8A%A1%E7%9A%84JS%E5%BC%82%E6%AD%A5%E9%97%AE%E9%A2%98/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         
