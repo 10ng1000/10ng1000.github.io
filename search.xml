@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>123. 买卖股票的最佳时机 III</title>
+      <link href="/2024/10/17/123-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA-III/"/>
+      <url>/2024/10/17/123-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA-III/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>Problem: <a href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iii/description/">123. 买卖股票的最佳时机 III</a></p></blockquote><h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><blockquote><p>你选用何种方法解题？</p></blockquote><p>本题要完成<strong>最多两笔交易</strong>，而且一次只能持有一支股票，两笔交易不能够有重叠的时间，因此我的想法是，如何把题目规模变小，从而转化为最多只能进行一笔交易的情况，而这个情况之前我们已经用动态规划解决了。</p><p>由于最多是两笔交易，我们可以分别从左边开始和从右边开始进行计算<strong>最多进行一次交易的最大收益</strong>，在计算完成后，我们只需遍历数组，求出截止到<code>i</code>点从左开始计算和从右开始计算的最大收益和，并返回最大收益即可。</p><p>一个实现细节是，对于从右开始的计算，我们保存的是<strong>最大股票价格</strong>而不是最小的，因为虽然从右往左计算，动态规划的值仍然是<strong>从区间左边开始，截止到右边的单次股票交易最大收益</strong>，而不是反过来的。</p><p>一个小小的优化是，在我们做完从左开始的计算后，对于从右开始的计算我们就不必再新开一个dp数组了，可以直接利用原来dp数组的空间，同时也不需要再多遍历一次，原地求两向相加最大收益即可。</p><h1 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h1><ul><li>时间复杂度: $O(n)$：遍历两遍数组，n为数组长度。</li><li>空间复杂度: $O(n)$：n为数组长度。</li></ul><h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxProfit</span><span class="params">(<span class="type">int</span>[] prices)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> prices.length;</span><br><span class="line">        <span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> prices[<span class="number">0</span>];</span><br><span class="line">        <span class="type">int</span> [] dp = <span class="keyword">new</span> <span class="title class_">int</span>[n];</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>;i &lt; n; i++) &#123;</span><br><span class="line">            temp = Math.min(temp, prices[i]);</span><br><span class="line">            dp[i] = Math.max(dp[i - <span class="number">1</span>], prices[i] - temp);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> dp[n - <span class="number">1</span>];</span><br><span class="line">        temp = prices[n - <span class="number">1</span>];</span><br><span class="line">        dp[n - <span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> n - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            temp = Math.max(temp, prices[i]);</span><br><span class="line">            ans = Math.max(ans, dp[i] + dp[i + <span class="number">1</span>]);</span><br><span class="line">            dp[i] = Math.max(dp[i + <span class="number">1</span>], temp - prices[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>批量任务的JS异步问题</title>
       <link href="/2024/10/15/%E6%89%B9%E9%87%8F%E4%BB%BB%E5%8A%A1%E7%9A%84JS%E5%BC%82%E6%AD%A5%E9%97%AE%E9%A2%98/"/>
       <url>/2024/10/15/%E6%89%B9%E9%87%8F%E4%BB%BB%E5%8A%A1%E7%9A%84JS%E5%BC%82%E6%AD%A5%E9%97%AE%E9%A2%98/</url>

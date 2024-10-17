@@ -15,8 +15,8 @@
   
   <title>
     
-      标签 
-       : LeetCode
+      123. 买卖股票的最佳时机 III 
+      
       
       |
     
@@ -111,104 +111,178 @@
 
 
       <div class="flex-container">
-        <!-- 标签详情页，展示某个标签下的文章列表，url形式：https://yoursite/tags/某个标签/ -->
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
 
-<div class="container tag-details">
-  <div class="content-title">
-    <h2>
-      <span>LeetCode</span>
-    </h2>
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">123. 买卖股票的最佳时机 III</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+          2024-10-17 08:34:09
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="标签"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/LeetCode/" title="LeetCode">
+                    #LeetCode
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <blockquote>
+<p>Problem: <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iii/description/">123. 买卖股票的最佳时机 III</a></p>
+</blockquote>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><blockquote>
+<p>你选用何种方法解题？</p>
+</blockquote>
+<p>本题要完成<strong>最多两笔交易</strong>，而且一次只能持有一支股票，两笔交易不能够有重叠的时间，因此我的想法是，如何把题目规模变小，从而转化为最多只能进行一笔交易的情况，而这个情况之前我们已经用动态规划解决了。</p>
+<p>由于最多是两笔交易，我们可以分别从左边开始和从右边开始进行计算<strong>最多进行一次交易的最大收益</strong>，在计算完成后，我们只需遍历数组，求出截止到<code>i</code>点从左开始计算和从右开始计算的最大收益和，并返回最大收益即可。</p>
+<p>一个实现细节是，对于从右开始的计算，我们保存的是<strong>最大股票价格</strong>而不是最小的，因为虽然从右往左计算，动态规划的值仍然是<strong>从区间左边开始，截止到右边的单次股票交易最大收益</strong>，而不是反过来的。</p>
+<p>一个小小的优化是，在我们做完从左开始的计算后，对于从右开始的计算我们就不必再新开一个dp数组了，可以直接利用原来dp数组的空间，同时也不需要再多遍历一次，原地求两向相加最大收益即可。</p>
+<h1 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h1><ul>
+<li>时间复杂度: $O(n)$：遍历两遍数组，n为数组长度。</li>
+<li>空间复杂度: $O(n)$：n为数组长度。</li>
+</ul>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxProfit</span><span class="params">(<span class="type">int</span>[] prices)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> prices.length;</span><br><span class="line">        <span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> prices[<span class="number">0</span>];</span><br><span class="line">        <span class="type">int</span> [] dp = <span class="keyword">new</span> <span class="title class_">int</span>[n];</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>;i &lt; n; i++) &#123;</span><br><span class="line">            temp = Math.min(temp, prices[i]);</span><br><span class="line">            dp[i] = Math.max(dp[i - <span class="number">1</span>], prices[i] - temp);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> dp[n - <span class="number">1</span>];</span><br><span class="line">        temp = prices[n - <span class="number">1</span>];</span><br><span class="line">        dp[n - <span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> n - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            temp = Math.max(temp, prices[i]);</span><br><span class="line">            ans = Math.max(ans, dp[i] + dp[i + <span class="number">1</span>]);</span><br><span class="line">            dp[i] = Math.max(dp[i + <span class="number">1</span>], temp - prices[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2024/10/15/%E6%89%B9%E9%87%8F%E4%BB%BB%E5%8A%A1%E7%9A%84JS%E5%BC%82%E6%AD%A5%E9%97%AE%E9%A2%98/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+              2024-10-17 08:34:09
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="标签"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/LeetCode/" title="LeetCode">
+                        #LeetCode
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
   </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="2576.求出最多标记的下标">
-        <span class="time-m-d">2024-09-13</span>
-        <a href="/2024/09/13/%E3%80%90%E4%BA%8C%E5%88%86%E7%AD%94%E6%A1%88%E3%80%912576-%E6%B1%82%E5%87%BA%E6%9C%80%E5%A4%9A%E6%A0%87%E8%AE%B0%E4%B8%8B%E6%A0%87/">
-          <span>2576.求出最多标记的下标</span>
-        </a>
-      </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-text">复杂度</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li></ol>
+      
     </div>
+  </div>
+
   
-    <div class="post-list">
-      <div class="post-item" title="2024. 考试的最大困扰度">
-        <span class="time-m-d">2024-09-03</span>
-        <a href="/2024/09/03/2024-%E8%80%83%E8%AF%95%E7%9A%84%E6%9C%80%E5%A4%A7%E5%9B%B0%E6%89%B0%E5%BA%A6/">
-          <span>2024. 考试的最大困扰度</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="3142.判断矩阵是否满足条件">
-        <span class="time-m-d">2024-08-29</span>
-        <a href="/2024/08/29/3142-%E5%88%A4%E6%96%AD%E7%9F%A9%E9%98%B5%E6%98%AF%E5%90%A6%E6%BB%A1%E8%B6%B3%E6%9D%A1%E4%BB%B6/">
-          <span>3142.判断矩阵是否满足条件</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="【动态规划】3144.分割字符频率相等的最少子字符串">
-        <span class="time-m-d">2024-08-29</span>
-        <a href="/2024/08/29/%E3%80%90%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E3%80%913144-%E5%88%86%E5%89%B2%E5%AD%97%E7%AC%A6%E9%A2%91%E7%8E%87%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%91%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2/">
-          <span>【动态规划】3144.分割字符频率相等的最少子字符串</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="【二分法，双指针】3134.找出唯一性数组的中位数">
-        <span class="time-m-d">2024-08-27</span>
-        <a href="/2024/08/27/%E3%80%90%E4%BA%8C%E5%88%86%E6%B3%95%EF%BC%8C%E5%8F%8C%E6%8C%87%E9%92%88%E3%80%913134-%E6%89%BE%E5%87%BA%E5%94%AF%E4%B8%80%E6%80%A7%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/">
-          <span>【二分法，双指针】3134.找出唯一性数组的中位数</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="690.员工的重要性">
-        <span class="time-m-d">2024-08-26</span>
-        <a href="/2024/08/26/690-%E5%91%98%E5%B7%A5%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7/">
-          <span>690.员工的重要性</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="【状压dp】698.划分为k个相等的子集">
-        <span class="time-m-d">2024-08-26</span>
-        <a href="/2024/08/26/%E3%80%90%E7%8A%B6%E5%8E%8Bdp%E3%80%91698-%E5%88%92%E5%88%86%E4%B8%BAk%E4%B8%AA%E7%9B%B8%E7%AD%89%E7%9A%84%E5%AD%90%E9%9B%86/">
-          <span>【状压dp】698.划分为k个相等的子集</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="55.跳跃游戏">
-        <span class="time-m-d">2024-08-24</span>
-        <a href="/2024/08/24/55-%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F/">
-          <span>55.跳跃游戏</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="121 && 122. 买卖股票的最佳时机">
-        <span class="time-m-d">2024-08-23</span>
-        <a href="/2024/08/23/121%20&&%20122-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA/">
-          <span>121 && 122. 买卖股票的最佳时机</span>
-        </a>
-      </div>
-    </div>
-  
-  <nav class="post-navigation">
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <a href="/tags/LeetCode/page/2/"><i class="iconfont icon-angleleft"></i></a>
+      <div class="comments-container">
+        
+
+
+
+
+
+
+  <div id="gitalk-container"></div>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script>
+    function loadGitalkSuc() {
+      const gitalk = new Gitalk({
+        clientID: 'Ov23liEsmNxfQRDqWAJb',
+        clientSecret: '6353d100eda3d9beeb1755680c7406f982b60e9e',
+        repo: '10ng1000.github.io',
+        owner: '10ng1000',
+        admin: ['10ng1000'],
+        id: md5(location.pathname),
+        distractionFreeMode: false
+      })
+
+      gitalk.render('gitalk-container')
+    }
+  </script>
+  
+    <link rel="stylesheet" href="/plugins/gitalk.css">
+    <script type="text/javascript" src="/plugins/gitalk.min.js" onload="loadGitalkSuc(this)"></script>
+  
+
+
+
+      </div>
     
-    <span class="page-num">3 / 3</span>
-    
-  </nav>
-</div>
+  </div>
+
 
         
 <div class="footer">
@@ -474,6 +548,24 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + 123.%20%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA%20III + '&url=' + https%3A%2F%2F10ng1000.github.io%2F2024%2F10%2F17%2F123-%25E4%25B9%25B0%25E5%258D%2596%25E8%2582%25A1%25E7%25A5%25A8%25E7%259A%2584%25E6%259C%2580%25E4%25BD%25B3%25E6%2597%25B6%25E6%259C%25BA-III%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://10ng1000.github.io/2024/10/17/123-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA-III/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
