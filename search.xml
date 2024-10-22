@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>124. 二叉树中的最大路径和</title>
+      <link href="/2024/10/22/124-%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E8%B7%AF%E5%BE%84%E5%92%8C/"/>
+      <url>/2024/10/22/124-%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E8%B7%AF%E5%BE%84%E5%92%8C/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>Problem: <a href="https://leetcode.cn/problems/binary-tree-maximum-path-sum/description/">124. 二叉树中的最大路径和</a></p></blockquote><h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>用dp的思想，遍历这个树，dfs函数返回当前子树的最大路径和，如果最大路径和为负数则不途径这个子树，设为0。同时在dfs遍历的时候，以左右子树分别最大路径和加上当前结点的值尝试更新答案，因为左右子树的最大路径和都是非负的。</p><p>显然在这个过程中，我们是可以遍历树上所有结点的。</p><h1 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h1><p>一开始看到路径和，我想到的是把树看成图来解，想到了枚举所有叶子到叶子的路径，然后对单条路径用dp的思想求最大值，但是这样显然是$O(n^2)$算法，会超时。</p><p>后来舍友的想法给了我提醒，同样是使用dp的思想，但是用树的遍历来做。这样是对的，树的题目还是得用树的遍历才能最大程度地利用其性质。</p><h1 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h1><ul><li>时间复杂度: $O(n)$，n为节点数目。</li><li>空间复杂度: $O(n)$，递归深度，最坏情况下为一条链。</li></ul><h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="variable">max</span> <span class="operator">=</span> -<span class="number">1001</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxPathSum</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">        dfs(root);</span><br><span class="line">        <span class="keyword">return</span> max;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">dfs</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">leftVal</span> <span class="operator">=</span> dfs(root.left);</span><br><span class="line">        <span class="type">int</span> <span class="variable">rightVal</span> <span class="operator">=</span> dfs(root.right);</span><br><span class="line">        max = Math.max(leftVal + rightVal + root.val, max);</span><br><span class="line">        <span class="keyword">return</span> Math.max(Math.max(leftVal + root.val, rightVal + root.val), <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>3185. 构成整天的下标对数目 II</title>
       <link href="/2024/10/22/3185-%E6%9E%84%E6%88%90%E6%95%B4%E5%A4%A9%E7%9A%84%E4%B8%8B%E6%A0%87%E5%AF%B9%E6%95%B0%E7%9B%AE-II/"/>
       <url>/2024/10/22/3185-%E6%9E%84%E6%88%90%E6%95%B4%E5%A4%A9%E7%9A%84%E4%B8%8B%E6%A0%87%E5%AF%B9%E6%95%B0%E7%9B%AE-II/</url>
