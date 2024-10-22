@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>3185. 构成整天的下标对数目 II</title>
+      <link href="/2024/10/22/3185-%E6%9E%84%E6%88%90%E6%95%B4%E5%A4%A9%E7%9A%84%E4%B8%8B%E6%A0%87%E5%AF%B9%E6%95%B0%E7%9B%AE-II/"/>
+      <url>/2024/10/22/3185-%E6%9E%84%E6%88%90%E6%95%B4%E5%A4%A9%E7%9A%84%E4%B8%8B%E6%A0%87%E5%AF%B9%E6%95%B0%E7%9B%AE-II/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>Problem: <a href="https://leetcode.cn/problems/count-pairs-that-form-a-complete-day-ii/description/">3185. 构成整天的下标对数目 II</a></p></blockquote><h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>将日期取模映射到24小时，使用哈希表存储时间，并在遍历到每一个时间时，答案加上之前出现的与之构成整天的日期个数，这样就是实现了配对，一次遍历即可。</p><h1 id="注意的点"><a href="#注意的点" class="headerlink" title="注意的点"></a>注意的点</h1><p>因为我是先做的I再做的II，一开始直接把I的复制过来发现有一个大数组的结果不对。我尝试把ans改成long，但是发现不对最后还是得转回int，也没有用。这才发现原来是返回值应该是long。</p><p>然后我一开始使用了哈希表来存储数据，发现时间花销较大。哈希表需要判空操作等，自然花销的常数时间是比较大的。对于<strong>键范围已知且为连续整数</strong>的取值范围，我们可以直接用数组来作为哈希表存储，这样不仅代码好写，时间效率也有常数级别的较高优化。</p><h1 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h1><ul><li>时间复杂度: $O(n)$</li><li>空间复杂度: $O(n)$</li></ul><h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">long</span> <span class="title function_">countCompleteDayPairs</span><span class="params">(<span class="type">int</span>[] hours)</span> &#123;</span><br><span class="line">        <span class="type">int</span> [] m = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">24</span>];</span><br><span class="line">        <span class="type">long</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; hours.length; i++) &#123;</span><br><span class="line">            ans += m[(<span class="number">24</span> - (hours[i] % <span class="number">24</span>)) % <span class="number">24</span>];</span><br><span class="line">            m[hours[i] % <span class="number">24</span>]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>188. 买卖股票的最佳时机 IV</title>
       <link href="/2024/10/18/%E3%80%90%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E3%80%91188-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA-IV/"/>
       <url>/2024/10/18/%E3%80%90%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E3%80%91188-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA-IV/</url>

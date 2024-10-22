@@ -6,7 +6,7 @@
   <link href="https://10ng1000.github.io/atom.xml" rel="self"/>
   
   <link href="https://10ng1000.github.io/"/>
-  <updated>2024-10-18T06:44:03.059Z</updated>
+  <updated>2024-10-22T02:44:47.564Z</updated>
   <id>https://10ng1000.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>3185. 构成整天的下标对数目 II</title>
+    <link href="https://10ng1000.github.io/2024/10/22/3185-%E6%9E%84%E6%88%90%E6%95%B4%E5%A4%A9%E7%9A%84%E4%B8%8B%E6%A0%87%E5%AF%B9%E6%95%B0%E7%9B%AE-II/"/>
+    <id>https://10ng1000.github.io/2024/10/22/3185-%E6%9E%84%E6%88%90%E6%95%B4%E5%A4%A9%E7%9A%84%E4%B8%8B%E6%A0%87%E5%AF%B9%E6%95%B0%E7%9B%AE-II/</id>
+    <published>2024-10-22T02:36:10.000Z</published>
+    <updated>2024-10-22T02:44:47.564Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/count-pairs-that-form-a-complete-day-ii/description/&quot;&gt;3185. 构成整天的下标对数目</summary>
+        
+      
+    
+    
+    
+    
+    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title>188. 买卖股票的最佳时机 IV</title>
@@ -478,30 +502,6 @@
         
     <summary type="html">&lt;blockquote&gt;
 &lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/product-of-array-except-self/description/&quot;&gt;238.</summary>
-        
-      
-    
-    
-    
-    
-    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2073. 买票需要的时间</title>
-    <link href="https://10ng1000.github.io/2024/09/29/2073-%E4%B9%B0%E7%A5%A8%E9%9C%80%E8%A6%81%E7%9A%84%E6%97%B6%E9%97%B4/"/>
-    <id>https://10ng1000.github.io/2024/09/29/2073-%E4%B9%B0%E7%A5%A8%E9%9C%80%E8%A6%81%E7%9A%84%E6%97%B6%E9%97%B4/</id>
-    <published>2024-09-29T01:26:22.000Z</published>
-    <updated>2024-09-29T01:35:25.595Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/time-needed-to-buy-tickets/description/&quot;&gt;2073.</summary>
         
       
     
