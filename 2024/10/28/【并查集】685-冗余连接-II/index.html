@@ -15,7 +15,7 @@
   
   <title>
     
-      3180. 执行操作可获得的最大总奖励 I 
+      685. 冗余连接 II 
       
       
       |
@@ -156,11 +156,11 @@
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">3180. 执行操作可获得的最大总奖励 I</div>
+      <div class="post-title">685. 冗余连接 II</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-          2024-10-28 10:19:26
+          2024-10-28 10:53:42
         </span>
         
               <span class="post-tags">
@@ -177,25 +177,34 @@
       </div>
       <div class="markdown-body">
         <blockquote>
-<p>Problem: <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-total-reward-using-operations-i/description/">3180. 执行操作可获得的最大总奖励 I</a></p>
+<p>Problem: <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/redundant-connection-ii/description/">685. 冗余连接 II</a></p>
 </blockquote>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><blockquote>
-<p>起初我想用$O(n)$时间复杂度的动态规划，但是这样做对于有些用例会得到错误答案。后面看到提示，动态规划可以用来表示<strong>某一个值能否取到</strong>，学习到了新的解法。</p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>和上一题不同的是，这题把无向图换成了有向图，树的要求也更严格了。</p>
+<p>同过观察用例，可以发现加上一条边后有两种情况使得树不再成立：</p>
+<ol>
+<li>一个节点有两个入度。</li>
+<li>形成了有向环。</li>
+</ol>
+<p>这两种情况是相互交叉的，可能会同时发生。但是删掉最后的导致成环的边不一定能够消除两个入度的边，所以我们优先找出有两个入度的边。</p>
+<p>找到有两个入度的边后，我们从后往前进行判断，如果删去这条边能够构成树，那么我们就找到了答案。而要判断删去一个边能否构成树，我们也可以用到<strong>并查集</strong>：先用其他边构建一个节点的并查集，然后判断这条边的两个节点是否在同一个并查集中，如果是的话删掉这条边就是可行的。</p>
+<p>如果没有两个入度的边，我们就寻找最后导致成环的边即可。参考上一题的思路，可以很自然地想到用并查集解决。</p>
+<blockquote>
+<p>一开始想到了这个思路但是没有去实现，因为觉得这样代码太复杂不够简洁。看了题解发现代码确实多，说明图论的题目有时候代码量是会很大。</p>
 </blockquote>
-<p>首先我们将数组排序，以保证后面的元素总比前面的元素大。用一个一维动态数组表示<strong>当前</strong>数组长度下，<strong>某一个当前总奖励</strong>是否能够取到。同时我们保存一个当前最大值，在小于<code>rewardValues[i]</code>的总奖励中，如果某个值可以取到，就更新<code>dp[rewardValues[i] + j]</code>为可以取到，并可以尝试更新最大值。最后返回最大值即可。</p>
-<h1 id="布尔值dp"><a href="#布尔值dp" class="headerlink" title="布尔值dp"></a>布尔值dp</h1><p>当dp的值设为数值类型时难以求解时，我们可以考虑把<strong>数值类型</strong>作为数组的下标，转而把是否选取的状态设为dp的值，这样我们就可以方便地遍历所有值。</p>
-<p>也就是说遍历状态难以求解时，可以尝试遍历值，这也是一种新思路。</p>
+<h1 id="树的图性质"><a href="#树的图性质" class="headerlink" title="树的图性质"></a>树的图性质</h1><p>通过这两道题我们可以发现，树在图论里可以很自然地和并查集联系在一起。并查集本身就是树形结构，和<strong>树一样都只有一个根节点</strong>。以后遇到相关的题目可以优先考虑是否可以使用并查集。</p>
+<h1 id="图"><a href="#图" class="headerlink" title="图"></a>图</h1><p>图论的题目，从入度、出度、增减边、边的性质来考虑看起来是很有效的。</p>
 <h1 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h1><ul>
-<li>时间复杂度: $O(nm)$</li>
+<li>时间复杂度: $O(nlogn)$</li>
 <li>空间复杂度: $O(n)$</li>
 </ul>
-<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxTotalReward</span><span class="params">(<span class="type">int</span>[] rewardValues)</span> &#123;</span><br><span class="line">        Arrays.sort(rewardValues);</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> rewardValues.length;</span><br><span class="line">        <span class="type">boolean</span> dp[] = <span class="keyword">new</span> <span class="title class_">boolean</span> [rewardValues[n - <span class="number">1</span>] * <span class="number">2</span>];</span><br><span class="line">        dp[rewardValues[<span class="number">0</span>]] = <span class="literal">true</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">max</span> <span class="operator">=</span> rewardValues[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">            dp[rewardValues[i]] = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; rewardValues[i]; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (dp[j] == <span class="literal">true</span>) &#123;</span><br><span class="line">                    dp[rewardValues[i] + j] = <span class="literal">true</span>;</span><br><span class="line">                    max = rewardValues[i] + j;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight java"><figcaption><span>[]</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[] findRedundantDirectedConnection(<span class="type">int</span>[][] edges) &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> edges.length;</span><br><span class="line">        <span class="type">int</span>[] in = <span class="keyword">new</span> <span class="title class_">int</span>[n + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            in[i] = -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (in[edges[i][<span class="number">1</span>]] != -<span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (isTree(edges, i)) <span class="keyword">return</span> edges[i];</span><br><span class="line">                <span class="keyword">return</span> edges[in[edges[i][<span class="number">1</span>]]];</span><br><span class="line">            &#125;</span><br><span class="line">            in[edges[i][<span class="number">1</span>]] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span>[] parent = <span class="keyword">new</span> <span class="title class_">int</span>[n + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            parent[i] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (find(parent, edges[i][<span class="number">1</span>]) == find(parent, edges[i][<span class="number">0</span>])) <span class="keyword">return</span> edges[i];</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                union(parent, edges[i][<span class="number">1</span>], edges[i][<span class="number">0</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isTree</span><span class="params">(<span class="type">int</span>[][] edges, <span class="type">int</span> index)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> edges.length;</span><br><span class="line">        <span class="type">int</span>[] parent = <span class="keyword">new</span> <span class="title class_">int</span>[n + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            parent[i] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i != index ) union(parent, edges[i][<span class="number">1</span>], edges[i][<span class="number">0</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> find(parent, edges[index][<span class="number">0</span>]) == find(parent, edges[index][<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">union</span><span class="params">(<span class="type">int</span>[] parent, <span class="type">int</span> a, <span class="type">int</span> b)</span> &#123;</span><br><span class="line">        parent[find(parent, a)] = find(parent, b);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">find</span><span class="params">(<span class="type">int</span>[] parent, <span class="type">int</span> a)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (parent[a] == a) <span class="keyword">return</span> a;</span><br><span class="line">        <span class="keyword">return</span> find(parent, parent[a]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       </div>
       
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2024/10/27/%E3%80%90%E5%B9%B6%E6%9F%A5%E9%9B%86%E3%80%91684-%E5%86%97%E4%BD%99%E8%BF%9E%E6%8E%A5/" target="_self">
+              <a href="/2024/10/27/%E3%80%90%E5%B8%83%E5%B0%94%E5%80%BCdp%E3%80%913180-%E6%89%A7%E8%A1%8C%E6%93%8D%E4%BD%9C%E5%8F%AF%E8%8E%B7%E5%BE%97%E7%9A%84%E6%9C%80%E5%A4%A7%E6%80%BB%E5%A5%96%E5%8A%B1-I/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>上一页</span>
               </a>
@@ -204,7 +213,7 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-              2024-10-28 10:19:26
+              2024-10-28 10:53:42
             </span>
             
                   <span class="post-tags">
@@ -221,11 +230,6 @@
           </div>
           <div class="post-foot-prev">
             
-              <a href="/2024/10/28/%E3%80%90%E5%B9%B6%E6%9F%A5%E9%9B%86%E3%80%91685-%E5%86%97%E4%BD%99%E8%BF%9E%E6%8E%A5-II/" target="_self">
-                <span>下一页</span>
-                <i class="iconfont icon-chevronright"></i>
-              </a>
-            
           </div>
         </div>
       
@@ -238,7 +242,7 @@
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%83%E5%B0%94%E5%80%BCdp"><span class="toc-text">布尔值dp</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-text">复杂度</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A0%91%E7%9A%84%E5%9B%BE%E6%80%A7%E8%B4%A8"><span class="toc-text">树的图性质</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%BE"><span class="toc-text">图</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-text">复杂度</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li></ol>
       
     </div>
   </div>
@@ -558,12 +562,12 @@
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + 3180.%20%E6%89%A7%E8%A1%8C%E6%93%8D%E4%BD%9C%E5%8F%AF%E8%8E%B7%E5%BE%97%E7%9A%84%E6%9C%80%E5%A4%A7%E6%80%BB%E5%A5%96%E5%8A%B1%20I + '&url=' + https%3A%2F%2F10ng1000.github.io%2F2024%2F10%2F27%2F%25E3%2580%2590%25E5%25B8%2583%25E5%25B0%2594%25E5%2580%25BCdp%25E3%2580%25913180-%25E6%2589%25A7%25E8%25A1%258C%25E6%2593%258D%25E4%25BD%259C%25E5%258F%25AF%25E8%258E%25B7%25E5%25BE%2597%25E7%259A%2584%25E6%259C%2580%25E5%25A4%25A7%25E6%2580%25BB%25E5%25A5%2596%25E5%258A%25B1-I%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + 685.%20%E5%86%97%E4%BD%99%E8%BF%9E%E6%8E%A5%20II + '&url=' + https%3A%2F%2F10ng1000.github.io%2F2024%2F10%2F28%2F%25E3%2580%2590%25E5%25B9%25B6%25E6%259F%25A5%25E9%259B%2586%25E3%2580%2591685-%25E5%2586%2597%25E4%25BD%2599%25E8%25BF%259E%25E6%258E%25A5-II%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://10ng1000.github.io/2024/10/27/%E3%80%90%E5%B8%83%E5%B0%94%E5%80%BCdp%E3%80%913180-%E6%89%A7%E8%A1%8C%E6%93%8D%E4%BD%9C%E5%8F%AF%E8%8E%B7%E5%BE%97%E7%9A%84%E6%9C%80%E5%A4%A7%E6%80%BB%E5%A5%96%E5%8A%B1-I/" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://10ng1000.github.io/2024/10/28/%E3%80%90%E5%B9%B6%E6%9F%A5%E9%9B%86%E3%80%91685-%E5%86%97%E4%BD%99%E8%BF%9E%E6%8E%A5-II/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         
