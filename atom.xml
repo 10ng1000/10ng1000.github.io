@@ -6,7 +6,7 @@
   <link href="https://10ng1000.github.io/atom.xml" rel="self"/>
   
   <link href="https://10ng1000.github.io/"/>
-  <updated>2024-10-28T02:53:42.736Z</updated>
+  <updated>2024-11-05T02:41:31.039Z</updated>
   <id>https://10ng1000.github.io/</id>
   
   <author>
@@ -17,11 +17,88 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>125. 验证回文串</title>
+    <link href="https://10ng1000.github.io/2024/11/05/%E3%80%90Java%E8%AF%AD%E6%B3%95%E3%80%91125-%E9%AA%8C%E8%AF%81%E5%9B%9E%E6%96%87%E4%B8%B2/"/>
+    <id>https://10ng1000.github.io/2024/11/05/%E3%80%90Java%E8%AF%AD%E6%B3%95%E3%80%91125-%E9%AA%8C%E8%AF%81%E5%9B%9E%E6%96%87%E4%B8%B2/</id>
+    <published>2024-11-05T02:30:25.000Z</published>
+    <updated>2024-11-05T02:41:31.039Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/valid-palindrome/description/&quot;&gt;125. 验证回文串&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1</summary>
+        
+      
+    
+    
+    
+    
+    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>关于力扣记录</title>
+    <link href="https://10ng1000.github.io/2024/11/05/%E5%85%B3%E4%BA%8E%E5%8A%9B%E6%89%A3%E8%AE%B0%E5%BD%95/"/>
+    <id>https://10ng1000.github.io/2024/11/05/%E5%85%B3%E4%BA%8E%E5%8A%9B%E6%89%A3%E8%AE%B0%E5%BD%95/</id>
+    <published>2024-11-05T02:23:53.000Z</published>
+    <updated>2024-11-05T02:26:31.757Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;力扣有些题目难度较低，或者与之前做过的题目的思想有很大重复，因此之后在博客中不记录解答&lt;strong&gt;没有遇到困难的题目&lt;/strong&gt;，这种题目只记录在力扣题解中。&lt;/p&gt;
+&lt;p&gt;博客记录的将会是&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;完全不会做的题目&lt;/li&gt;
+&lt;li&gt;有关键细节</summary>
+        
+      
+    
+    
+    
+    
+    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>3165. 不包含相邻元素的子序列的最大和</title>
+    <link href="https://10ng1000.github.io/2024/11/05/%E3%80%90%E7%BA%BF%E6%AE%B5%E6%A0%91%EF%BC%8Cdp%E3%80%913165-%E4%B8%8D%E5%8C%85%E5%90%AB%E7%9B%B8%E9%82%BB%E5%85%83%E7%B4%A0%E7%9A%84%E5%AD%90%E5%BA%8F%E5%88%97%E7%9A%84%E6%9C%80%E5%A4%A7%E5%92%8C/"/>
+    <id>https://10ng1000.github.io/2024/11/05/%E3%80%90%E7%BA%BF%E6%AE%B5%E6%A0%91%EF%BC%8Cdp%E3%80%913165-%E4%B8%8D%E5%8C%85%E5%90%AB%E7%9B%B8%E9%82%BB%E5%85%83%E7%B4%A0%E7%9A%84%E5%AD%90%E5%BA%8F%E5%88%97%E7%9A%84%E6%9C%80%E5%A4%A7%E5%92%8C/</id>
+    <published>2024-11-05T02:19:40.000Z</published>
+    <updated>2024-11-05T06:58:58.412Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/maximum-sum-of-subsequence-with-non-adjacent-elements/description/&quot;&gt;3165.</summary>
+        
+      
+    
+    
+    
+    
+    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
+    
+  </entry>
+  
+  <entry>
     <title>685. 冗余连接 II</title>
     <link href="https://10ng1000.github.io/2024/10/28/%E3%80%90%E5%B9%B6%E6%9F%A5%E9%9B%86%E3%80%91685-%E5%86%97%E4%BD%99%E8%BF%9E%E6%8E%A5-II/"/>
     <id>https://10ng1000.github.io/2024/10/28/%E3%80%90%E5%B9%B6%E6%9F%A5%E9%9B%86%E3%80%91685-%E5%86%97%E4%BD%99%E8%BF%9E%E6%8E%A5-II/</id>
     <published>2024-10-28T02:25:56.000Z</published>
-    <updated>2024-10-28T02:53:42.736Z</updated>
+    <updated>2024-10-28T02:54:44.900Z</updated>
     
     
       
@@ -427,80 +504,6 @@
 &lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/gas-station/description/&quot;&gt;134. 加油站&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h1 id=&quot;思路&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    
-    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>yarn run serve无法运行</title>
-    <link href="https://10ng1000.github.io/2024/10/06/yarn-run-serve%E5%9C%A8vscode%E4%B8%AD%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8C/"/>
-    <id>https://10ng1000.github.io/2024/10/06/yarn-run-serve%E5%9C%A8vscode%E4%B8%AD%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8C/</id>
-    <published>2024-10-06T03:20:09.000Z</published>
-    <updated>2024-10-06T03:44:05.790Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;这几天出现了一个bug，之前vscode可以运行的前端程序，在使用&lt;code&gt;yarn run serve&lt;/code&gt;之后会报错&lt;/p&gt;
-&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td</summary>
-        
-      
-    
-    
-    
-    
-    <category term="前端" scheme="https://10ng1000.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>135. 分发糖果</title>
-    <link href="https://10ng1000.github.io/2024/10/06/135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/"/>
-    <id>https://10ng1000.github.io/2024/10/06/135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/</id>
-    <published>2024-10-06T02:39:44.000Z</published>
-    <updated>2024-10-06T06:54:07.662Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/candy/description/&quot;&gt;135. 分发糖果&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&quot;思路&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    
-    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>1227. 飞机座位分配概率</title>
-    <link href="https://10ng1000.github.io/2024/10/04/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%911227-%E9%A3%9E%E6%9C%BA%E5%BA%A7%E4%BD%8D%E5%88%86%E9%85%8D%E6%A6%82%E7%8E%87/"/>
-    <id>https://10ng1000.github.io/2024/10/04/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%911227-%E9%A3%9E%E6%9C%BA%E5%BA%A7%E4%BD%8D%E5%88%86%E9%85%8D%E6%A6%82%E7%8E%87/</id>
-    <published>2024-10-04T06:32:48.000Z</published>
-    <updated>2024-10-04T07:01:44.206Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/airplane-seat-assignment-probability/description/&quot;&gt;1227.</summary>
         
       
     
