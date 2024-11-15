@@ -6,7 +6,7 @@
   <link href="https://10ng1000.github.io/atom.xml" rel="self"/>
   
   <link href="https://10ng1000.github.io/"/>
-  <updated>2024-11-13T06:51:35.488Z</updated>
+  <updated>2024-11-15T01:07:26.057Z</updated>
   <id>https://10ng1000.github.io/</id>
   
   <author>
@@ -17,11 +17,39 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>在Docker中运行Java后端服务器</title>
+    <link href="https://10ng1000.github.io/2024/11/15/%E5%9C%A8Docker%E4%B8%AD%E8%BF%90%E8%A1%8CJava%E5%90%8E%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    <id>https://10ng1000.github.io/2024/11/15/%E5%9C%A8Docker%E4%B8%AD%E8%BF%90%E8%A1%8CJava%E5%90%8E%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%99%A8/</id>
+    <published>2024-11-15T00:22:13.000Z</published>
+    <updated>2024-11-15T01:07:26.057Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;场景&quot;&gt;&lt;a href=&quot;#场景&quot; class=&quot;headerlink&quot; title=&quot;场景&quot;&gt;&lt;/a&gt;场景&lt;/h1&gt;&lt;p&gt;项目中遇到了要接手师兄的Java代码，并迁移到新服务器启动服务。考虑到方便日后可能的迁移，打算使用Docker容器化部署。&lt;/p&gt;
+&lt;h1</summary>
+        
+      
+    
+    
+    
+    
+    <category term="doccano" scheme="https://10ng1000.github.io/tags/doccano/"/>
+    
+    <category term="后端" scheme="https://10ng1000.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="Java" scheme="https://10ng1000.github.io/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
     <title>github项目分支管理</title>
     <link href="https://10ng1000.github.io/2024/11/13/github%E9%A1%B9%E7%9B%AE%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/"/>
     <id>https://10ng1000.github.io/2024/11/13/github%E9%A1%B9%E7%9B%AE%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/</id>
     <published>2024-11-13T06:17:48.000Z</published>
-    <updated>2024-11-13T06:51:35.488Z</updated>
+    <updated>2024-11-13T06:57:51.113Z</updated>
     
     
       
@@ -484,30 +512,6 @@
     
     
     
-    
-  </entry>
-  
-  <entry>
-    <title>871. 最低加油次数</title>
-    <link href="https://10ng1000.github.io/2024/10/08/871-%E6%9C%80%E4%BD%8E%E5%8A%A0%E6%B2%B9%E6%AC%A1%E6%95%B0/"/>
-    <id>https://10ng1000.github.io/2024/10/08/871-%E6%9C%80%E4%BD%8E%E5%8A%A0%E6%B2%B9%E6%AC%A1%E6%95%B0/</id>
-    <published>2024-10-08T08:14:19.000Z</published>
-    <updated>2024-10-08T08:51:33.768Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/minimum-number-of-refueling-stops/description/&quot;&gt;871.</summary>
-        
-      
-    
-    
-    
-    
-    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
     
   </entry>
   
