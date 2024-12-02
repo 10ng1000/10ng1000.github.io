@@ -6,7 +6,7 @@
   <link href="https://10ng1000.github.io/atom.xml" rel="self"/>
   
   <link href="https://10ng1000.github.io/"/>
-  <updated>2024-11-15T01:07:26.057Z</updated>
+  <updated>2024-12-02T02:58:29.466Z</updated>
   <id>https://10ng1000.github.io/</id>
   
   <author>
@@ -15,6 +15,54 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Large Language Models Enable Few-Shot Clustering</title>
+    <link href="https://10ng1000.github.io/2024/12/02/Large-Language-Models-Enable-Few-Shot-Clustering/"/>
+    <id>https://10ng1000.github.io/2024/12/02/Large-Language-Models-Enable-Few-Shot-Clustering/</id>
+    <published>2024-12-02T02:57:51.000Z</published>
+    <updated>2024-12-02T02:58:29.466Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="paper" scheme="https://10ng1000.github.io/tags/paper/"/>
+    
+    <category term="LLM" scheme="https://10ng1000.github.io/tags/LLM/"/>
+    
+    <category term="Clustering" scheme="https://10ng1000.github.io/tags/Clustering/"/>
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="https://10ng1000.github.io/2024/11/17/Knife%20Expert%20The%20Truth%20About%20Knife%20Defense%20Will%20Shock%20You/"/>
+    <id>https://10ng1000.github.io/2024/11/17/Knife%20Expert%20The%20Truth%20About%20Knife%20Defense%20Will%20Shock%20You/</id>
+    <published>2024-11-17T10:37:07.517Z</published>
+    <updated>2024-11-17T10:59:06.396Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;前兆&quot;&gt;&lt;a href=&quot;#前兆&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>在Docker中运行Java后端服务器</title>
@@ -464,54 +512,6 @@
     
     
     <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>3164. 优质数对的总数 II</title>
-    <link href="https://10ng1000.github.io/2024/10/11/3164-%E4%BC%98%E8%B4%A8%E6%95%B0%E5%AF%B9%E7%9A%84%E6%80%BB%E6%95%B0-II/"/>
-    <id>https://10ng1000.github.io/2024/10/11/3164-%E4%BC%98%E8%B4%A8%E6%95%B0%E5%AF%B9%E7%9A%84%E6%80%BB%E6%95%B0-II/</id>
-    <published>2024-10-11T01:05:32.000Z</published>
-    <updated>2024-10-11T01:19:48.524Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/find-the-number-of-good-pairs-ii/description/&quot;&gt;3164. 优质数对的总数</summary>
-        
-      
-    
-    
-    
-    
-    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>1436. 旅行终点站</title>
-    <link href="https://10ng1000.github.io/2024/10/08/1436-%E6%97%85%E8%A1%8C%E7%BB%88%E7%82%B9%E7%AB%99/"/>
-    <id>https://10ng1000.github.io/2024/10/08/1436-%E6%97%85%E8%A1%8C%E7%BB%88%E7%82%B9%E7%AB%99/</id>
-    <published>2024-10-08T08:17:13.000Z</published>
-    <updated>2024-10-08T09:05:23.961Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/destination-city/description/&quot;&gt;1436. 旅行终点站&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1</summary>
-        
-      
-    
-    
-    
     
   </entry>
   

@@ -4,6 +4,42 @@
   
     
     <entry>
+      <title>Large Language Models Enable Few-Shot Clustering</title>
+      <link href="/2024/12/02/Large-Language-Models-Enable-Few-Shot-Clustering/"/>
+      <url>/2024/12/02/Large-Language-Models-Enable-Few-Shot-Clustering/</url>
+      
+        <content type="html"><![CDATA[<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>文章探讨了大模型在半监督聚类中的应用。半监督聚类和无监督聚类不同，它允许用户提供<strong>数据的有意义结构</strong>来辅助聚类。传统的半监督聚类存在的问题是需要大量的<strong>专家反馈</strong>，所需的人力较多。LLM可以辅助few-shot的半监督文本聚类，并且非常有效。在聚类前、聚类中、聚类后三个阶段，LLM都可以辅助，其中前两个阶段效果最好。聚类前通过增强输入特征，聚类中通过提供聚类限制，聚类后通过矫正信息。而且，LLM还可以让用户在花费和准确度中进行权衡。</p><h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><h2 id="聚类前-关键词展开"><a href="#聚类前-关键词展开" class="headerlink" title="聚类前-关键词展开"></a>聚类前-关键词展开</h2><p>对于数据集的每个文档，都传给LLM生成关键词，然后把关键词传给嵌入模型生成嵌入向量，再和原文档的嵌入向量拼接。</p><p><strong>效果最好</strong>，但是LLM需要对每个文档都进行处理，开销大。</p><h2 id="聚类中-提供伪专家知识"><a href="#聚类中-提供伪专家知识" class="headerlink" title="聚类中-提供伪专家知识"></a>聚类中-提供伪专家知识</h2><p>领域的通用方法是，由专家指出哪些点必须被连接，哪些点一定不能被连接。</p><p>使用大模型后，可以只提供少数的专家知识对作为few-shot提示词，由大模型找出更多必须被连接和不能被连接的点。</p><p>可以先用其他模型找出比较相近的点，然后再有大模型确认是否连接。</p><p>该方法效果也好，而且因为提前用其他模型筛选出了候选点，LLM的调用次数少。<strong>是最有性价比的方法</strong>。</p><h2 id="聚类后-纠正聚类"><a href="#聚类后-纠正聚类" class="headerlink" title="聚类后-纠正聚类"></a>聚类后-纠正聚类</h2><p>该方法的思想是，对于处在多个聚类簇边界的点，这些点的聚类情况最容易出问题。这些点用大模型来进行判断，应该属于哪个最近的簇。</p><p>该方法效果不好。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> paper </tag>
+            
+            <tag> LLM </tag>
+            
+            <tag> Clustering </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/2024/11/17/Knife%20Expert%20The%20Truth%20About%20Knife%20Defense%20Will%20Shock%20You/"/>
+      <url>/2024/11/17/Knife%20Expert%20The%20Truth%20About%20Knife%20Defense%20Will%20Shock%20You/</url>
+      
+        <content type="html"><![CDATA[<h1 id="前兆"><a href="#前兆" class="headerlink" title="前兆"></a>前兆</h1><p>匕首刺击速度非常快，捕捉前兆胜过临时反应。</p><ol><li>手在腰间搜索东西（焦虑）</li><li>前后扫视四周（观察摄像头，同伙位置，逃生路线）</li><li>整理胡须，头发</li><li>侧身（准备隐蔽地用右手掏出匕首）</li></ol><h1 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h1><p>略去</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>在Docker中运行Java后端服务器</title>
       <link href="/2024/11/15/%E5%9C%A8Docker%E4%B8%AD%E8%BF%90%E8%A1%8CJava%E5%90%8E%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
       <url>/2024/11/15/%E5%9C%A8Docker%E4%B8%AD%E8%BF%90%E8%A1%8CJava%E5%90%8E%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
