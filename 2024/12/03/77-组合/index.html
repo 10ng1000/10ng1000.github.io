@@ -12,10 +12,13 @@
   <meta name="description" content="God drinks Java" />
   
   
-    <meta name="robots" content="noindex" />
-  
   
   <title>
+    
+      77. 组合 
+      
+      
+      |
     
      10ng&#39;s Own eNGine
   </title>
@@ -108,151 +111,174 @@
 
 
       <div class="flex-container">
-        <div class="container index">
-  <div class="post-list">
-    <!-- 遍历渲染文章 -->
-    
-      <div class="post-item" title="12. 整数转罗马数字">
-        <div class="time-m-d">2024-10-11</div>
-        <div class="title">
-          <a href="/2024/10/11/12-%E6%95%B4%E6%95%B0%E8%BD%AC%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97/">
-            
-              
-                <span>12. 整数转罗马数字</span>
-              
-            
-          </a>
-        </div>
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">77. 组合</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+          2024-12-03 11:11:45
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="标签"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/LeetCode/" title="LeetCode">
+                    #LeetCode
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
-    
-      <div class="post-item" title="3164. 优质数对的总数 II">
-        <div class="time-m-d">2024-10-11</div>
-        <div class="title">
-          <a href="/2024/10/11/3164-%E4%BC%98%E8%B4%A8%E6%95%B0%E5%AF%B9%E7%9A%84%E6%80%BB%E6%95%B0-II/">
-            
-              
-                <span>3164. 优质数对的总数 II</span>
-              
-            
-          </a>
-        </div>
+      <div class="markdown-body">
+        <blockquote>
+<p>Problem: <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/combinations/description/">77. 组合</a></p>
+</blockquote>
+<p>[TOC]</p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>回溯法，这里记录几个做回溯法的优化小tips。回溯时如果使用正向遍历，需要多传一个参数n；但是如果逆向遍历，并且数组从固定的数（如1）开始，n可以一开始就当作当前位置传过去，然后在回溯时遍历到0，减少一个参数。</p>
+<p>另一个是，分析回溯问题的时间复杂度，有一个通用公式：<strong>路径长度</strong>×<strong>搜索树的叶子数</strong>。</p>
+<h1 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h1><ul>
+<li>时间复杂度: $O(k⋅C(n,k))。$</li>
+<li>空间复杂度: $O(k)$</li>
+</ul>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    List&lt;List&lt;Integer&gt;&gt; ans;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; <span class="title function_">combine</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span> k)</span> &#123;</span><br><span class="line">        ans = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        List&lt;Integer&gt; a = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        dfs(a, n, k);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">dfs</span><span class="params">(List&lt;Integer&gt; now, <span class="type">int</span> index, <span class="type">int</span> k)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (now.size() == k) &#123;</span><br><span class="line">            ans.add(<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;(now));</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> index; i &gt;= <span class="number">1</span>; i--) &#123;</span><br><span class="line">            now.add(i);</span><br><span class="line">            dfs(now, i - <span class="number">1</span>, k);</span><br><span class="line">            now.remove(now.size() - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       </div>
-    
-      <div class="post-item" title="1436. 旅行终点站">
-        <div class="time-m-d">2024-10-08</div>
-        <div class="title">
-          <a href="/2024/10/08/1436-%E6%97%85%E8%A1%8C%E7%BB%88%E7%82%B9%E7%AB%99/">
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
             
-              
-                <span>1436. 旅行终点站</span>
-              
+              <a href="/2024/12/03/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91172-%E9%98%B6%E4%B9%98%E5%90%8E%E7%9A%84%E9%9B%B6/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
             
-          </a>
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+              2024-12-03 11:11:45
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="标签"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/LeetCode/" title="LeetCode">
+                        #LeetCode
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
-      </div>
+      
+    </div>
     
-      <div class="post-item" title="871. 最低加油次数">
-        <div class="time-m-d">2024-10-08</div>
-        <div class="title">
-          <a href="/2024/10/08/871-%E6%9C%80%E4%BD%8E%E5%8A%A0%E6%B2%B9%E6%AC%A1%E6%95%B0/">
-            
-              
-                <span>871. 最低加油次数</span>
-              
-            
-          </a>
-        </div>
-      </div>
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-text">复杂度</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <div class="post-item" title="134. 加油站">
-        <div class="time-m-d">2024-10-06</div>
-        <div class="title">
-          <a href="/2024/10/06/134-%E5%8A%A0%E6%B2%B9%E7%AB%99/">
-            
-              
-                <span>134. 加油站</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="yarn run serve无法运行">
-        <div class="time-m-d">2024-10-06</div>
-        <div class="title">
-          <a href="/2024/10/06/yarn-run-serve%E5%9C%A8vscode%E4%B8%AD%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8C/">
-            
-              
-                <span>yarn run serve无法运行</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="135. 分发糖果">
-        <div class="time-m-d">2024-10-06</div>
-        <div class="title">
-          <a href="/2024/10/06/135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/">
-            
-              
-                <span>135. 分发糖果</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="1227. 飞机座位分配概率">
-        <div class="time-m-d">2024-10-04</div>
-        <div class="title">
-          <a href="/2024/10/04/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%911227-%E9%A3%9E%E6%9C%BA%E5%BA%A7%E4%BD%8D%E5%88%86%E9%85%8D%E6%A6%82%E7%8E%87/">
-            
-              
-                <span>1227. 飞机座位分配概率</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="3306. 元音辅音字符串计数 II">
-        <div class="time-m-d">2024-10-02</div>
-        <div class="title">
-          <a href="/2024/10/02/%E3%80%90%E6%81%B0%E5%A5%BD%E5%9E%8B%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E3%80%913306-%E5%85%83%E9%9F%B3%E8%BE%85%E9%9F%B3%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%AE%A1%E6%95%B0-II/">
-            
-              
-                <span>3306. 元音辅音字符串计数 II</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="1870. 准时到达的列车最小时速">
-        <div class="time-m-d">2024-10-02</div>
-        <div class="title">
-          <a href="/2024/10/02/1870-%E5%87%86%E6%97%B6%E5%88%B0%E8%BE%BE%E7%9A%84%E5%88%97%E8%BD%A6%E6%9C%80%E5%B0%8F%E6%97%B6%E9%80%9F/">
-            
-              
-                <span>1870. 准时到达的列车最小时速</span>
-              
-            
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+
+
+  <div id="gitalk-container"></div>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script>
+    function loadGitalkSuc() {
+      const gitalk = new Gitalk({
+        clientID: 'Ov23liEsmNxfQRDqWAJb',
+        clientSecret: '6353d100eda3d9beeb1755680c7406f982b60e9e',
+        repo: '10ng1000.github.io',
+        owner: '10ng1000',
+        admin: ['10ng1000'],
+        id: md5(location.pathname),
+        distractionFreeMode: false
+      })
+
+      gitalk.render('gitalk-container')
+    }
+  </script>
+  
+    <link rel="stylesheet" href="/plugins/gitalk.css">
+    <script type="text/javascript" src="/plugins/gitalk.min.js" onload="loadGitalkSuc(this)"></script>
+  
+
+
+
       </div>
     
   </div>
-  <nav class="post-navigation">
-    
-      <a href="/page/2/"><i class="iconfont icon-angleleft"></i></a>
-    
-    <span class="page-num">3 / 6</span>
-    
-      <a href="/page/4/"><i class="iconfont icon-angleright"></i></a>
-    
-  </nav>
-</div>
+
 
         
 <div class="footer">
@@ -518,6 +544,24 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + 77.%20%E7%BB%84%E5%90%88 + '&url=' + https%3A%2F%2F10ng1000.github.io%2F2024%2F12%2F03%2F77-%25E7%25BB%2584%25E5%2590%2588%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://10ng1000.github.io/2024/12/03/77-%E7%BB%84%E5%90%88/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>

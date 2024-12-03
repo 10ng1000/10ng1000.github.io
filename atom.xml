@@ -6,7 +6,7 @@
   <link href="https://10ng1000.github.io/atom.xml" rel="self"/>
   
   <link href="https://10ng1000.github.io/"/>
-  <updated>2024-12-03T02:42:26.211Z</updated>
+  <updated>2024-12-03T03:11:45.240Z</updated>
   <id>https://10ng1000.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>77. 组合</title>
+    <link href="https://10ng1000.github.io/2024/12/03/77-%E7%BB%84%E5%90%88/"/>
+    <id>https://10ng1000.github.io/2024/12/03/77-%E7%BB%84%E5%90%88/</id>
+    <published>2024-12-03T03:08:25.000Z</published>
+    <updated>2024-12-03T03:11:45.240Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/combinations/description/&quot;&gt;77. 组合&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h1</summary>
+        
+      
+    
+    
+    
+    
+    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title>172. 阶乘后的零</title>
@@ -482,32 +509,6 @@
         
     <summary type="html">&lt;blockquote&gt;
 &lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/trapping-rain-water/description/&quot;&gt;42. 接雨水&lt;/a&gt;。比较朴素的做法。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1</summary>
-        
-      
-    
-    
-    
-    
-    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>12. 整数转罗马数字</title>
-    <link href="https://10ng1000.github.io/2024/10/11/12-%E6%95%B4%E6%95%B0%E8%BD%AC%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97/"/>
-    <id>https://10ng1000.github.io/2024/10/11/12-%E6%95%B4%E6%95%B0%E8%BD%AC%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97/</id>
-    <published>2024-10-11T01:26:29.000Z</published>
-    <updated>2024-10-11T01:32:42.877Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/integer-to-roman/description/&quot;&gt;12. 整数转罗马数字&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h1</summary>
         
