@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>172. 阶乘后的零</title>
+      <link href="/2024/12/03/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91172-%E9%98%B6%E4%B9%98%E5%90%8E%E7%9A%84%E9%9B%B6/"/>
+      <url>/2024/12/03/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91172-%E9%98%B6%E4%B9%98%E5%90%8E%E7%9A%84%E9%9B%B6/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>Problem: <a href="https://leetcode.cn/problems/factorial-trailing-zeroes/description/">172. 阶乘后的零</a></p></blockquote><h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>要求阶乘中0的个数，就是求其因子10的个数。因子10的个数又等于质因子2和质因子5个数的最小值，并且由接下来的证明可以知道，质因子2的个数一定大于等于质因子5的个数，因此我们只需求出质因子5的个数即可。</p><p>如何证明呢？我们考察1-n中所有整数的质因子p的个数和。</p><p>我们先从p的1次方开始， 可以算出1-n所有数中一次方的个数和为<strong>n除以p的下取整</strong>，把这些因子加上。同理二次方为<strong>n除以p的平方的下取整</strong>，而在计算平方时，其中一次方的因子我们前面已经计算过了，因此只加上一个因子。接下来的次方同理。</p><p>把这些个数加起来，我们就可以算出质因子p的总个数。由于每次都除以p的若干次方，p越小其质因子个数就越多，因此质因子2的个数一定大于等于质因子5的个数。</p><p>而且算出了这个总个数后，我们就可以通过每次都把n除以5，并把结果加上来模拟上述计算过程。</p><h1 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h1><ul><li>时间复杂度: $O(logn)$</li><li>空间复杂度: $O(1)$</li></ul><h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight java"><figcaption><span>[]</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">trailingZeroes</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (n != <span class="number">0</span>) &#123;</span><br><span class="line">            n /= <span class="number">5</span>;</span><br><span class="line">            ans += n;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Large Language Models Enable Few-Shot Clustering</title>
       <link href="/2024/12/02/Large-Language-Models-Enable-Few-Shot-Clustering/"/>
       <url>/2024/12/02/Large-Language-Models-Enable-Few-Shot-Clustering/</url>

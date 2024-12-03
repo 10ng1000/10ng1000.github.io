@@ -6,7 +6,7 @@
   <link href="https://10ng1000.github.io/atom.xml" rel="self"/>
   
   <link href="https://10ng1000.github.io/"/>
-  <updated>2024-12-02T02:58:29.466Z</updated>
+  <updated>2024-12-03T02:42:26.211Z</updated>
   <id>https://10ng1000.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>172. 阶乘后的零</title>
+    <link href="https://10ng1000.github.io/2024/12/03/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91172-%E9%98%B6%E4%B9%98%E5%90%8E%E7%9A%84%E9%9B%B6/"/>
+    <id>https://10ng1000.github.io/2024/12/03/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91172-%E9%98%B6%E4%B9%98%E5%90%8E%E7%9A%84%E9%9B%B6/</id>
+    <published>2024-12-03T02:28:47.000Z</published>
+    <updated>2024-12-03T02:42:26.211Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/factorial-trailing-zeroes/description/&quot;&gt;172. 阶乘后的零&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1</summary>
+        
+      
+    
+    
+    
+    
+    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title>Large Language Models Enable Few-Shot Clustering</title>
@@ -484,30 +510,6 @@
 &lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/integer-to-roman/description/&quot;&gt;12. 整数转罗马数字&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h1</summary>
-        
-      
-    
-    
-    
-    
-    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>3164. 优质数对的总数 II</title>
-    <link href="https://10ng1000.github.io/2024/10/11/3164-%E4%BC%98%E8%B4%A8%E6%95%B0%E5%AF%B9%E7%9A%84%E6%80%BB%E6%95%B0-II/"/>
-    <id>https://10ng1000.github.io/2024/10/11/3164-%E4%BC%98%E8%B4%A8%E6%95%B0%E5%AF%B9%E7%9A%84%E6%80%BB%E6%95%B0-II/</id>
-    <published>2024-10-11T01:05:32.000Z</published>
-    <updated>2024-10-11T01:19:48.524Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/find-the-number-of-good-pairs-ii/description/&quot;&gt;3164. 优质数对的总数</summary>
         
       
     
