@@ -6,7 +6,7 @@
   <link href="https://10ng1000.github.io/atom.xml" rel="self"/>
   
   <link href="https://10ng1000.github.io/"/>
-  <updated>2024-12-09T02:46:53.341Z</updated>
+  <updated>2024-12-11T07:15:25.575Z</updated>
   <id>https://10ng1000.github.io/</id>
   
   <author>
@@ -17,11 +17,34 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>34. 在排序数组中查找元素的第一个和最后一个位置</title>
+    <link href="https://10ng1000.github.io/2024/12/11/34-%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%92%8C%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E4%BD%8D%E7%BD%AE/"/>
+    <id>https://10ng1000.github.io/2024/12/11/34-%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%92%8C%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E4%BD%8D%E7%BD%AE/</id>
+    <published>2024-12-11T06:47:18.000Z</published>
+    <updated>2024-12-11T07:15:25.575Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;二分&quot;&gt;&lt;a href=&quot;#二分&quot; class=&quot;headerlink&quot; title=&quot;二分&quot;&gt;&lt;/a&gt;二分&lt;/h1&gt;&lt;p&gt;在这题再加深二分法的理解：&lt;br&gt;首先，&lt;strong&gt;闭区间&lt;/strong&gt;的二分法标志是：判定条件为&lt;code&gt;l &amp;lt;=</summary>
+        
+      
+    
+    
+    
+    
+    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
+    
+  </entry>
+  
+  <entry>
     <title>208. 实现 Trie (前缀树)</title>
     <link href="https://10ng1000.github.io/2024/12/09/208-%E5%AE%9E%E7%8E%B0-Trie-%E5%89%8D%E7%BC%80%E6%A0%91/"/>
     <id>https://10ng1000.github.io/2024/12/09/208-%E5%AE%9E%E7%8E%B0-Trie-%E5%89%8D%E7%BC%80%E6%A0%91/</id>
     <published>2024-12-09T02:26:47.000Z</published>
-    <updated>2024-12-09T02:46:53.341Z</updated>
+    <updated>2024-12-10T06:56:59.004Z</updated>
     
     
       
@@ -488,31 +511,6 @@
     
     
     <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>批量任务的JS异步问题</title>
-    <link href="https://10ng1000.github.io/2024/10/15/%E6%89%B9%E9%87%8F%E4%BB%BB%E5%8A%A1%E7%9A%84JS%E5%BC%82%E6%AD%A5%E9%97%AE%E9%A2%98/"/>
-    <id>https://10ng1000.github.io/2024/10/15/%E6%89%B9%E9%87%8F%E4%BB%BB%E5%8A%A1%E7%9A%84JS%E5%BC%82%E6%AD%A5%E9%97%AE%E9%A2%98/</id>
-    <published>2024-10-15T02:45:33.000Z</published>
-    <updated>2024-10-15T08:05:11.761Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;引入&quot;&gt;&lt;a href=&quot;#引入&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="前端" scheme="https://10ng1000.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-    <category term="异步编程" scheme="https://10ng1000.github.io/tags/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/"/>
     
   </entry>
   
