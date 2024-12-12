@@ -6,7 +6,7 @@
   <link href="https://10ng1000.github.io/atom.xml" rel="self"/>
   
   <link href="https://10ng1000.github.io/"/>
-  <updated>2024-12-11T07:15:25.575Z</updated>
+  <updated>2024-12-12T00:51:48.782Z</updated>
   <id>https://10ng1000.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2931.购买物品的最大开销</title>
+    <link href="https://10ng1000.github.io/2024/12/12/2931-%E8%B4%AD%E4%B9%B0%E7%89%A9%E5%93%81%E7%9A%84%E6%9C%80%E5%A4%A7%E5%BC%80%E9%94%80/"/>
+    <id>https://10ng1000.github.io/2024/12/12/2931-%E8%B4%AD%E4%B9%B0%E7%89%A9%E5%93%81%E7%9A%84%E6%9C%80%E5%A4%A7%E5%BC%80%E9%94%80/</id>
+    <published>2024-12-12T00:43:00.000Z</published>
+    <updated>2024-12-12T00:51:48.782Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Java实现”Pair”&quot;&gt;&lt;a href=&quot;#Java实现”Pair”&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title>34. 在排序数组中查找元素的第一个和最后一个位置</title>
@@ -480,30 +503,6 @@
 &lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/interleaving-string/description/&quot;&gt;97. 交错字符串&lt;/a&gt;，记录官解。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h1</summary>
-        
-      
-    
-    
-    
-    
-    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>123. 买卖股票的最佳时机 III</title>
-    <link href="https://10ng1000.github.io/2024/10/17/123-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA-III/"/>
-    <id>https://10ng1000.github.io/2024/10/17/123-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA-III/</id>
-    <published>2024-10-17T00:22:29.000Z</published>
-    <updated>2024-10-17T00:34:09.366Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iii/description/&quot;&gt;123. 买卖股票的最佳时机</summary>
         
       
     
