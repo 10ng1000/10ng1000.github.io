@@ -6,7 +6,7 @@
   <link href="https://10ng1000.github.io/atom.xml" rel="self"/>
   
   <link href="https://10ng1000.github.io/"/>
-  <updated>2024-12-12T08:00:31.232Z</updated>
+  <updated>2024-12-16T06:13:42.596Z</updated>
   <id>https://10ng1000.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>1837.最近的房间</title>
+    <link href="https://10ng1000.github.io/2024/12/16/%E3%80%90%E7%A6%BB%E7%BA%BF%E3%80%911847-%E6%9C%80%E8%BF%91%E7%9A%84%E6%88%BF%E9%97%B4/"/>
+    <id>https://10ng1000.github.io/2024/12/16/%E3%80%90%E7%A6%BB%E7%BA%BF%E3%80%911847-%E6%9C%80%E8%BF%91%E7%9A%84%E6%88%BF%E9%97%B4/</id>
+    <published>2024-12-16T05:40:06.000Z</published>
+    <updated>2024-12-16T06:13:42.596Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;思路&quot;&gt;&lt;a href=&quot;#思路&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title>1.两数之和</title>
@@ -476,30 +499,6 @@
         
     <summary type="html">&lt;blockquote&gt;
 &lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/count-pairs-that-form-a-complete-day-ii/description/&quot;&gt;3185. 构成整天的下标对数目</summary>
-        
-      
-    
-    
-    
-    
-    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>188. 买卖股票的最佳时机 IV</title>
-    <link href="https://10ng1000.github.io/2024/10/18/%E3%80%90%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E3%80%91188-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA-IV/"/>
-    <id>https://10ng1000.github.io/2024/10/18/%E3%80%90%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E3%80%91188-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA-IV/</id>
-    <published>2024-10-18T06:29:48.000Z</published>
-    <updated>2024-10-18T06:44:03.059Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iv/description/&quot;&gt;188. 买卖股票的最佳时机</summary>
         
       
     

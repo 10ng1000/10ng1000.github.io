@@ -15,7 +15,7 @@
   
   <title>
     
-      1.两数之和 
+      1837.最近的房间 
       
       
       |
@@ -156,11 +156,11 @@
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">1.两数之和</div>
+      <div class="post-title">1837.最近的房间</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-          2024-12-12 16:00:31
+          2024-12-16 14:13:42
         </span>
         
               <span class="post-tags">
@@ -176,16 +176,37 @@
           
       </div>
       <div class="markdown-body">
-        <h1 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h1><p>这题我一开始的做法是使用排序+双指针，但是这样需要花费O(nlogn)的时间。使用哈希表就能达到O(n)的时间。</p>
-<p>因为本质上遍历数组时，我们需要的是数组里的哪一个数和它的和是某个值，换言之需要的是一个特定的数：<code>target - nums[i]</code>是否在数组中出现过。而又因为和有对称性，我们记录所有出现过的数到哈希表中，在之后遇到匹配的数时就可以以O(1)的时间找到。</p>
-<p>哈希表的用处：存储键值对，并且能够以O(1)时间取出键值对，能够判断某个键是否存在。</p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[] twoSum(<span class="type">int</span>[] nums, <span class="type">int</span> target) &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> nums.length;</span><br><span class="line">        HashMap&lt;Integer, Integer&gt; m = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (m.containsKey(target - nums[i])) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">int</span>[]&#123;i, m.get(target - nums[i])&#125;;</span><br><span class="line">            &#125;</span><br><span class="line">            m.put(nums[i], i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>这题一开始我只想到了把<code>rooms</code>数组排序，但是没有想到实际上还可以对<strong>查询数组</strong>进行排序。这是一种<strong>离线</strong>的做法，因为我们已经<strong>知道了所有的输入数据</strong>，就不用像数据是在线的那样受到限制，可以自由地处理输入数据。</p>
+<p>看到这一点后，我也想到了将查询数组和<code>rooms</code>数组都按<code>minSize</code>排序，我们就可以在查询时维护这样一个性质：后面的查询范围<strong>包括了</strong>前面的查询范围，并且查询范围是从<code>0</code>逐步递增到<code>rooms</code>长度的。也就是我们可以对两个数组分别用一个指针来表示这个子范围。</p>
+<p>当时想到这里就卡住了，没有想到如何在<code>logn</code>的时间内对无序的子范围内<code>roomID</code>进行查询。</p>
+<p>其实，在数组中这的确是无序的，但是我们可以把它提取到一个有序的数据结构中！我们可以把子范围中的<code>roomId</code>再提出来到一个<code>TreeSet</code>中（红黑树），这样就可以用树维护<code>logn</code>时间的查询，这样问题就迎刃而解了。</p>
+<blockquote>
+<p>关键点：离线，将子规模数据放入另一个数据结构中，TreeSet</p>
+</blockquote>
+<h1 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h1><blockquote>
+<ol>
+<li>Java中如何自定义数组排序？</li>
+</ol>
+</blockquote>
+<p>在Arrays.sort中传入lambda表达式比较函数，其接收两个待比较元素，返回一个整数，大于0则前者大。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Arrays.sort(rooms, (a, b) -&gt; (a[<span class="number">1</span>] - b[<span class="number">1</span>]));</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>2.离线处理时遇到需要按序返回怎么办？</p>
+</blockquote>
+<p>朴素的想法是再开一个相同的数据结构，并补上序号这个标签，但是这样空间复杂度过高。</p>
+<p>实际上我们只需要再开一个标签数组，并对这个标签数组排序即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Integer qs[] = <span class="keyword">new</span> <span class="title class_">Integer</span> [m];<span class="comment">//sort的lambda表达式需要一个对象类型</span></span><br><span class="line">Arrays.setAll(qs, i -&gt; i);<span class="comment">//快速初始化</span></span><br><span class="line">Arrays.sort(qs, (a, b) -&gt; (queries[b][<span class="number">1</span>] - queries[a][<span class="number">1</span>]));</span><br></pre></td></tr></table></figure>
+
+<p>这题收获满满，是非常好的一道题。</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[] closestRoom(<span class="type">int</span>[][] rooms, <span class="type">int</span>[][] queries) &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> rooms.length;</span><br><span class="line">        <span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> queries.length;</span><br><span class="line">        Integer qs[] = <span class="keyword">new</span> <span class="title class_">Integer</span> [m];</span><br><span class="line">        Arrays.setAll(qs, i -&gt; i);</span><br><span class="line">        Arrays.sort(rooms, (a, b) -&gt; (a[<span class="number">1</span>] - b[<span class="number">1</span>]));</span><br><span class="line">        Arrays.sort(qs, (a, b) -&gt; (queries[b][<span class="number">1</span>] - queries[a][<span class="number">1</span>]));</span><br><span class="line">        TreeSet&lt;Integer&gt; ts = <span class="keyword">new</span> <span class="title class_">TreeSet</span>&lt;&gt;();</span><br><span class="line">        <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> n - <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">minv</span> <span class="operator">=</span> Integer.MAX_VALUE;</span><br><span class="line">        <span class="type">int</span> ans[] = <span class="keyword">new</span> <span class="title class_">int</span>[m];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j : qs) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">pref</span> <span class="operator">=</span> queries[j][<span class="number">0</span>]; </span><br><span class="line">            <span class="type">int</span> <span class="variable">ms</span> <span class="operator">=</span> queries[j][<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">while</span> (i &gt;= <span class="number">0</span> &amp;&amp; rooms[i][<span class="number">1</span>] &gt;= ms) &#123;</span><br><span class="line">                ts.add(rooms[i][<span class="number">0</span>]);</span><br><span class="line">                i--;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="type">Integer</span> <span class="variable">c</span> <span class="operator">=</span> ts.ceiling(pref);</span><br><span class="line">            <span class="type">Integer</span> <span class="variable">f</span> <span class="operator">=</span> ts.floor(pref);</span><br><span class="line">            <span class="keyword">if</span> (c == <span class="literal">null</span> &amp;&amp; f == <span class="literal">null</span>) ans[j] = -<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (f == <span class="literal">null</span>) ans[j] = c;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (c == <span class="literal">null</span>) ans[j] = f;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (c - pref &gt;= pref - f) ans[j] = f;</span><br><span class="line">                <span class="keyword">else</span> ans[j] = c;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       </div>
       
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2024/12/12/2931-%E8%B4%AD%E4%B9%B0%E7%89%A9%E5%93%81%E7%9A%84%E6%9C%80%E5%A4%A7%E5%BC%80%E9%94%80/" target="_self">
+              <a href="/2024/12/12/1-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>上一页</span>
               </a>
@@ -194,7 +215,7 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-              2024-12-12 16:00:31
+              2024-12-16 14:13:42
             </span>
             
                   <span class="post-tags">
@@ -211,11 +232,6 @@
           </div>
           <div class="post-foot-prev">
             
-              <a href="/2024/12/16/%E3%80%90%E7%A6%BB%E7%BA%BF%E3%80%911847-%E6%9C%80%E8%BF%91%E7%9A%84%E6%88%BF%E9%97%B4/" target="_self">
-                <span>下一页</span>
-                <i class="iconfont icon-chevronright"></i>
-              </a>
-            
           </div>
         </div>
       
@@ -228,7 +244,7 @@
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E8%A1%A8"><span class="toc-text">哈希表</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-text">代码</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%86%E8%8A%82"><span class="toc-text">细节</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-text">代码</span></a></li></ol>
       
     </div>
   </div>
@@ -548,12 +564,12 @@
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + 1.%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C + '&url=' + https%3A%2F%2F10ng1000.github.io%2F2024%2F12%2F12%2F1-%25E4%25B8%25A4%25E6%2595%25B0%25E4%25B9%258B%25E5%2592%258C%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + 1837.%E6%9C%80%E8%BF%91%E7%9A%84%E6%88%BF%E9%97%B4 + '&url=' + https%3A%2F%2F10ng1000.github.io%2F2024%2F12%2F16%2F%25E3%2580%2590%25E7%25A6%25BB%25E7%25BA%25BF%25E3%2580%25911847-%25E6%259C%2580%25E8%25BF%2591%25E7%259A%2584%25E6%2588%25BF%25E9%2597%25B4%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://10ng1000.github.io/2024/12/12/1-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://10ng1000.github.io/2024/12/16/%E3%80%90%E7%A6%BB%E7%BA%BF%E3%80%911847-%E6%9C%80%E8%BF%91%E7%9A%84%E6%88%BF%E9%97%B4/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         
