@@ -15,7 +15,7 @@
   
   <title>
     
-      19. 删除链表的倒数第 N 个结点 
+      3291.形成目标字符串需要的最少字符串数 I 
       
       
       |
@@ -156,11 +156,11 @@
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">19. 删除链表的倒数第 N 个结点</div>
+      <div class="post-title">3291.形成目标字符串需要的最少字符串数 I</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-          2024-12-06 10:00:59
+          2024-12-20 10:53:26
         </span>
         
               <span class="post-tags">
@@ -176,15 +176,38 @@
           
       </div>
       <div class="markdown-body">
-        <h1 id="链表题的哨兵（dummy）"><a href="#链表题的哨兵（dummy）" class="headerlink" title="链表题的哨兵（dummy）"></a>链表题的哨兵（dummy）</h1><p>在单向链表题中，很容易遇到需要删除<strong>第一个</strong>元素的情况，这就要求了必须要特殊处理，因为第一个元素没有前置元素。</p>
-<p>而设置了一个dummy之后，我们让第一个元素也获得了前置的元素，可以通过dummy来删除第一个元素。而dummy不参与链表，不会被删除，这就方便了代码的编写。</p>
-
+        <h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>第一点的做题的总体方向，起初想到的是搜索，实际上可以用dp。</p>
+<blockquote>
+<p>当想到用（记忆化）搜索时，就要想想能否使用dp。尤其是字符串的题目。</p>
+</blockquote>
+<p>想到用dp后，首先要构建dp数组。这题dp数组的含义是：前<code>i</code>个字符的子字符串中需要连接的最小字符串数量。这样求出<code>dp[n]</code>即可。</p>
+<blockquote>
+<p>字符串的最优子结构，通常可以考虑前i个字符的子串。</p>
+</blockquote>
+<p>然后是状态转移方程，我们知道了<code>dp[i]</code>，如果接下来到<code>j</code>为止的若干个字符可以构成某个前缀，则<code>dp[j] = min(dp[j], dp[i] + 1)</code>。</p>
+<blockquote>
+<p>dp中不一定是用<code>dp[i]</code>推出<code>dp[i + 1]</code>，其下标的变化可以很广泛。反之同理。</p>
+</blockquote>
+<p>为什么我们不需要考虑当前字符要连接前面字符形成一个更长前缀的情况呢？因为如果当前字符可以连接，那么这个位置的<code>dp</code>值一定在之前就已经求出来，无需更新；反之，则用我们的算法就可以更新这个值。</p>
+<blockquote>
+<p>这里的思想是我没有想到的，非常重要的一个思想。印象中在很多字符串的问题都适用。<strong>dp只向前看</strong>。</p>
+</blockquote>
+<p>接下来我们要解决的问题就剩下如何快速判断一个字符串是不是已知字符串集合中的某个前缀了。正好，这个需求和我们之前学过的前缀树完全一致。</p>
+<p>使用前缀树时有个小细节，由于前缀树查询有<code>O(n)</code>的时间复杂度，我们尽量不多次查询前缀树，因此我们可以<strong>通过前缀树找出能匹配的最长前缀长度</strong>，这样就只需要一次<code>O(n)</code>的查询，有了这个小优化才能通过。这样也省去了构建String的复杂度。</p>
+<blockquote>
+<p>将逐步构建String改为求出匹配的最长前缀。</p>
+</blockquote>
+<h1 id="Java语言知识点"><a href="#Java语言知识点" class="headerlink" title="Java语言知识点"></a>Java语言知识点</h1><blockquote>
+<p>Java数组快速赋值：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Arrays.fill(a, <span class="number">0</span>);</span><br><span class="line">Arrays.setAll(a, i -&gt; i);</span><br></pre></td></tr></table></figure>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">Trie</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Trie[] children;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">boolean</span> isEnd;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Trie</span><span class="params">()</span> &#123;</span><br><span class="line">        children = <span class="keyword">new</span> <span class="title class_">Trie</span>[<span class="number">26</span>];</span><br><span class="line">        isEnd = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">insert</span><span class="params">(String word)</span> &#123;</span><br><span class="line">        <span class="type">Trie</span> <span class="variable">node</span> <span class="operator">=</span> <span class="built_in">this</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; word.length(); i++) &#123;</span><br><span class="line">            <span class="type">char</span> <span class="variable">ch</span> <span class="operator">=</span> word.charAt(i);</span><br><span class="line">            <span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> ch - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">            <span class="keyword">if</span> (node.children[index] == <span class="literal">null</span>) &#123;</span><br><span class="line">                node.children[index] = <span class="keyword">new</span> <span class="title class_">Trie</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            node = node.children[index];</span><br><span class="line">        &#125;</span><br><span class="line">        node.isEnd = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">search</span><span class="params">(String prefix, <span class="type">int</span> start)</span> &#123;</span><br><span class="line">        <span class="type">Trie</span> <span class="variable">node</span> <span class="operator">=</span> <span class="built_in">this</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> start; i &lt; prefix.length(); i++) &#123;</span><br><span class="line">            <span class="type">char</span> <span class="variable">ch</span> <span class="operator">=</span> prefix.charAt(i);</span><br><span class="line">            <span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> ch - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">            <span class="keyword">if</span> (node.children[index] == <span class="literal">null</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> i - start;</span><br><span class="line">            &#125;</span><br><span class="line">            node = node.children[index];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> prefix.length() - start;</span><br><span class="line">    &#125;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">minValidStrings</span><span class="params">(String[] words, String target)</span> &#123;</span><br><span class="line">        <span class="type">char</span>[] cs = target.toCharArray();</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> cs.length;</span><br><span class="line">        <span class="type">int</span> dp[] = <span class="keyword">new</span> <span class="title class_">int</span>[n + <span class="number">1</span>];</span><br><span class="line">        Arrays.fill(dp, Integer.MAX_VALUE);</span><br><span class="line">        <span class="type">Trie</span> <span class="variable">t</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Trie</span>();</span><br><span class="line">        <span class="keyword">for</span> (String s : words) &#123;</span><br><span class="line">            t.insert(s);</span><br><span class="line">        &#125;</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> t.search(target, i - <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span> (len == <span class="number">0</span> &amp;&amp; dp[i] == Integer.MAX_VALUE) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i; j &lt; i + len; j++) &#123;</span><br><span class="line">                dp[j] = Math.min(dp[j], dp[i - <span class="number">1</span>] + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       </div>
       
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2024/12/03/77-%E7%BB%84%E5%90%88/" target="_self">
+              <a href="/2024/12/16/%E3%80%90%E7%A6%BB%E7%BA%BF%E3%80%911847-%E6%9C%80%E8%BF%91%E7%9A%84%E6%88%BF%E9%97%B4/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>上一页</span>
               </a>
@@ -193,7 +216,7 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-              2024-12-06 10:00:59
+              2024-12-20 10:53:26
             </span>
             
                   <span class="post-tags">
@@ -210,7 +233,7 @@
           </div>
           <div class="post-foot-prev">
             
-              <a href="/2024/12/09/%E3%80%90Trie%E6%A0%91%E3%80%91208-%E5%AE%9E%E7%8E%B0-Trie-%E5%89%8D%E7%BC%80%E6%A0%91/" target="_self">
+              <a href="/2024/12/20/3138-%E5%90%8C%E4%BD%8D%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%9E%E6%8E%A5%E7%9A%84%E6%9C%80%E5%B0%8F%E9%95%BF%E5%BA%A6/" target="_self">
                 <span>下一页</span>
                 <i class="iconfont icon-chevronright"></i>
               </a>
@@ -227,7 +250,7 @@
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%93%BE%E8%A1%A8%E9%A2%98%E7%9A%84%E5%93%A8%E5%85%B5%EF%BC%88dummy%EF%BC%89"><span class="toc-text">链表题的哨兵（dummy）</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Java%E8%AF%AD%E8%A8%80%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-text">Java语言知识点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-text">代码</span></a></li></ol>
       
     </div>
   </div>
@@ -547,12 +570,12 @@
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + 19.%20%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%AC%20N%20%E4%B8%AA%E7%BB%93%E7%82%B9 + '&url=' + https%3A%2F%2F10ng1000.github.io%2F2024%2F12%2F06%2F19-%25E5%2588%25A0%25E9%2599%25A4%25E9%2593%25BE%25E8%25A1%25A8%25E7%259A%2584%25E5%2580%2592%25E6%2595%25B0%25E7%25AC%25AC-N-%25E4%25B8%25AA%25E7%25BB%2593%25E7%2582%25B9%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + 3291.%E5%BD%A2%E6%88%90%E7%9B%AE%E6%A0%87%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%9C%80%E8%A6%81%E7%9A%84%E6%9C%80%E5%B0%91%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%B0%20I + '&url=' + https%3A%2F%2F10ng1000.github.io%2F2024%2F12%2F19%2F%25E3%2580%2590Trie%25E6%25A0%2591%25EF%25BC%258Cdp%25E3%2580%25913291-%25E5%25BD%25A2%25E6%2588%2590%25E7%259B%25AE%25E6%25A0%2587%25E5%25AD%2597%25E7%25AC%25A6%25E4%25B8%25B2%25E9%259C%2580%25E8%25A6%2581%25E7%259A%2584%25E6%259C%2580%25E5%25B0%2591%25E5%25AD%2597%25E7%25AC%25A6%25E4%25B8%25B2%25E6%2595%25B0-I%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://10ng1000.github.io/2024/12/06/19-%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%AC-N-%E4%B8%AA%E7%BB%93%E7%82%B9/" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://10ng1000.github.io/2024/12/19/%E3%80%90Trie%E6%A0%91%EF%BC%8Cdp%E3%80%913291-%E5%BD%A2%E6%88%90%E7%9B%AE%E6%A0%87%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%9C%80%E8%A6%81%E7%9A%84%E6%9C%80%E5%B0%91%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%B0-I/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         
