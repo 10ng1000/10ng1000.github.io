@@ -6,7 +6,7 @@
   <link href="https://10ng1000.github.io/atom.xml" rel="self"/>
   
   <link href="https://10ng1000.github.io/"/>
-  <updated>2025-01-22T08:11:33.540Z</updated>
+  <updated>2025-01-26T03:00:26.067Z</updated>
   <id>https://10ng1000.github.io/</id>
   
   <author>
@@ -15,6 +15,52 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>73.矩阵置0</title>
+    <link href="https://10ng1000.github.io/2025/01/25/73-%E7%9F%A9%E9%98%B5%E7%BD%AE0/"/>
+    <id>https://10ng1000.github.io/2025/01/25/73-%E7%9F%A9%E9%98%B5%E7%BD%AE0/</id>
+    <published>2025-01-25T06:01:58.000Z</published>
+    <updated>2025-01-26T03:00:26.067Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;知识点&quot;&gt;&lt;a href=&quot;#知识点&quot; class=&quot;headerlink&quot; title=&quot;知识点&quot;&gt;&lt;/a&gt;知识点&lt;/h1&gt;&lt;p&gt;遇到需要O(1)的解法，要考虑到能不能用上给定数组的空间。&lt;br&gt;不要一口吃成胖子，慢慢从O(m +</summary>
+        
+      
+    
+    
+    
+    
+    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>编程常见数</title>
+    <link href="https://10ng1000.github.io/2025/01/25/%E7%BC%96%E7%A8%8B%E5%B8%B8%E8%A7%81%E6%95%B0/"/>
+    <id>https://10ng1000.github.io/2025/01/25/%E7%BC%96%E7%A8%8B%E5%B8%B8%E8%A7%81%E6%95%B0/</id>
+    <published>2025-01-25T02:49:48.000Z</published>
+    <updated>2025-01-25T03:10:21.278Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;因为在做力扣的时候经常遇到需要考虑数据最大范围的情况，这里把这些数据记录下来，加以记忆。&lt;/p&gt;
+&lt;p&gt;$2^{32}&amp;#x3D;4,294,967,296&amp;#x3D;4.29*10^9$：无符号int。&lt;br&gt;$2,147,483,647$：有符号int取一半。&lt;/p&gt;
+</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>149. 直线上最多的点数</title>
@@ -449,56 +495,6 @@
 &lt;ol&gt;
 &lt;li&gt;完全不会做的题目&lt;/li&gt;
 &lt;li&gt;有关键细节</summary>
-        
-      
-    
-    
-    
-    
-    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>3165. 不包含相邻元素的子序列的最大和</title>
-    <link href="https://10ng1000.github.io/2024/11/05/%E3%80%90%E7%BA%BF%E6%AE%B5%E6%A0%91%EF%BC%8Cdp%E3%80%913165-%E4%B8%8D%E5%8C%85%E5%90%AB%E7%9B%B8%E9%82%BB%E5%85%83%E7%B4%A0%E7%9A%84%E5%AD%90%E5%BA%8F%E5%88%97%E7%9A%84%E6%9C%80%E5%A4%A7%E5%92%8C/"/>
-    <id>https://10ng1000.github.io/2024/11/05/%E3%80%90%E7%BA%BF%E6%AE%B5%E6%A0%91%EF%BC%8Cdp%E3%80%913165-%E4%B8%8D%E5%8C%85%E5%90%AB%E7%9B%B8%E9%82%BB%E5%85%83%E7%B4%A0%E7%9A%84%E5%AD%90%E5%BA%8F%E5%88%97%E7%9A%84%E6%9C%80%E5%A4%A7%E5%92%8C/</id>
-    <published>2024-11-05T02:19:40.000Z</published>
-    <updated>2024-11-05T07:01:03.254Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/maximum-sum-of-subsequence-with-non-adjacent-elements/description/&quot;&gt;3165.</summary>
-        
-      
-    
-    
-    
-    
-    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>685. 冗余连接 II</title>
-    <link href="https://10ng1000.github.io/2024/10/28/%E3%80%90%E5%B9%B6%E6%9F%A5%E9%9B%86%E3%80%91685-%E5%86%97%E4%BD%99%E8%BF%9E%E6%8E%A5-II/"/>
-    <id>https://10ng1000.github.io/2024/10/28/%E3%80%90%E5%B9%B6%E6%9F%A5%E9%9B%86%E3%80%91685-%E5%86%97%E4%BD%99%E8%BF%9E%E6%8E%A5-II/</id>
-    <published>2024-10-28T02:25:56.000Z</published>
-    <updated>2024-10-28T02:54:44.900Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/redundant-connection-ii/description/&quot;&gt;685. 冗余连接 II&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1</summary>
         
       
     

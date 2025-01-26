@@ -15,7 +15,7 @@
   
   <title>
     
-      149. 直线上最多的点数 
+      73.矩阵置0 
       
       
       |
@@ -156,11 +156,11 @@
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">149. 直线上最多的点数</div>
+      <div class="post-title">73.矩阵置0</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-          2025-01-22 16:11:33
+          2025-01-26 11:00:26
         </span>
         
               <span class="post-tags">
@@ -176,19 +176,14 @@
           
       </div>
       <div class="markdown-body">
-        <blockquote>
-<p>Problem: <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/max-points-on-a-line/description/">149. 直线上最多的点数</a></p>
-</blockquote>
-<h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><p>不要有<code>HashMap</code>全局只能有一个的惯性思维，例如本题就需要把哈希表定义为从某一点出发的每个斜率个数。</p>
-<p>浮点数除法可能会有精度问题，例如0除以不同的数不一定都得0，至少需要在分母0也做一个特判，亦或使用分数表示或者叉积表示，叉积等于0两个直线共线。</p>
-<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="type">double</span> <span class="variable">INF</span> <span class="operator">=</span> <span class="number">1000000.0</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxPoints</span><span class="params">(<span class="type">int</span>[][] points)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> points.length;</span><br><span class="line">        <span class="keyword">if</span> (n &lt; <span class="number">2</span>) <span class="keyword">return</span> n;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i + <span class="number">1</span>; j &lt; n; j++) &#123;</span><br><span class="line">                <span class="type">double</span> rate1;</span><br><span class="line">                <span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line">                <span class="keyword">if</span> (points[i][<span class="number">1</span>] - points[j][<span class="number">1</span>] == <span class="number">0</span>) rate1 = INF;</span><br><span class="line">                <span class="keyword">else</span> rate1 = (<span class="type">double</span>)(points[i][<span class="number">1</span>] - points[j][<span class="number">1</span>]) / (points[i][<span class="number">0</span>] - points[j][<span class="number">0</span>]);</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> <span class="number">0</span>; k &lt; n; k++) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (k != j &amp;&amp; k != i) &#123;</span><br><span class="line">                        <span class="type">double</span> rate2;</span><br><span class="line">                        <span class="keyword">if</span> (points[i][<span class="number">1</span>] - points[k][<span class="number">1</span>] == <span class="number">0</span>) rate2 = INF;</span><br><span class="line">                        <span class="keyword">else</span> rate2 = (<span class="type">double</span>)(points[i][<span class="number">1</span>] - points[k][<span class="number">1</span>])/ (points[i][<span class="number">0</span>] - points[k][<span class="number">0</span>]);</span><br><span class="line">                        <span class="keyword">if</span> (rate1 == rate2) sum++;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                ans = Math.max(sum, ans);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+        <h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><p>遇到需要O(1)的解法，要考虑到能不能用上给定数组的空间。<br>不要一口吃成胖子，慢慢从O(m + n)考虑到O(1)</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setZeroes</span><span class="params">(<span class="type">int</span>[][] matrix)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> matrix.length;</span><br><span class="line">        <span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> matrix[<span class="number">0</span>].length;</span><br><span class="line">        <span class="type">boolean</span> <span class="variable">rowZero</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="type">boolean</span> <span class="variable">colZero</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (matrix[i][<span class="number">0</span>] == <span class="number">0</span>) &#123;</span><br><span class="line">                colZero = <span class="literal">true</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; m; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (matrix[<span class="number">0</span>][j] == <span class="number">0</span>) &#123;</span><br><span class="line">                rowZero = <span class="literal">true</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; m; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (matrix[i][j] == <span class="number">0</span>) &#123;</span><br><span class="line">                    matrix[<span class="number">0</span>][j] = <span class="number">0</span>;</span><br><span class="line">                    matrix[i][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>; j &lt; m; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (matrix[<span class="number">0</span>][j] == <span class="number">0</span> || matrix[i][<span class="number">0</span>] == <span class="number">0</span>) &#123;</span><br><span class="line">                    matrix[i][j] = <span class="number">0</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (rowZero) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; m; j++) &#123;</span><br><span class="line">                matrix[<span class="number">0</span>][j] = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (colZero) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">                matrix[i][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       </div>
       
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2025/01/22/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%9148-%E6%97%8B%E8%BD%AC%E5%9B%BE%E5%83%8F/" target="_self">
+              <a href="/2025/01/25/%E7%BC%96%E7%A8%8B%E5%B8%B8%E8%A7%81%E6%95%B0/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>上一页</span>
               </a>
@@ -197,7 +192,7 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-              2025-01-22 16:11:33
+              2025-01-26 11:00:26
             </span>
             
                   <span class="post-tags">
@@ -214,11 +209,6 @@
           </div>
           <div class="post-foot-prev">
             
-              <a href="/2025/01/25/%E7%BC%96%E7%A8%8B%E5%B8%B8%E8%A7%81%E6%95%B0/" target="_self">
-                <span>下一页</span>
-                <i class="iconfont icon-chevronright"></i>
-              </a>
-            
           </div>
         </div>
       
@@ -231,7 +221,7 @@
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-text">代码</span></a></li></ol>
       
     </div>
   </div>
@@ -551,12 +541,12 @@
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + 149.%20%E7%9B%B4%E7%BA%BF%E4%B8%8A%E6%9C%80%E5%A4%9A%E7%9A%84%E7%82%B9%E6%95%B0 + '&url=' + https%3A%2F%2F10ng1000.github.io%2F2025%2F01%2F22%2F149-%25E7%259B%25B4%25E7%25BA%25BF%25E4%25B8%258A%25E6%259C%2580%25E5%25A4%259A%25E7%259A%2584%25E7%2582%25B9%25E6%2595%25B0%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + 73.%E7%9F%A9%E9%98%B5%E7%BD%AE0 + '&url=' + https%3A%2F%2F10ng1000.github.io%2F2025%2F01%2F25%2F73-%25E7%259F%25A9%25E9%2598%25B5%25E7%25BD%25AE0%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://10ng1000.github.io/2025/01/22/149-%E7%9B%B4%E7%BA%BF%E4%B8%8A%E6%9C%80%E5%A4%9A%E7%9A%84%E7%82%B9%E6%95%B0/" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://10ng1000.github.io/2025/01/25/73-%E7%9F%A9%E9%98%B5%E7%BD%AE0/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         
