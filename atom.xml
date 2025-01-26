@@ -6,7 +6,7 @@
   <link href="https://10ng1000.github.io/atom.xml" rel="self"/>
   
   <link href="https://10ng1000.github.io/"/>
-  <updated>2025-01-26T03:00:26.067Z</updated>
+  <updated>2025-01-26T03:55:29.745Z</updated>
   <id>https://10ng1000.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>202. 快乐数</title>
+    <link href="https://10ng1000.github.io/2025/01/26/%E3%80%90%E5%BF%AB%E6%85%A2%E6%8C%87%E9%92%88%E3%80%91202-%E5%BF%AB%E4%B9%90%E6%95%B0/"/>
+    <id>https://10ng1000.github.io/2025/01/26/%E3%80%90%E5%BF%AB%E6%85%A2%E6%8C%87%E9%92%88%E3%80%91202-%E5%BF%AB%E4%B9%90%E6%95%B0/</id>
+    <published>2025-01-26T03:01:58.000Z</published>
+    <updated>2025-01-26T03:55:29.745Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/happy-number/description/&quot;&gt;202. 快乐数&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;数学规律&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title>73.矩阵置0</title>
@@ -468,33 +494,6 @@
 &lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/valid-palindrome/description/&quot;&gt;125. 验证回文串&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h1</summary>
-        
-      
-    
-    
-    
-    
-    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>关于力扣记录</title>
-    <link href="https://10ng1000.github.io/2024/11/05/%E5%85%B3%E4%BA%8E%E5%8A%9B%E6%89%A3%E8%AE%B0%E5%BD%95/"/>
-    <id>https://10ng1000.github.io/2024/11/05/%E5%85%B3%E4%BA%8E%E5%8A%9B%E6%89%A3%E8%AE%B0%E5%BD%95/</id>
-    <published>2024-11-05T02:23:53.000Z</published>
-    <updated>2024-11-05T02:26:31.757Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;力扣有些题目难度较低，或者与之前做过的题目的思想有很大重复，因此之后在博客中不记录解答&lt;strong&gt;没有遇到困难的题目&lt;/strong&gt;，这种题目只记录在力扣题解中。&lt;/p&gt;
-&lt;p&gt;博客记录的将会是&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;完全不会做的题目&lt;/li&gt;
-&lt;li&gt;有关键细节</summary>
         
       
     
