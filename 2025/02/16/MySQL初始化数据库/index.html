@@ -15,8 +15,8 @@
   
   <title>
     
-      标签 
-       : 后端
+      MySQL初始化数据库 
+      
       
       |
     
@@ -111,48 +111,154 @@
 
 
       <div class="flex-container">
-        <!-- 标签详情页，展示某个标签下的文章列表，url形式：https://yoursite/tags/某个标签/ -->
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
 
-<div class="container tag-details">
-  <div class="content-title">
-    <h2>
-      <span>后端</span>
-    </h2>
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">MySQL初始化数据库</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+          2025-02-16 15:25:58
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="标签"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/%E5%90%8E%E7%AB%AF/" title="后端">
+                    #后端
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <p>项目需求，给定一个SQL脚本，要使用这个脚本初始化项目数据库。</p>
+<p>首先，MySQL的初始账号和密码都是<code>root</code>。</p>
+<p>起初，我使用DBeaver来执行SQL语句，但是执行的时候会出现语法错误的warning，后面甚至出现了error。</p>
+<p>于是我尝试直接使用MySQL终端来执行脚本，以排除DBeaver错误的可能性。</p>
+<p>在Windows下使用MySQL终端，要用到以下代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#首先打开mysql console</span><br><span class="line"></span><br><span class="line">USE &#x27;数据库名&#x27;</span><br><span class="line">SOURCE &#x27;.sql脚本地址&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>使用MySQL终端后就没有报错。</p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2025/02/14/%E3%80%90%E5%8F%8C%E6%8C%87%E9%92%88%E3%80%9111-%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+              2025-02-16 15:25:58
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="标签"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/%E5%90%8E%E7%AB%AF/" title="后端">
+                        #后端
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
+        </div>
+      
+    </div>
+    
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+  <div id="gitalk-container"></div>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script>
+    function loadGitalkSuc() {
+      const gitalk = new Gitalk({
+        clientID: 'Ov23liEsmNxfQRDqWAJb',
+        clientSecret: '6353d100eda3d9beeb1755680c7406f982b60e9e',
+        repo: '10ng1000.github.io',
+        owner: '10ng1000',
+        admin: ['10ng1000'],
+        id: md5(location.pathname),
+        distractionFreeMode: false
+      })
+
+      gitalk.render('gitalk-container')
+    }
+  </script>
+  
+    <link rel="stylesheet" href="/plugins/gitalk.css">
+    <script type="text/javascript" src="/plugins/gitalk.min.js" onload="loadGitalkSuc(this)"></script>
+  
+
+
+
+      </div>
+    
   </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="MySQL初始化数据库">
-        <span class="time-m-d">2025-02-16</span>
-        <a href="/2025/02/16/MySQL%E5%88%9D%E5%A7%8B%E5%8C%96%E6%95%B0%E6%8D%AE%E5%BA%93/">
-          <span>MySQL初始化数据库</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="在Docker中运行Java后端服务器">
-        <span class="time-m-d">2024-11-15</span>
-        <a href="/2024/11/15/%E5%9C%A8Docker%E4%B8%AD%E8%BF%90%E8%A1%8CJava%E5%90%8E%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%99%A8/">
-          <span>在Docker中运行Java后端服务器</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="Spring和MybatisPlus踩坑">
-        <span class="time-m-d">2024-09-16</span>
-        <a href="/2024/09/16/Spring%E5%92%8CMybatisPlus%E8%B8%A9%E5%9D%91/">
-          <span>Spring和MybatisPlus踩坑</span>
-        </a>
-      </div>
-    </div>
-  
-  <nav class="post-navigation">
-    
-    <span class="page-num">1 / 1</span>
-    
-  </nav>
-</div>
+
 
         
 <div class="footer">
@@ -418,6 +524,24 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + MySQL%E5%88%9D%E5%A7%8B%E5%8C%96%E6%95%B0%E6%8D%AE%E5%BA%93 + '&url=' + https%3A%2F%2F10ng1000.github.io%2F2025%2F02%2F16%2FMySQL%25E5%2588%259D%25E5%25A7%258B%25E5%258C%2596%25E6%2595%25B0%25E6%258D%25AE%25E5%25BA%2593%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://10ng1000.github.io/2025/02/16/MySQL%E5%88%9D%E5%A7%8B%E5%8C%96%E6%95%B0%E6%8D%AE%E5%BA%93/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
