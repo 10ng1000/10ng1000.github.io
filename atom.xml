@@ -6,7 +6,7 @@
   <link href="https://10ng1000.github.io/atom.xml" rel="self"/>
   
   <link href="https://10ng1000.github.io/"/>
-  <updated>2025-02-16T07:25:58.433Z</updated>
+  <updated>2025-02-17T05:07:22.704Z</updated>
   <id>https://10ng1000.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>mybatis-plus字段大小写的小坑</title>
+    <link href="https://10ng1000.github.io/2025/02/17/Mybatis-plus%E5%AD%97%E6%AE%B5%E5%A4%A7%E5%B0%8F%E5%86%99%E7%9A%84%E5%B0%8F%E5%9D%91/"/>
+    <id>https://10ng1000.github.io/2025/02/17/Mybatis-plus%E5%AD%97%E6%AE%B5%E5%A4%A7%E5%B0%8F%E5%86%99%E7%9A%84%E5%B0%8F%E5%9D%91/</id>
+    <published>2025-02-17T04:56:22.000Z</published>
+    <updated>2025-02-17T05:07:22.704Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;今天在写图书类后端时，发现&lt;code&gt;ISBN&lt;/code&gt;这个字段一直报空，但是前端发出的请求中&lt;code&gt;ISBN&lt;/code&gt;字段是存在的，后来看到报错信息，Mybatis-plus把&lt;code&gt;ISBN&lt;/code&gt;这个类成员解析成了&lt;code&gt;i_s_b_n&lt;/c</summary>
+        
+      
+    
+    
+    
+    
+    <category term="后端" scheme="https://10ng1000.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+  </entry>
   
   <entry>
     <title>MySQL初始化数据库</title>
@@ -470,33 +493,6 @@
     
     
     <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Large Language Models Enable Few-Shot Clustering</title>
-    <link href="https://10ng1000.github.io/2024/12/02/Large-Language-Models-Enable-Few-Shot-Clustering/"/>
-    <id>https://10ng1000.github.io/2024/12/02/Large-Language-Models-Enable-Few-Shot-Clustering/</id>
-    <published>2024-12-02T02:57:51.000Z</published>
-    <updated>2024-12-02T02:58:29.466Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="paper" scheme="https://10ng1000.github.io/tags/paper/"/>
-    
-    <category term="LLM" scheme="https://10ng1000.github.io/tags/LLM/"/>
-    
-    <category term="Clustering" scheme="https://10ng1000.github.io/tags/Clustering/"/>
     
   </entry>
   

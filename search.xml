@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>mybatis-plus字段大小写的小坑</title>
+      <link href="/2025/02/17/Mybatis-plus%E5%AD%97%E6%AE%B5%E5%A4%A7%E5%B0%8F%E5%86%99%E7%9A%84%E5%B0%8F%E5%9D%91/"/>
+      <url>/2025/02/17/Mybatis-plus%E5%AD%97%E6%AE%B5%E5%A4%A7%E5%B0%8F%E5%86%99%E7%9A%84%E5%B0%8F%E5%9D%91/</url>
+      
+        <content type="html"><![CDATA[<p>今天在写图书类后端时，发现<code>ISBN</code>这个字段一直报空，但是前端发出的请求中<code>ISBN</code>字段是存在的，后来看到报错信息，Mybatis-plus把<code>ISBN</code>这个类成员解析成了<code>i_s_b_n</code>这个数据库字段。</p><p>MyBatis-plus对于Java对象字段到数据库列名的解析，是把大写解析成<code>_</code>加上对应的小写字符，所以用Mybatis-plus在Java后端写字段时不能随意使用大写。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 后端 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>MySQL初始化数据库</title>
       <link href="/2025/02/16/MySQL%E5%88%9D%E5%A7%8B%E5%8C%96%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
       <url>/2025/02/16/MySQL%E5%88%9D%E5%A7%8B%E5%8C%96%E6%95%B0%E6%8D%AE%E5%BA%93/</url>
