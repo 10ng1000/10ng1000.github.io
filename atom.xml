@@ -6,7 +6,7 @@
   <link href="https://10ng1000.github.io/atom.xml" rel="self"/>
   
   <link href="https://10ng1000.github.io/"/>
-  <updated>2025-02-17T05:07:22.704Z</updated>
+  <updated>2025-02-18T09:55:33.147Z</updated>
   <id>https://10ng1000.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>前后端系统图片处理</title>
+    <link href="https://10ng1000.github.io/2025/02/18/%E5%89%8D%E5%90%8E%E7%AB%AF%E7%B3%BB%E7%BB%9F%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86/"/>
+    <id>https://10ng1000.github.io/2025/02/18/%E5%89%8D%E5%90%8E%E7%AB%AF%E7%B3%BB%E7%BB%9F%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86/</id>
+    <published>2025-02-18T03:05:17.000Z</published>
+    <updated>2025-02-18T09:55:33.147Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;项目需求要保存图书封面到系统中。我们把这个问题Divide and</summary>
+        
+      
+    
+    
+    
+    
+    <category term="后端" scheme="https://10ng1000.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="前端" scheme="https://10ng1000.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
   
   <entry>
     <title>mybatis-plus字段大小写的小坑</title>
@@ -459,32 +484,6 @@
 &lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/combinations/description/&quot;&gt;77. 组合&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;[TOC]&lt;/p&gt;
-&lt;h1</summary>
-        
-      
-    
-    
-    
-    
-    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>172. 阶乘后的零</title>
-    <link href="https://10ng1000.github.io/2024/12/03/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91172-%E9%98%B6%E4%B9%98%E5%90%8E%E7%9A%84%E9%9B%B6/"/>
-    <id>https://10ng1000.github.io/2024/12/03/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91172-%E9%98%B6%E4%B9%98%E5%90%8E%E7%9A%84%E9%9B%B6/</id>
-    <published>2024-12-03T02:28:47.000Z</published>
-    <updated>2024-12-03T02:42:26.211Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/factorial-trailing-zeroes/description/&quot;&gt;172. 阶乘后的零&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
 &lt;h1</summary>
         
       

@@ -15,7 +15,7 @@
   
   <title>
     
-      mybatis-plus字段大小写的小坑 
+      前后端系统图片处理 
       
       
       |
@@ -156,11 +156,11 @@
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">mybatis-plus字段大小写的小坑</div>
+      <div class="post-title">前后端系统图片处理</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-          2025-02-17 13:07:22
+          2025-02-18 17:55:33
         </span>
         
               <span class="post-tags">
@@ -172,19 +172,35 @@
                   </a>
                 </span>
                 
+                <span class="span--tag mr-8">
+                  <a href="/tags/%E5%89%8D%E7%AB%AF/" title="前端">
+                    #前端
+                  </a>
+                </span>
+                
               </span>
           
       </div>
       <div class="markdown-body">
-        <p>今天在写图书类后端时，发现<code>ISBN</code>这个字段一直报空，但是前端发出的请求中<code>ISBN</code>字段是存在的，后来看到报错信息，Mybatis-plus把<code>ISBN</code>这个类成员解析成了<code>i_s_b_n</code>这个数据库字段。</p>
-<p>MyBatis-plus对于Java对象字段到数据库列名的解析，是把大写解析成<code>_</code>加上对应的小写字符，所以用Mybatis-plus在Java后端写字段时不能随意使用大写。</p>
+        <p>项目需求要保存图书封面到系统中。我们把这个问题Divide and Conquer。</p>
+<p>首先是图片如何在后端存储？一个朴素的想法是直接把上传的图片以<strong>二进制的形式</strong>直接保存到MySql数据库中。但是这样做的话数据库的体积会大幅增大，可能会影响数据库性能，而且图片的管理不够灵活。因此一个更优解是只在数据库中存储图片文件在本地的<strong>路径</strong>，然后把上传的图片存储在本地的文件管理系统中。这样不仅数据库轻量化易于维护，而且图片管理灵活，可以自由切换位置，实现了解耦。</p>
+<p>接着是后端如何接收图片？以Spring Boot为例，我们在Controller中撰写以下代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping(&quot;upload&quot;)</span>  </span><br><span class="line"><span class="keyword">public</span> ResponseEntity&lt;String&gt; <span class="title function_">uploadImage</span><span class="params">(<span class="meta">@RequestParam(&quot;file&quot;)</span> MultipartFile file, String id)</span> &#123;  </span><br><span class="line">    <span class="keyword">if</span> (file.isEmpty()) &#123;  </span><br><span class="line">        <span class="keyword">return</span> ResponseEntity.ok(<span class="string">&quot;上传失败，请选择文件&quot;</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="type">String</span> <span class="variable">fileName</span> <span class="operator">=</span> UUID.randomUUID().toString() + <span class="string">&quot;_&quot;</span> + file.getOriginalFilename();  </span><br><span class="line">    <span class="type">String</span> <span class="variable">filePath</span> <span class="operator">=</span> localPath + fileName;  </span><br><span class="line">    <span class="keyword">try</span> &#123;  </span><br><span class="line">        file.transferTo(<span class="keyword">new</span> <span class="title class_">java</span>.io.File(filePath));  </span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;  </span><br><span class="line">        e.printStackTrace();  </span><br><span class="line">        <span class="keyword">return</span> ResponseEntity.ok(<span class="string">&quot;上传失败&quot;</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="type">Book</span> <span class="variable">book</span> <span class="operator">=</span> bookService.getById(id);  </span><br><span class="line">    book.setImageUrl(<span class="string">&quot;http://localhost:8082/images/&quot;</span> + fileName);  </span><br><span class="line">    bookService.updateById(book);  </span><br><span class="line">    <span class="keyword">return</span> ResponseEntity.ok(<span class="string">&quot;上传成功&quot;</span>);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后是前端上传图片。在Vue前端需要一个<code>el-upload</code>组件。其中http-request会屏蔽掉action，可以实现点击确认后和图书属性一起上传。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-upload v-else-if=&quot;item.prop === &#x27;imageUrl&#x27;&quot; :http-request=&quot;upload&quot; action=&quot;#&quot; drag accept=&quot;image/*&quot; :auto-upload=&quot;true&quot; :limit=&quot;1&quot;&gt;</span><br><span class="line">	&lt;i class=&quot;el-icon-upload&quot;&gt;&lt;/i&gt;</span><br><span class="line">	&lt;div class=&quot;el-upload__text&quot;&gt;将文件拖到此处，或&lt;em&gt;点击上传&lt;/em&gt;&lt;/div&gt;</span><br><span class="line">	&lt;div class=&quot;el-upload__tip&quot; slot=&quot;tip&quot;&gt;只能上传jpg/png文件，且不超过500kb&lt;/div&gt;</span><br><span class="line">&lt;/el-upload&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">upload</span> (options)&#123;</span><br><span class="line">    <span class="comment">// 上传图片，把图片保存到cover成员中</span></span><br><span class="line">	<span class="keyword">const</span> formdata = <span class="keyword">new</span> <span class="title class_">FormData</span>()</span><br><span class="line">	formdata.<span class="title function_">append</span>(<span class="string">&#x27;file&#x27;</span>, options.<span class="property">file</span>)</span><br><span class="line">	<span class="variable language_">this</span>.<span class="property">cover</span> = formdata</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">doSubmit</span> () &#123;</span><br><span class="line">	<span class="comment">// 上传图片</span></span><br><span class="line">	<span class="variable language_">this</span>.<span class="property">BookService</span>.<span class="title function_">upload</span>(<span class="variable language_">this</span>.<span class="property">cover</span>, <span class="variable language_">this</span>.<span class="property">inputForm</span>.<span class="property">id</span>).<span class="title function_">then</span>(<span class="function">(<span class="params">&#123; data &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="variable language_">this</span>.<span class="property">inputForm</span>.<span class="property">imageUrl</span> = data</span><br><span class="line">	<span class="variable language_">this</span>.<span class="property">$message</span>.<span class="title function_">success</span>(<span class="string">&#x27;上传成功&#x27;</span>)</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">BookService</span> &#123;</span><br><span class="line">	<span class="title function_">upload</span> (formData, id) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="title function_">request</span>(&#123;</span><br><span class="line">		  <span class="attr">url</span>: <span class="string">&#x27;/books/upload&#x27;</span>,</span><br><span class="line">		  <span class="attr">method</span>: <span class="string">&#x27;post&#x27;</span>,</span><br><span class="line">		  <span class="attr">data</span>: formData,</span><br><span class="line">		  <span class="attr">params</span>: &#123;<span class="attr">id</span>: id&#125;</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后是前端显示保存的图片。由于浏览器后端<strong>不能</strong>直接从文件系统访问图片，我们需要使用Springboot后端静态代理图片。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.demo.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.config.annotation.WebMvcConfigurer;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WebConfig</span> <span class="keyword">implements</span> <span class="title class_">WebMvcConfigurer</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addResourceHandlers</span><span class="params">(ResourceHandlerRegistry registry)</span> &#123;</span><br><span class="line">        <span class="comment">// 配置静态资源路径</span></span><br><span class="line">        registry.addResourceHandler(<span class="string">&quot;/images/**&quot;</span>)</span><br><span class="line">                .addResourceLocations(<span class="string">&quot;file:D:/images/&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样只需要在前端使用<code>img</code>指定<code>src</code>来访问图片即可。</p>
 
       </div>
       
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2025/02/16/MySQL%E5%88%9D%E5%A7%8B%E5%8C%96%E6%95%B0%E6%8D%AE%E5%BA%93/" target="_self">
+              <a href="/2025/02/17/Mybatis-plus%E5%AD%97%E6%AE%B5%E5%A4%A7%E5%B0%8F%E5%86%99%E7%9A%84%E5%B0%8F%E5%9D%91/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>上一页</span>
               </a>
@@ -193,7 +209,7 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-              2025-02-17 13:07:22
+              2025-02-18 17:55:33
             </span>
             
                   <span class="post-tags">
@@ -205,15 +221,16 @@
                       </a>
                     </span>
                     
+                    <span class="span--tag mr-8">
+                      <a href="/tags/%E5%89%8D%E7%AB%AF/" title="前端">
+                        #前端
+                      </a>
+                    </span>
+                    
                   </span>
               
           </div>
           <div class="post-foot-prev">
-            
-              <a href="/2025/02/18/%E5%89%8D%E5%90%8E%E7%AB%AF%E7%B3%BB%E7%BB%9F%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86/" target="_self">
-                <span>下一页</span>
-                <i class="iconfont icon-chevronright"></i>
-              </a>
             
           </div>
         </div>
@@ -530,12 +547,12 @@
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + mybatis-plus%E5%AD%97%E6%AE%B5%E5%A4%A7%E5%B0%8F%E5%86%99%E7%9A%84%E5%B0%8F%E5%9D%91 + '&url=' + https%3A%2F%2F10ng1000.github.io%2F2025%2F02%2F17%2FMybatis-plus%25E5%25AD%2597%25E6%25AE%25B5%25E5%25A4%25A7%25E5%25B0%258F%25E5%2586%2599%25E7%259A%2584%25E5%25B0%258F%25E5%259D%2591%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E5%89%8D%E5%90%8E%E7%AB%AF%E7%B3%BB%E7%BB%9F%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86 + '&url=' + https%3A%2F%2F10ng1000.github.io%2F2025%2F02%2F18%2F%25E5%2589%258D%25E5%2590%258E%25E7%25AB%25AF%25E7%25B3%25BB%25E7%25BB%259F%25E5%259B%25BE%25E7%2589%2587%25E5%25A4%2584%25E7%2590%2586%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://10ng1000.github.io/2025/02/17/Mybatis-plus%E5%AD%97%E6%AE%B5%E5%A4%A7%E5%B0%8F%E5%86%99%E7%9A%84%E5%B0%8F%E5%9D%91/" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://10ng1000.github.io/2025/02/18/%E5%89%8D%E5%90%8E%E7%AB%AF%E7%B3%BB%E7%BB%9F%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         
