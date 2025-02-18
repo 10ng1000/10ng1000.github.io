@@ -12,10 +12,13 @@
   <meta name="description" content="God drinks Java" />
   
   
-    <meta name="robots" content="noindex" />
-  
   
   <title>
+    
+      JavaScript对返回的http包数据类型的判断 
+      
+      
+      |
     
      10ng&#39;s Own eNGine
   </title>
@@ -108,151 +111,130 @@
 
 
       <div class="flex-container">
-        <div class="container index">
-  <div class="post-list">
-    <!-- 遍历渲染文章 -->
-    
-      <div class="post-item" title="684. 冗余连接">
-        <div class="time-m-d">2024-10-27</div>
-        <div class="title">
-          <a href="/2024/10/27/%E3%80%90%E5%B9%B6%E6%9F%A5%E9%9B%86%E3%80%91684-%E5%86%97%E4%BD%99%E8%BF%9E%E6%8E%A5/">
-            
-              
-                <span>684. 冗余连接</span>
-              
-            
-          </a>
-        </div>
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">JavaScript对返回的http包数据类型的判断</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+          2025-02-18 18:13:34
+        </span>
+        
       </div>
-    
-      <div class="post-item" title="3186. 施咒的最大总伤害">
-        <div class="time-m-d">2024-10-23</div>
-        <div class="title">
-          <a href="/2024/10/23/3186-%E6%96%BD%E5%92%92%E7%9A%84%E6%9C%80%E5%A4%A7%E6%80%BB%E4%BC%A4%E5%AE%B3/">
-            
-              
-                <span>3186. 施咒的最大总伤害</span>
-              
-            
-          </a>
-        </div>
+      <div class="markdown-body">
+        <p>遇到一个后端使用雪花ID，返回ID给前端时，前端解析的ID与Http包的内容不一致的问题。</p>
+<p>经过排查，可以看到结果的类型被Javascript解析成了number。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//两条log记录</span></span><br><span class="line"><span class="title class_">Save</span> <span class="title class_">Response</span>: </span><br><span class="line"><span class="title class_">Object</span> &#123; <span class="attr">data</span>: <span class="number">1891767091295240200</span>, <span class="attr">status</span>: <span class="number">200</span>, <span class="attr">statusText</span>: <span class="string">&quot;OK&quot;</span>, <span class="attr">headers</span>: &#123;…&#125;, <span class="attr">config</span>: &#123;…&#125;, <span class="attr">request</span>: <span class="title class_">XMLHttpRequest</span> &#125;</span><br><span class="line"><span class="attr">config</span>: <span class="title class_">Object</span> &#123; <span class="attr">url</span>: <span class="string">&quot;/api/books&quot;</span>, <span class="attr">method</span>: <span class="string">&quot;post&quot;</span>, <span class="attr">data</span>: <span class="string">&#x27;&#123;&quot;name&quot;:&quot;sdassssss&quot;,&quot;author&quot;:&quot;&quot;,&quot;isbn&quot;:&quot;&quot;,&quot;publishDate&quot;:&quot;2025-02-18 16:29:46&quot;,&quot;category&quot;:&quot;&quot;,&quot;introduction&quot;:&quot;&quot;,&quot;total&quot;:&quot;&quot;,&quot;stock&quot;:&quot;&quot;,&quot;imageUrl&quot;:&quot;&quot;,&quot;id&quot;:&quot;&quot;&#125;&#x27;</span>, … &#125;</span><br><span class="line"><span class="attr">data</span>: <span class="number">1891767091295240200</span></span><br><span class="line"><span class="attr">headers</span>: <span class="title class_">Object</span> &#123; <span class="string">&quot;cache-control&quot;</span>: <span class="string">&quot;no-cache, no-store, max-age=0, must-revalidate&quot;</span>, <span class="attr">connection</span>: <span class="string">&quot;close&quot;</span>, <span class="string">&quot;content-length&quot;</span>: <span class="string">&quot;19&quot;</span>, … &#125;</span><br><span class="line"><span class="attr">request</span>: <span class="title class_">XMLHttpRequest</span> &#123; <span class="attr">readyState</span>: <span class="number">4</span>, <span class="attr">timeout</span>: <span class="number">100000</span>, <span class="attr">withCredentials</span>: <span class="literal">true</span>, … &#125;</span><br><span class="line"><span class="attr">status</span>: <span class="number">200</span></span><br><span class="line"><span class="attr">statusText</span>: <span class="string">&quot;OK&quot;</span></span><br><span class="line">&lt;prototype&gt;: <span class="title class_">Object</span> &#123; … &#125;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Data</span> <span class="title class_">Type</span>: <span class="title class_">Number</span></span><br></pre></td></tr></table></figure>
+
+<p>原因是，因为data里只有数字字符，使用Json.parse解析会自动解析成Number类型。而雪花ID是64位的长整数，超出了Javascript的安全整数范围（其安全整数范围是<code>-2^53 + 1</code>到<code>2^53 - 1</code>），解析成Number类型时就可能会出错。</p>
+<p>将整个对象返回，而不仅仅是返回一串数字字符就可以初步解决这个问题。</p>
+
       </div>
-    
-      <div class="post-item" title="124. 二叉树中的最大路径和">
-        <div class="time-m-d">2024-10-22</div>
-        <div class="title">
-          <a href="/2024/10/22/124-%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E8%B7%AF%E5%BE%84%E5%92%8C/">
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
             
-              
-                <span>124. 二叉树中的最大路径和</span>
-              
+              <a href="/2025/02/18/%E5%89%8D%E5%90%8E%E7%AB%AF%E7%B3%BB%E7%BB%9F%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
             
-          </a>
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+              2025-02-18 18:13:34
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
-      </div>
+      
+    </div>
     
-      <div class="post-item" title="3185. 构成整天的下标对数目 II">
-        <div class="time-m-d">2024-10-22</div>
-        <div class="title">
-          <a href="/2024/10/22/3185-%E6%9E%84%E6%88%90%E6%95%B4%E5%A4%A9%E7%9A%84%E4%B8%8B%E6%A0%87%E5%AF%B9%E6%95%B0%E7%9B%AE-II/">
-            
-              
-                <span>3185. 构成整天的下标对数目 II</span>
-              
-            
-          </a>
-        </div>
-      </div>
+
     
-      <div class="post-item" title="188. 买卖股票的最佳时机 IV">
-        <div class="time-m-d">2024-10-18</div>
-        <div class="title">
-          <a href="/2024/10/18/%E3%80%90%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E3%80%91188-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA-IV/">
-            
-              
-                <span>188. 买卖股票的最佳时机 IV</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="97. 交错字符串">
-        <div class="time-m-d">2024-10-18</div>
-        <div class="title">
-          <a href="/2024/10/18/%E3%80%90%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E3%80%9197-%E4%BA%A4%E9%94%99%E5%AD%97%E7%AC%A6%E4%B8%B2/">
-            
-              
-                <span>97. 交错字符串</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="123. 买卖股票的最佳时机 III">
-        <div class="time-m-d">2024-10-17</div>
-        <div class="title">
-          <a href="/2024/10/17/123-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA-III/">
-            
-              
-                <span>123. 买卖股票的最佳时机 III</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="批量任务的JS异步问题">
-        <div class="time-m-d">2024-10-15</div>
-        <div class="title">
-          <a href="/2024/10/15/%E6%89%B9%E9%87%8F%E4%BB%BB%E5%8A%A1%E7%9A%84JS%E5%BC%82%E6%AD%A5%E9%97%AE%E9%A2%98/">
-            
-              
-                <span>批量任务的JS异步问题</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="46. 全排列">
-        <div class="time-m-d">2024-10-11</div>
-        <div class="title">
-          <a href="/2024/10/11/46-%E5%85%A8%E6%8E%92%E5%88%97/">
-            
-              
-                <span>46. 全排列</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="42. 接雨水">
-        <div class="time-m-d">2024-10-11</div>
-        <div class="title">
-          <a href="/2024/10/11/42-%E6%8E%A5%E9%9B%A8%E6%B0%B4/">
-            
-              
-                <span>42. 接雨水</span>
-              
-            
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+
+
+  <div id="gitalk-container"></div>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script>
+    function loadGitalkSuc() {
+      const gitalk = new Gitalk({
+        clientID: 'Ov23liEsmNxfQRDqWAJb',
+        clientSecret: '6353d100eda3d9beeb1755680c7406f982b60e9e',
+        repo: '10ng1000.github.io',
+        owner: '10ng1000',
+        admin: ['10ng1000'],
+        id: md5(location.pathname),
+        distractionFreeMode: false
+      })
+
+      gitalk.render('gitalk-container')
+    }
+  </script>
+  
+    <link rel="stylesheet" href="/plugins/gitalk.css">
+    <script type="text/javascript" src="/plugins/gitalk.min.js" onload="loadGitalkSuc(this)"></script>
+  
+
+
+
       </div>
     
   </div>
-  <nav class="post-navigation">
-    
-      <a href="/page/3/"><i class="iconfont icon-angleleft"></i></a>
-    
-    <span class="page-num">4 / 8</span>
-    
-      <a href="/page/5/"><i class="iconfont icon-angleright"></i></a>
-    
-  </nav>
-</div>
+
 
         
 <div class="footer">
@@ -518,6 +500,24 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + JavaScript%E5%AF%B9%E8%BF%94%E5%9B%9E%E7%9A%84http%E5%8C%85%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%A4%E6%96%AD + '&url=' + https%3A%2F%2F10ng1000.github.io%2F2025%2F02%2F18%2FJavaScript%25E5%25AF%25B9%25E8%25BF%2594%25E5%259B%259E%25E7%259A%2584http%25E5%258C%2585%25E6%2595%25B0%25E6%258D%25AE%25E7%25B1%25BB%25E5%259E%258B%25E7%259A%2584%25E5%2588%25A4%25E6%2596%25AD%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://10ng1000.github.io/2025/02/18/JavaScript%E5%AF%B9%E8%BF%94%E5%9B%9E%E7%9A%84http%E5%8C%85%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%A4%E6%96%AD/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
