@@ -12,10 +12,13 @@
   <meta name="description" content="God drinks Java" />
   
   
-    <meta name="robots" content="noindex" />
-  
   
   <title>
+    
+      71. 简化路径 
+      
+      
+      |
     
      10ng&#39;s Own eNGine
   </title>
@@ -108,151 +111,170 @@
 
 
       <div class="flex-container">
-        <div class="container index">
-  <div class="post-list">
-    <!-- 遍历渲染文章 -->
-    
-      <div class="post-item" title="3180. 执行操作可获得的最大总奖励 I">
-        <div class="time-m-d">2024-10-27</div>
-        <div class="title">
-          <a href="/2024/10/27/%E3%80%90%E5%B8%83%E5%B0%94%E5%80%BCdp%E3%80%913180-%E6%89%A7%E8%A1%8C%E6%93%8D%E4%BD%9C%E5%8F%AF%E8%8E%B7%E5%BE%97%E7%9A%84%E6%9C%80%E5%A4%A7%E6%80%BB%E5%A5%96%E5%8A%B1-I/">
-            
-              
-                <span>3180. 执行操作可获得的最大总奖励 I</span>
-              
-            
-          </a>
-        </div>
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">71. 简化路径</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+          2025-02-27 14:48:04
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="标签"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/LeetCode/" title="LeetCode">
+                    #LeetCode
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
-    
-      <div class="post-item" title="684. 冗余连接">
-        <div class="time-m-d">2024-10-27</div>
-        <div class="title">
-          <a href="/2024/10/27/%E3%80%90%E5%B9%B6%E6%9F%A5%E9%9B%86%E3%80%91684-%E5%86%97%E4%BD%99%E8%BF%9E%E6%8E%A5/">
-            
-              
-                <span>684. 冗余连接</span>
-              
-            
-          </a>
-        </div>
+      <div class="markdown-body">
+        <blockquote>
+<p>Problem: <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/simplify-path/description/">71. 简化路径</a></p>
+</blockquote>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>本题应该要想到用<strong>栈</strong>来解决。因为问题的关键在于<code>..</code>上一级目录的处理，需要取消掉上一个保存的元素，这样自然可以想到<strong>后到先出</strong>的栈结构。</p>
+<p>另外一点是分词的处理。对于路径，我们需要提取路径中按<code>/</code>分隔的所有字符组。实际上Java的String类有split的操作，我们只需要按照<code>/</code>分词即可。如果不用split，那么我们遇到<code>/</code>时跳过，并用Stringbuilder也可以达到相同的效果。</p>
+<p>同样，Java也有<code>join</code>操作，可以简化拼接的代码量。</p>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight java"><figcaption><span>[]</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">simplifyPath</span><span class="params">(String path)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">q</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> path.length();</span><br><span class="line">        <span class="type">char</span>[] cs = path.toCharArray();</span><br><span class="line">        <span class="comment">//Java String有Split操作和join操作</span></span><br><span class="line">        Deque&lt;String&gt; stack = <span class="keyword">new</span> <span class="title class_">ArrayDeque</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">while</span> (q &lt; n) &#123;</span><br><span class="line">            <span class="type">StringBuilder</span> <span class="variable">sb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">            <span class="keyword">if</span> (cs[q] == <span class="string">&#x27;/&#x27;</span>) &#123;</span><br><span class="line">                q++;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span> (q &lt; n &amp;&amp; cs[q] != <span class="string">&#x27;/&#x27;</span>) &#123;</span><br><span class="line">                sb.append(cs[q]);</span><br><span class="line">                q++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> sb.toString();</span><br><span class="line">            <span class="keyword">if</span> (s.isEmpty()) &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (<span class="string">&quot;..&quot;</span>.equals(s)) &#123;</span><br><span class="line">                <span class="keyword">if</span> (!stack.isEmpty()) stack.pop();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (!<span class="string">&quot;.&quot;</span>.equals(s)) &#123;</span><br><span class="line">                stack.push(s);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">StringBuilder</span> <span class="variable">sb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">        <span class="keyword">while</span>(!stack.isEmpty()) &#123;</span><br><span class="line">            sb.append(<span class="string">&#x27;/&#x27;</span>);</span><br><span class="line">            sb.append(stack.pollLast());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">String</span> <span class="variable">ans</span> <span class="operator">=</span> sb.toString();</span><br><span class="line">        <span class="keyword">if</span> (ans.isEmpty()) &#123;</span><br><span class="line">            ans = <span class="string">&quot;/&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       </div>
-    
-      <div class="post-item" title="3186. 施咒的最大总伤害">
-        <div class="time-m-d">2024-10-23</div>
-        <div class="title">
-          <a href="/2024/10/23/3186-%E6%96%BD%E5%92%92%E7%9A%84%E6%9C%80%E5%A4%A7%E6%80%BB%E4%BC%A4%E5%AE%B3/">
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
             
-              
-                <span>3186. 施咒的最大总伤害</span>
-              
+              <a href="/2025/02/18/JavaScript%E5%AF%B9%E8%BF%94%E5%9B%9E%E7%9A%84http%E5%8C%85%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%A4%E6%96%AD/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
             
-          </a>
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+              2025-02-27 14:48:04
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="标签"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/LeetCode/" title="LeetCode">
+                        #LeetCode
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
-      </div>
+      
+    </div>
     
-      <div class="post-item" title="124. 二叉树中的最大路径和">
-        <div class="time-m-d">2024-10-22</div>
-        <div class="title">
-          <a href="/2024/10/22/124-%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E8%B7%AF%E5%BE%84%E5%92%8C/">
-            
-              
-                <span>124. 二叉树中的最大路径和</span>
-              
-            
-          </a>
-        </div>
-      </div>
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <div class="post-item" title="3185. 构成整天的下标对数目 II">
-        <div class="time-m-d">2024-10-22</div>
-        <div class="title">
-          <a href="/2024/10/22/3185-%E6%9E%84%E6%88%90%E6%95%B4%E5%A4%A9%E7%9A%84%E4%B8%8B%E6%A0%87%E5%AF%B9%E6%95%B0%E7%9B%AE-II/">
-            
-              
-                <span>3185. 构成整天的下标对数目 II</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="188. 买卖股票的最佳时机 IV">
-        <div class="time-m-d">2024-10-18</div>
-        <div class="title">
-          <a href="/2024/10/18/%E3%80%90%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E3%80%91188-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA-IV/">
-            
-              
-                <span>188. 买卖股票的最佳时机 IV</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="97. 交错字符串">
-        <div class="time-m-d">2024-10-18</div>
-        <div class="title">
-          <a href="/2024/10/18/%E3%80%90%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E3%80%9197-%E4%BA%A4%E9%94%99%E5%AD%97%E7%AC%A6%E4%B8%B2/">
-            
-              
-                <span>97. 交错字符串</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="123. 买卖股票的最佳时机 III">
-        <div class="time-m-d">2024-10-17</div>
-        <div class="title">
-          <a href="/2024/10/17/123-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA-III/">
-            
-              
-                <span>123. 买卖股票的最佳时机 III</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="批量任务的JS异步问题">
-        <div class="time-m-d">2024-10-15</div>
-        <div class="title">
-          <a href="/2024/10/15/%E6%89%B9%E9%87%8F%E4%BB%BB%E5%8A%A1%E7%9A%84JS%E5%BC%82%E6%AD%A5%E9%97%AE%E9%A2%98/">
-            
-              
-                <span>批量任务的JS异步问题</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="46. 全排列">
-        <div class="time-m-d">2024-10-11</div>
-        <div class="title">
-          <a href="/2024/10/11/46-%E5%85%A8%E6%8E%92%E5%88%97/">
-            
-              
-                <span>46. 全排列</span>
-              
-            
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+
+
+  <div id="gitalk-container"></div>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script>
+    function loadGitalkSuc() {
+      const gitalk = new Gitalk({
+        clientID: 'Ov23liEsmNxfQRDqWAJb',
+        clientSecret: '6353d100eda3d9beeb1755680c7406f982b60e9e',
+        repo: '10ng1000.github.io',
+        owner: '10ng1000',
+        admin: ['10ng1000'],
+        id: md5(location.pathname),
+        distractionFreeMode: false
+      })
+
+      gitalk.render('gitalk-container')
+    }
+  </script>
+  
+    <link rel="stylesheet" href="/plugins/gitalk.css">
+    <script type="text/javascript" src="/plugins/gitalk.min.js" onload="loadGitalkSuc(this)"></script>
+  
+
+
+
       </div>
     
   </div>
-  <nav class="post-navigation">
-    
-      <a href="/page/3/"><i class="iconfont icon-angleleft"></i></a>
-    
-    <span class="page-num">4 / 8</span>
-    
-      <a href="/page/5/"><i class="iconfont icon-angleright"></i></a>
-    
-  </nav>
-</div>
+
 
         
 <div class="footer">
@@ -518,6 +540,24 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + 71.%20%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84 + '&url=' + https%3A%2F%2F10ng1000.github.io%2F2025%2F02%2F27%2F71-%25E7%25AE%2580%25E5%258C%2596%25E8%25B7%25AF%25E5%25BE%2584%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://10ng1000.github.io/2025/02/27/71-%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>

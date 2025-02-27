@@ -6,7 +6,7 @@
   <link href="https://10ng1000.github.io/atom.xml" rel="self"/>
   
   <link href="https://10ng1000.github.io/"/>
-  <updated>2025-02-18T10:13:34.353Z</updated>
+  <updated>2025-02-27T06:48:04.710Z</updated>
   <id>https://10ng1000.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>71. 简化路径</title>
+    <link href="https://10ng1000.github.io/2025/02/27/71-%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84/"/>
+    <id>https://10ng1000.github.io/2025/02/27/71-%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84/</id>
+    <published>2025-02-27T06:43:03.000Z</published>
+    <updated>2025-02-27T06:48:04.710Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/simplify-path/description/&quot;&gt;71. 简化路径&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;思路&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title>JavaScript对返回的http包数据类型的判断</title>
@@ -458,29 +484,6 @@
         
     <summary type="html">&lt;blockquote&gt;
 &lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/implement-trie-prefix-tree/description/&quot;&gt;208. 实现 Trie</summary>
-        
-      
-    
-    
-    
-    
-    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>19. 删除链表的倒数第 N 个结点</title>
-    <link href="https://10ng1000.github.io/2024/12/06/19-%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%AC-N-%E4%B8%AA%E7%BB%93%E7%82%B9/"/>
-    <id>https://10ng1000.github.io/2024/12/06/19-%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%AC-N-%E4%B8%AA%E7%BB%93%E7%82%B9/</id>
-    <published>2024-12-06T01:58:15.000Z</published>
-    <updated>2024-12-06T02:00:59.173Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;链表题的哨兵（dummy）&quot;&gt;&lt;a href=&quot;#链表题的哨兵（dummy）&quot; class=&quot;headerlink&quot;</summary>
         
       
     
