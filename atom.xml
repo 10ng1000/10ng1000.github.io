@@ -6,7 +6,7 @@
   <link href="https://10ng1000.github.io/atom.xml" rel="self"/>
   
   <link href="https://10ng1000.github.io/"/>
-  <updated>2025-02-27T06:48:04.710Z</updated>
+  <updated>2025-02-28T00:46:39.498Z</updated>
   <id>https://10ng1000.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>289. 生命游戏</title>
+    <link href="https://10ng1000.github.io/2025/02/28/289-%E7%94%9F%E5%91%BD%E6%B8%B8%E6%88%8F/"/>
+    <id>https://10ng1000.github.io/2025/02/28/289-%E7%94%9F%E5%91%BD%E6%B8%B8%E6%88%8F/</id>
+    <published>2025-02-28T00:19:55.000Z</published>
+    <updated>2025-02-28T00:46:39.498Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/game-of-life/description/&quot;&gt;289. 生命游戏&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;思路&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title>71. 简化路径</title>
@@ -460,30 +486,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;二分&quot;&gt;&lt;a href=&quot;#二分&quot; class=&quot;headerlink&quot; title=&quot;二分&quot;&gt;&lt;/a&gt;二分&lt;/h1&gt;&lt;p&gt;在这题再加深二分法的理解：&lt;br&gt;首先，&lt;strong&gt;闭区间&lt;/strong&gt;的二分法标志是：判定条件为&lt;code&gt;l &amp;lt;=</summary>
-        
-      
-    
-    
-    
-    
-    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>208. 实现 Trie (前缀树)</title>
-    <link href="https://10ng1000.github.io/2024/12/09/%E3%80%90Trie%E6%A0%91%E3%80%91208-%E5%AE%9E%E7%8E%B0-Trie-%E5%89%8D%E7%BC%80%E6%A0%91/"/>
-    <id>https://10ng1000.github.io/2024/12/09/%E3%80%90Trie%E6%A0%91%E3%80%91208-%E5%AE%9E%E7%8E%B0-Trie-%E5%89%8D%E7%BC%80%E6%A0%91/</id>
-    <published>2024-12-09T02:26:47.000Z</published>
-    <updated>2024-12-10T06:56:59.004Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/implement-trie-prefix-tree/description/&quot;&gt;208. 实现 Trie</summary>
         
       
     
