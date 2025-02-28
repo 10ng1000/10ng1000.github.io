@@ -12,10 +12,13 @@
   <meta name="description" content="God drinks Java" />
   
   
-    <meta name="robots" content="noindex" />
-  
   
   <title>
+    
+      bfs和dfs的使用场景 
+      
+      
+      |
     
      10ng&#39;s Own eNGine
   </title>
@@ -108,151 +111,177 @@
 
 
       <div class="flex-container">
-        <div class="container index">
-  <div class="post-list">
-    <!-- 遍历渲染文章 -->
-    
-      <div class="post-item" title="73.矩阵置0">
-        <div class="time-m-d">2025-01-25</div>
-        <div class="title">
-          <a href="/2025/01/25/73-%E7%9F%A9%E9%98%B5%E7%BD%AE0/">
-            
-              
-                <span>73.矩阵置0</span>
-              
-            
-          </a>
-        </div>
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">bfs和dfs的使用场景</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+          2025-02-28 15:56:30
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="标签"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/LeetCode/" title="LeetCode">
+                    #LeetCode
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
-    
-      <div class="post-item" title="编程常见数">
-        <div class="time-m-d">2025-01-25</div>
-        <div class="title">
-          <a href="/2025/01/25/%E7%BC%96%E7%A8%8B%E5%B8%B8%E8%A7%81%E6%95%B0/">
-            
-              
-                <span>编程常见数</span>
-              
-            
-          </a>
-        </div>
+      <div class="markdown-body">
+        <p>在做力扣<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/word-ladder/description/">127. 单词接龙</a>的时候，起初我尝试了使用DFS搜索，但是会超时，于是想到使用记忆化DFS搜索，但是总会有几个用例错误，思考后发现，记忆化DFS只能找到当前<strong>某些点已经访问过的前提</strong>下当前点的最短路径，而不是全局最短路径，因此难以进行记忆化搜索。 </p>
+<p>这时才想到，在算法课上，除了DFS，实际上常常用<strong>BFS</strong>来求解图中的最短距离。换完BFS后果然代码简单了很多。</p>
+<p>DFS和BFS的使用场景有以下不同：</p>
+<h2 id="DFS"><a href="#DFS" class="headerlink" title="DFS"></a>DFS</h2><ol>
+<li>适合于需要<strong>遍历所有解空间</strong>的情况。</li>
+<li>使用<strong>回溯</strong>，适合于解<strong>递归</strong>的题目。</li>
+<li>可以用记忆化搜索剪枝。</li>
+<li>空间复杂度较小（树高）</li>
+</ol>
+<h1 id="BFS"><a href="#BFS" class="headerlink" title="BFS"></a>BFS</h1><ol>
+<li>适合于求解<strong>最短路径</strong>问题。</li>
+<li>适合于求解<strong>分层处理</strong>的问题。</li>
+<li>空间复杂度较大（树宽度）。</li>
+</ol>
+
       </div>
-    
-      <div class="post-item" title="149. 直线上最多的点数">
-        <div class="time-m-d">2025-01-22</div>
-        <div class="title">
-          <a href="/2025/01/22/149-%E7%9B%B4%E7%BA%BF%E4%B8%8A%E6%9C%80%E5%A4%9A%E7%9A%84%E7%82%B9%E6%95%B0/">
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
             
-              
-                <span>149. 直线上最多的点数</span>
-              
+              <a href="/2025/02/28/289-%E7%94%9F%E5%91%BD%E6%B8%B8%E6%88%8F/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
             
-          </a>
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+              2025-02-28 15:56:30
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="标签"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/LeetCode/" title="LeetCode">
+                        #LeetCode
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
-      </div>
+      
+    </div>
     
-      <div class="post-item" title="48.旋转图像">
-        <div class="time-m-d">2025-01-22</div>
-        <div class="title">
-          <a href="/2025/01/22/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%9148-%E6%97%8B%E8%BD%AC%E5%9B%BE%E5%83%8F/">
-            
-              
-                <span>48.旋转图像</span>
-              
-            
-          </a>
-        </div>
-      </div>
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#DFS"><span class="toc-text">DFS</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#BFS"><span class="toc-text">BFS</span></a>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <div class="post-item" title="算法分析与设计课程">
-        <div class="time-m-d">2025-01-05</div>
-        <div class="title">
-          <a href="/2025/01/05/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1%E8%AF%BE%E7%A8%8B/">
-            
-              
-                <span>算法分析与设计课程</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="3138-同位字符串连接的最小长度">
-        <div class="time-m-d">2024-12-20</div>
-        <div class="title">
-          <a href="/2024/12/20/3138-%E5%90%8C%E4%BD%8D%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%9E%E6%8E%A5%E7%9A%84%E6%9C%80%E5%B0%8F%E9%95%BF%E5%BA%A6/">
-            
-              
-                <span>3138-同位字符串连接的最小长度</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="3291.形成目标字符串需要的最少字符串数 I">
-        <div class="time-m-d">2024-12-19</div>
-        <div class="title">
-          <a href="/2024/12/19/%E3%80%90Trie%E6%A0%91%EF%BC%8Cdp%E3%80%913291-%E5%BD%A2%E6%88%90%E7%9B%AE%E6%A0%87%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%9C%80%E8%A6%81%E7%9A%84%E6%9C%80%E5%B0%91%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%B0-I/">
-            
-              
-                <span>3291.形成目标字符串需要的最少字符串数 I</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="1837.最近的房间">
-        <div class="time-m-d">2024-12-16</div>
-        <div class="title">
-          <a href="/2024/12/16/%E3%80%90%E7%A6%BB%E7%BA%BF%E3%80%911847-%E6%9C%80%E8%BF%91%E7%9A%84%E6%88%BF%E9%97%B4/">
-            
-              
-                <span>1837.最近的房间</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="1.两数之和">
-        <div class="time-m-d">2024-12-12</div>
-        <div class="title">
-          <a href="/2024/12/12/1-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">
-            
-              
-                <span>1.两数之和</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="2931.购买物品的最大开销">
-        <div class="time-m-d">2024-12-12</div>
-        <div class="title">
-          <a href="/2024/12/12/2931-%E8%B4%AD%E4%B9%B0%E7%89%A9%E5%93%81%E7%9A%84%E6%9C%80%E5%A4%A7%E5%BC%80%E9%94%80/">
-            
-              
-                <span>2931.购买物品的最大开销</span>
-              
-            
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+
+
+  <div id="gitalk-container"></div>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script>
+    function loadGitalkSuc() {
+      const gitalk = new Gitalk({
+        clientID: 'Ov23liEsmNxfQRDqWAJb',
+        clientSecret: '6353d100eda3d9beeb1755680c7406f982b60e9e',
+        repo: '10ng1000.github.io',
+        owner: '10ng1000',
+        admin: ['10ng1000'],
+        id: md5(location.pathname),
+        distractionFreeMode: false
+      })
+
+      gitalk.render('gitalk-container')
+    }
+  </script>
+  
+    <link rel="stylesheet" href="/plugins/gitalk.css">
+    <script type="text/javascript" src="/plugins/gitalk.min.js" onload="loadGitalkSuc(this)"></script>
+  
+
+
+
       </div>
     
   </div>
-  <nav class="post-navigation">
-    
-      <a href="/"><i class="iconfont icon-angleleft"></i></a>
-    
-    <span class="page-num">2 / 8</span>
-    
-      <a href="/page/3/"><i class="iconfont icon-angleright"></i></a>
-    
-  </nav>
-</div>
+
 
         
 <div class="footer">
@@ -518,6 +547,24 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + bfs%E5%92%8Cdfs%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF + '&url=' + https%3A%2F%2F10ng1000.github.io%2F2025%2F02%2F28%2Fbfs%25E5%2592%258Cdfs%25E7%259A%2584%25E4%25BD%25BF%25E7%2594%25A8%25E5%259C%25BA%25E6%2599%25AF%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://10ng1000.github.io/2025/02/28/bfs%E5%92%8Cdfs%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>

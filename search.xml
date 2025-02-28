@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>bfs和dfs的使用场景</title>
+      <link href="/2025/02/28/bfs%E5%92%8Cdfs%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/"/>
+      <url>/2025/02/28/bfs%E5%92%8Cdfs%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/</url>
+      
+        <content type="html"><![CDATA[<p>在做力扣<a href="https://leetcode.cn/problems/word-ladder/description/">127. 单词接龙</a>的时候，起初我尝试了使用DFS搜索，但是会超时，于是想到使用记忆化DFS搜索，但是总会有几个用例错误，思考后发现，记忆化DFS只能找到当前<strong>某些点已经访问过的前提</strong>下当前点的最短路径，而不是全局最短路径，因此难以进行记忆化搜索。 </p><p>这时才想到，在算法课上，除了DFS，实际上常常用<strong>BFS</strong>来求解图中的最短距离。换完BFS后果然代码简单了很多。</p><p>DFS和BFS的使用场景有以下不同：</p><h2 id="DFS"><a href="#DFS" class="headerlink" title="DFS"></a>DFS</h2><ol><li>适合于需要<strong>遍历所有解空间</strong>的情况。</li><li>使用<strong>回溯</strong>，适合于解<strong>递归</strong>的题目。</li><li>可以用记忆化搜索剪枝。</li><li>空间复杂度较小（树高）</li></ol><h1 id="BFS"><a href="#BFS" class="headerlink" title="BFS"></a>BFS</h1><ol><li>适合于求解<strong>最短路径</strong>问题。</li><li>适合于求解<strong>分层处理</strong>的问题。</li><li>空间复杂度较大（树宽度）。</li></ol>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>289. 生命游戏</title>
       <link href="/2025/02/28/289-%E7%94%9F%E5%91%BD%E6%B8%B8%E6%88%8F/"/>
       <url>/2025/02/28/289-%E7%94%9F%E5%91%BD%E6%B8%B8%E6%88%8F/</url>
