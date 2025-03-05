@@ -6,7 +6,7 @@
   <link href="https://10ng1000.github.io/atom.xml" rel="self"/>
   
   <link href="https://10ng1000.github.io/"/>
-  <updated>2025-02-28T07:56:30.403Z</updated>
+  <updated>2025-03-05T01:30:11.455Z</updated>
   <id>https://10ng1000.github.io/</id>
   
   <author>
@@ -15,6 +15,54 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>25. K 个一组反转链表</title>
+    <link href="https://10ng1000.github.io/2025/03/05/25-K-%E4%B8%AA%E4%B8%80%E7%BB%84%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/"/>
+    <id>https://10ng1000.github.io/2025/03/05/25-K-%E4%B8%AA%E4%B8%80%E7%BB%84%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/</id>
+    <published>2025-03-05T01:11:11.000Z</published>
+    <updated>2025-03-05T01:30:11.455Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/reverse-nodes-in-k-group/description/&quot;&gt;25. K</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>206. 反转链表</title>
+    <link href="https://10ng1000.github.io/2025/03/03/%E3%80%90%E9%93%BE%E8%A1%A8%E3%80%91206.%20%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/"/>
+    <id>https://10ng1000.github.io/2025/03/03/%E3%80%90%E9%93%BE%E8%A1%A8%E3%80%91206.%20%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/</id>
+    <published>2025-03-03T02:02:19.000Z</published>
+    <updated>2025-03-05T01:07:51.863Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/reverse-linked-list/description/&quot;&gt;206. 反转链表&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1</summary>
+        
+      
+    
+    
+    
+    
+    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title>bfs和dfs的使用场景</title>
@@ -440,52 +488,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;思路&quot;&gt;&lt;a href=&quot;#思路&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>1.两数之和</title>
-    <link href="https://10ng1000.github.io/2024/12/12/1-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/"/>
-    <id>https://10ng1000.github.io/2024/12/12/1-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/</id>
-    <published>2024-12-12T07:56:11.000Z</published>
-    <updated>2024-12-12T08:00:31.232Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;哈希表&quot;&gt;&lt;a href=&quot;#哈希表&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2931.购买物品的最大开销</title>
-    <link href="https://10ng1000.github.io/2024/12/12/2931-%E8%B4%AD%E4%B9%B0%E7%89%A9%E5%93%81%E7%9A%84%E6%9C%80%E5%A4%A7%E5%BC%80%E9%94%80/"/>
-    <id>https://10ng1000.github.io/2024/12/12/2931-%E8%B4%AD%E4%B9%B0%E7%89%A9%E5%93%81%E7%9A%84%E6%9C%80%E5%A4%A7%E5%BC%80%E9%94%80/</id>
-    <published>2024-12-12T00:43:00.000Z</published>
-    <updated>2024-12-12T00:51:48.782Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Java实现”Pair”&quot;&gt;&lt;a href=&quot;#Java实现”Pair”&quot; class=&quot;headerlink&quot;</summary>
         
       
     
