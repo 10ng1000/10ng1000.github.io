@@ -12,10 +12,13 @@
   <meta name="description" content="God drinks Java" />
   
   
-    <meta name="robots" content="noindex" />
-  
   
   <title>
+    
+      452. 用最少数量的箭引爆气球 
+      
+      
+      |
     
      10ng&#39;s Own eNGine
   </title>
@@ -108,151 +111,174 @@
 
 
       <div class="flex-container">
-        <div class="container index">
-  <div class="post-list">
-    <!-- 遍历渲染文章 -->
-    
-      <div class="post-item" title="11.盛最多水的容器">
-        <div class="time-m-d">2025-02-14</div>
-        <div class="title">
-          <a href="/2025/02/14/%E3%80%90%E5%8F%8C%E6%8C%87%E9%92%88%E3%80%9111-%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/">
-            
-              
-                <span>11.盛最多水的容器</span>
-              
-            
-          </a>
-        </div>
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">452. 用最少数量的箭引爆气球</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+          2025-03-10 14:58:52
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="标签"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/LeetCode/" title="LeetCode">
+                    #LeetCode
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
-    
-      <div class="post-item" title="4. 寻找两个正序数组的中位数">
-        <div class="time-m-d">2025-01-27</div>
-        <div class="title">
-          <a href="/2025/01/27/%E3%80%90%E5%88%86%E6%B2%BB%E3%80%914-%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%AD%A3%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/">
-            
-              
-                <span>4. 寻找两个正序数组的中位数</span>
-              
-            
-          </a>
-        </div>
+      <div class="markdown-body">
+        <blockquote>
+<p>Problem: <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/description/">452. 用最少数量的箭引爆气球</a></p>
+</blockquote>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>题目可以利用贪心来建模为区间交集问题，假设分别将所有相交区间取交集，得到若干个交集，我们只需要往交集处射箭即可。这样问题就转为了求这样的交集数量。</p>
+<blockquote>
+<p>求区间交并集可以采用双指针的思路。</p>
+</blockquote>
+<p>我们可以用排序+双指针的方法来求解区间的交集。维护这样的循环不变量：<code>points的[p,q]区间内的点有共同的交集，其最大的交集的数值区间为[l, r]。</code></p>
+<p>起初，<code>p</code>和<code>q</code>都设为<code>0</code>，并将<code>l</code>和<code>r</code>设置为该点的左右端点。这样循环不变量满足了初始化条件。</p>
+<p>接下来是不变量的保持。因为我们把数组按区间左端点进行了排序，我们可以知道后面的点的左端点一定比前面的点大。这样判断是否有交集只需要判断后面点的左端点是否大于<code>p + 1</code>点的右端点。如果有交集，我们就尝试更新交集区间的左右端点，并尝试<code>q + 1</code>这个点。当没有交集时，我们就找到了所有与<code>p + 1</code>点有交集的点，将<code>ans</code>的值加一。</p>
+<p>这样在循环结束时，我们就找到了所有点的交集个数，得到答案。</p>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">findMinArrowShots</span><span class="params">(<span class="type">int</span>[][] points)</span> &#123;</span><br><span class="line">        <span class="comment">//直接用减法可能会溢出</span></span><br><span class="line">        Arrays.sort(points, (<span class="type">int</span>[] a, <span class="type">int</span>[] b) -&gt; Integer.compare(a[<span class="number">0</span>], b[<span class="number">0</span>]));</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> points.length;</span><br><span class="line">        <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="comment">//[p, q]内的点有共同交集,最大交集为[l, r]</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">p</span> <span class="operator">=</span> <span class="number">0</span>, q = <span class="number">0</span>; p &lt; n; q++, p = q) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">l</span> <span class="operator">=</span> points[p][<span class="number">0</span>];</span><br><span class="line">            <span class="type">int</span> <span class="variable">r</span> <span class="operator">=</span> points[p][<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">while</span> (q + <span class="number">1</span> &lt; n &amp;&amp; points[q + <span class="number">1</span>][<span class="number">0</span>] &lt;= r) &#123;</span><br><span class="line">                l = points[q + <span class="number">1</span>][<span class="number">0</span>];</span><br><span class="line">                r = Math.min(points[q + <span class="number">1</span>][<span class="number">1</span>], r);</span><br><span class="line">                q++;</span><br><span class="line">            &#125;</span><br><span class="line">            ans++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       </div>
-    
-      <div class="post-item" title="202. 快乐数">
-        <div class="time-m-d">2025-01-26</div>
-        <div class="title">
-          <a href="/2025/01/26/%E3%80%90%E5%BF%AB%E6%85%A2%E6%8C%87%E9%92%88%E3%80%91202-%E5%BF%AB%E4%B9%90%E6%95%B0/">
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
             
-              
-                <span>202. 快乐数</span>
-              
+              <a href="/2025/03/05/25-K-%E4%B8%AA%E4%B8%80%E7%BB%84%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
             
-          </a>
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+              2025-03-10 14:58:52
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="标签"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/LeetCode/" title="LeetCode">
+                        #LeetCode
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
-      </div>
+      
+    </div>
     
-      <div class="post-item" title="73.矩阵置0">
-        <div class="time-m-d">2025-01-25</div>
-        <div class="title">
-          <a href="/2025/01/25/73-%E7%9F%A9%E9%98%B5%E7%BD%AE0/">
-            
-              
-                <span>73.矩阵置0</span>
-              
-            
-          </a>
-        </div>
-      </div>
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <div class="post-item" title="编程常见数">
-        <div class="time-m-d">2025-01-25</div>
-        <div class="title">
-          <a href="/2025/01/25/%E7%BC%96%E7%A8%8B%E5%B8%B8%E8%A7%81%E6%95%B0/">
-            
-              
-                <span>编程常见数</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="149. 直线上最多的点数">
-        <div class="time-m-d">2025-01-22</div>
-        <div class="title">
-          <a href="/2025/01/22/149-%E7%9B%B4%E7%BA%BF%E4%B8%8A%E6%9C%80%E5%A4%9A%E7%9A%84%E7%82%B9%E6%95%B0/">
-            
-              
-                <span>149. 直线上最多的点数</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="48.旋转图像">
-        <div class="time-m-d">2025-01-22</div>
-        <div class="title">
-          <a href="/2025/01/22/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%9148-%E6%97%8B%E8%BD%AC%E5%9B%BE%E5%83%8F/">
-            
-              
-                <span>48.旋转图像</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="算法分析与设计课程">
-        <div class="time-m-d">2025-01-05</div>
-        <div class="title">
-          <a href="/2025/01/05/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1%E8%AF%BE%E7%A8%8B/">
-            
-              
-                <span>算法分析与设计课程</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="3138-同位字符串连接的最小长度">
-        <div class="time-m-d">2024-12-20</div>
-        <div class="title">
-          <a href="/2024/12/20/3138-%E5%90%8C%E4%BD%8D%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%9E%E6%8E%A5%E7%9A%84%E6%9C%80%E5%B0%8F%E9%95%BF%E5%BA%A6/">
-            
-              
-                <span>3138-同位字符串连接的最小长度</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="3291.形成目标字符串需要的最少字符串数 I">
-        <div class="time-m-d">2024-12-19</div>
-        <div class="title">
-          <a href="/2024/12/19/%E3%80%90Trie%E6%A0%91%EF%BC%8Cdp%E3%80%913291-%E5%BD%A2%E6%88%90%E7%9B%AE%E6%A0%87%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%9C%80%E8%A6%81%E7%9A%84%E6%9C%80%E5%B0%91%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%B0-I/">
-            
-              
-                <span>3291.形成目标字符串需要的最少字符串数 I</span>
-              
-            
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+
+
+  <div id="gitalk-container"></div>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script>
+    function loadGitalkSuc() {
+      const gitalk = new Gitalk({
+        clientID: 'Ov23liEsmNxfQRDqWAJb',
+        clientSecret: '6353d100eda3d9beeb1755680c7406f982b60e9e',
+        repo: '10ng1000.github.io',
+        owner: '10ng1000',
+        admin: ['10ng1000'],
+        id: md5(location.pathname),
+        distractionFreeMode: false
+      })
+
+      gitalk.render('gitalk-container')
+    }
+  </script>
+  
+    <link rel="stylesheet" href="/plugins/gitalk.css">
+    <script type="text/javascript" src="/plugins/gitalk.min.js" onload="loadGitalkSuc(this)"></script>
+  
+
+
+
       </div>
     
   </div>
-  <nav class="post-navigation">
-    
-      <a href="/"><i class="iconfont icon-angleleft"></i></a>
-    
-    <span class="page-num">2 / 8</span>
-    
-      <a href="/page/3/"><i class="iconfont icon-angleright"></i></a>
-    
-  </nav>
-</div>
+
 
         
 <div class="footer">
@@ -518,6 +544,24 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + 452.%20%E7%94%A8%E6%9C%80%E5%B0%91%E6%95%B0%E9%87%8F%E7%9A%84%E7%AE%AD%E5%BC%95%E7%88%86%E6%B0%94%E7%90%83 + '&url=' + https%3A%2F%2F10ng1000.github.io%2F2025%2F03%2F10%2F452-%25E7%2594%25A8%25E6%259C%2580%25E5%25B0%2591%25E6%2595%25B0%25E9%2587%258F%25E7%259A%2584%25E7%25AE%25AD%25E5%25BC%2595%25E7%2588%2586%25E6%25B0%2594%25E7%2590%2583%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://10ng1000.github.io/2025/03/10/452-%E7%94%A8%E6%9C%80%E5%B0%91%E6%95%B0%E9%87%8F%E7%9A%84%E7%AE%AD%E5%BC%95%E7%88%86%E6%B0%94%E7%90%83/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>

@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>452. 用最少数量的箭引爆气球</title>
+      <link href="/2025/03/10/452-%E7%94%A8%E6%9C%80%E5%B0%91%E6%95%B0%E9%87%8F%E7%9A%84%E7%AE%AD%E5%BC%95%E7%88%86%E6%B0%94%E7%90%83/"/>
+      <url>/2025/03/10/452-%E7%94%A8%E6%9C%80%E5%B0%91%E6%95%B0%E9%87%8F%E7%9A%84%E7%AE%AD%E5%BC%95%E7%88%86%E6%B0%94%E7%90%83/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>Problem: <a href="https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/description/">452. 用最少数量的箭引爆气球</a></p></blockquote><h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>题目可以利用贪心来建模为区间交集问题，假设分别将所有相交区间取交集，得到若干个交集，我们只需要往交集处射箭即可。这样问题就转为了求这样的交集数量。</p><blockquote><p>求区间交并集可以采用双指针的思路。</p></blockquote><p>我们可以用排序+双指针的方法来求解区间的交集。维护这样的循环不变量：<code>points的[p,q]区间内的点有共同的交集，其最大的交集的数值区间为[l, r]。</code></p><p>起初，<code>p</code>和<code>q</code>都设为<code>0</code>，并将<code>l</code>和<code>r</code>设置为该点的左右端点。这样循环不变量满足了初始化条件。</p><p>接下来是不变量的保持。因为我们把数组按区间左端点进行了排序，我们可以知道后面的点的左端点一定比前面的点大。这样判断是否有交集只需要判断后面点的左端点是否大于<code>p + 1</code>点的右端点。如果有交集，我们就尝试更新交集区间的左右端点，并尝试<code>q + 1</code>这个点。当没有交集时，我们就找到了所有与<code>p + 1</code>点有交集的点，将<code>ans</code>的值加一。</p><p>这样在循环结束时，我们就找到了所有点的交集个数，得到答案。</p><h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">findMinArrowShots</span><span class="params">(<span class="type">int</span>[][] points)</span> &#123;</span><br><span class="line">        <span class="comment">//直接用减法可能会溢出</span></span><br><span class="line">        Arrays.sort(points, (<span class="type">int</span>[] a, <span class="type">int</span>[] b) -&gt; Integer.compare(a[<span class="number">0</span>], b[<span class="number">0</span>]));</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> points.length;</span><br><span class="line">        <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="comment">//[p, q]内的点有共同交集,最大交集为[l, r]</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">p</span> <span class="operator">=</span> <span class="number">0</span>, q = <span class="number">0</span>; p &lt; n; q++, p = q) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">l</span> <span class="operator">=</span> points[p][<span class="number">0</span>];</span><br><span class="line">            <span class="type">int</span> <span class="variable">r</span> <span class="operator">=</span> points[p][<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">while</span> (q + <span class="number">1</span> &lt; n &amp;&amp; points[q + <span class="number">1</span>][<span class="number">0</span>] &lt;= r) &#123;</span><br><span class="line">                l = points[q + <span class="number">1</span>][<span class="number">0</span>];</span><br><span class="line">                r = Math.min(points[q + <span class="number">1</span>][<span class="number">1</span>], r);</span><br><span class="line">                q++;</span><br><span class="line">            &#125;</span><br><span class="line">            ans++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>25. K 个一组反转链表</title>
       <link href="/2025/03/05/25-K-%E4%B8%AA%E4%B8%80%E7%BB%84%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/"/>
       <url>/2025/03/05/25-K-%E4%B8%AA%E4%B8%80%E7%BB%84%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/</url>
