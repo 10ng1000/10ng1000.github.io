@@ -15,7 +15,7 @@
   
   <title>
     
-      标签 
+      452. 用最少数量的箭引爆气球 
       
       
       |
@@ -145,21 +145,148 @@
 
 
 
-  <!-- 标签页 url形式：https://yoursite/tags/ -->
-  <div class="container tag-index">
-    <div>
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Clustering/" rel="tag">Clustering</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Idea/" rel="tag">Idea</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LLM/" rel="tag">LLM</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a><span class="tag-list-count">62</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/doccano/" rel="tag">doccano</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/paper/" rel="tag">paper</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%90%8E%E7%AB%AF/" rel="tag">后端</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/" rel="tag">异步编程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" rel="tag">知识图谱</a><span class="tag-list-count">1</span></li></ul>
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">452. 用最少数量的箭引爆气球</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+          2025-03-10 15:27:08
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="标签"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/LeetCode/" title="LeetCode">
+                    #LeetCode
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <blockquote>
+<p>Problem: <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/description/">452. 用最少数量的箭引爆气球</a></p>
+</blockquote>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>题目可以利用贪心来建模为区间交集问题，假设分别将所有相交区间取交集，得到若干个交集，我们只需要往交集处射箭即可。这样问题就转为了求这样的交集数量。</p>
+<blockquote>
+<p>求区间交并集可以采用双指针的思路。</p>
+</blockquote>
+<p>我们可以用排序+双指针的方法来求解区间的交集。维护这样的循环不变量：<code>points的[p,q]区间内的点有共同的交集，其最大的交集的数值区间为[l, r]。</code></p>
+<p>起初，<code>p</code>和<code>q</code>都设为<code>0</code>，并将<code>l</code>和<code>r</code>设置为该点的左右端点。这样循环不变量满足了初始化条件。</p>
+<p>接下来是不变量的保持。因为我们把数组按区间左端点进行了排序，我们可以知道后面的点的左端点一定比前面的点大。这样判断是否有交集只需要判断后面点的左端点是否大于<code>p + 1</code>点的右端点。如果有交集，我们就尝试更新交集区间的左右端点，并尝试<code>q + 1</code>这个点。当没有交集时，我们就找到了所有与<code>p + 1</code>点有交集的点，将<code>ans</code>的值加一。</p>
+<p>这样在循环结束时，我们就找到了所有点的交集个数，得到答案。</p>
+<h1 id="线段树？"><a href="#线段树？" class="headerlink" title="线段树？"></a>线段树？</h1><p>为什么这题与区间相关，但是不用线段树呢？</p>
+<p>首先，线段树是用来维护 <strong>区间信息</strong> 的数据结构。他能够在$O(logN)$的时间复杂度内实现<strong>单点</strong>修改、<strong>区间</strong>修改、<strong>区间</strong>查询（区间<strong>求和</strong>，求区间<strong>最大值</strong>，求区间最小值）等操作。</p>
+<p>而本题需要更改区间附带的信息，因此不用线段树。</p>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int findMinArrowShots(int[][] points) &#123;</span><br><span class="line">        //直接用减法可能会溢出</span><br><span class="line">        Arrays.sort(points, (int[] a, int[] b) -&gt; Integer.compare(a[0], b[0]));</span><br><span class="line">        int n = points.length;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        //[p, q]内的点有共同交集,最大交集为[l, r]</span><br><span class="line">        for (int p = 0, q = 0; p &lt; n; q++, p = q) &#123;</span><br><span class="line">            int l = points[p][0];</span><br><span class="line">            int r = points[p][1];</span><br><span class="line">            while (q + 1 &lt; n &amp;&amp; points[q + 1][0] &lt;= r) &#123;</span><br><span class="line">                l = points[q + 1][0];</span><br><span class="line">                r = Math.min(points[q + 1][1], r);</span><br><span class="line">                q++;</span><br><span class="line">            &#125;</span><br><span class="line">            ans++;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2025/03/05/25-K-%E4%B8%AA%E4%B8%80%E7%BB%84%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+              2025-03-10 15:27:08
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="标签"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/LeetCode/" title="LeetCode">
+                        #LeetCode
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2025/03/21/399-%E9%99%A4%E6%B3%95%E6%B1%82%E5%80%BC/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%BF%E6%AE%B5%E6%A0%91%EF%BC%9F"><span class="toc-text">线段树？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li></ol>
+      
     </div>
   </div>
-  
 
   
+<script src="/js/catalog.js"></script>
 
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+  <div id="gitalk-container"></div>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script>
+    function loadGitalkSuc() {
+      const gitalk = new Gitalk({
+        clientID: 'Ov23liEsmNxfQRDqWAJb',
+        clientSecret: '6353d100eda3d9beeb1755680c7406f982b60e9e',
+        repo: '10ng1000.github.io',
+        owner: '10ng1000',
+        admin: ['10ng1000'],
+        id: md5(location.pathname),
+        distractionFreeMode: false
+      })
+
+      gitalk.render('gitalk-container')
+    }
+  </script>
+  
+    <link rel="stylesheet" href="/plugins/gitalk.css">
+    <script type="text/javascript" src="/plugins/gitalk.min.js" onload="loadGitalkSuc(this)"></script>
   
 
-  
 
-  
+
+      </div>
+    
+  </div>
+
 
         
 <div class="footer">
@@ -432,12 +559,12 @@
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + tags + '&url=' + https%3A%2F%2F10ng1000.github.io%2Ftags%2Findex.html + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + 452.%20%E7%94%A8%E6%9C%80%E5%B0%91%E6%95%B0%E9%87%8F%E7%9A%84%E7%AE%AD%E5%BC%95%E7%88%86%E6%B0%94%E7%90%83 + '&url=' + https%3A%2F%2F10ng1000.github.io%2F2025%2F03%2F10%2F%25E3%2580%2590%25E5%258C%25BA%25E9%2597%25B4%25E3%2580%2591452-%25E7%2594%25A8%25E6%259C%2580%25E5%25B0%2591%25E6%2595%25B0%25E9%2587%258F%25E7%259A%2584%25E7%25AE%25AD%25E5%25BC%2595%25E7%2588%2586%25E6%25B0%2594%25E7%2590%2583%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://10ng1000.github.io/tags/index.html" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://10ng1000.github.io/2025/03/10/%E3%80%90%E5%8C%BA%E9%97%B4%E3%80%91452-%E7%94%A8%E6%9C%80%E5%B0%91%E6%95%B0%E9%87%8F%E7%9A%84%E7%AE%AD%E5%BC%95%E7%88%86%E6%B0%94%E7%90%83/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         
