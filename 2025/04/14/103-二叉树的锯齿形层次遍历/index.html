@@ -15,6 +15,11 @@
   
   <title>
     
+      103. 二叉树的锯齿形层次遍历 
+      
+      
+      |
+    
      10ng&#39;s Own eNGine
   </title>
 
@@ -106,149 +111,189 @@
 
 
       <div class="flex-container">
-        <div class="container index">
-  <div class="post-list">
-    <!-- 遍历渲染文章 -->
-    
-      <div class="post-item" title="103. 二叉树的锯齿形层次遍历">
-        <div class="time-m-d">2025-04-14</div>
-        <div class="title">
-          <a href="/2025/04/14/103-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%94%AF%E9%BD%BF%E5%BD%A2%E5%B1%82%E6%AC%A1%E9%81%8D%E5%8E%86/">
-            
-              
-                <span>103. 二叉树的锯齿形层次遍历</span>
-              
-            
-          </a>
-        </div>
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">103. 二叉树的锯齿形层次遍历</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+          2025-04-14 10:58:22
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="标签"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/LeetCode/" title="LeetCode">
+                    #LeetCode
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
-    
-      <div class="post-item" title="219. 存在重复元素 II">
-        <div class="time-m-d">2025-04-14</div>
-        <div class="title">
-          <a href="/2025/04/14/219-%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0-II/">
-            
-              
-                <span>219. 存在重复元素 II</span>
-              
-            
-          </a>
-        </div>
+      <div class="markdown-body">
+        <h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>这题也是按层遍历，因此我们自然想到也用队列来处理。</p>
+<p>那么如何在隔层反向输出呢？其实我们无需更改BFS的遍历顺序，而是不断插入临时链表的头部， 这样我们自然就得到了反向。</p>
+<h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><p>Java的List接口有多种实现，在只需要频繁插入头尾节点时，使用LinkedList会快一点。反之，在需要随机读取时，使用ArrayList会快非常多。</p>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><pre><code class="java">class Solution &#123;
+    public List&lt;List&lt;Integer&gt;&gt; zigzagLevelOrder(TreeNode root) &#123;
+        List&lt;List&lt;Integer&gt;&gt; ans = new ArrayList&lt;&gt;();
+        Deque&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;();
+        if (root == null) return ans;
+        queue.offer(root);
+        while (!queue.isEmpty()) &#123;
+            //List也可以是linkedList
+            List&lt;Integer&gt; curLevel = new LinkedList&lt;&gt;();
+            int size = queue.size();
+            for (int i = 0; i &lt; size; i++) &#123;
+                TreeNode node = queue.poll();
+                if (ans.size() % 2 == 0) curLevel.add(node.val);
+                else curLevel.addFirst(node.val);
+                if (node.left != null) queue.offer(node.left);
+                if (node.right != null) queue.offer(node.right);
+            &#125;
+            ans.add(curLevel);
+        &#125;
+        return ans;
+    &#125;
+&#125;
+</code></pre>
+
       </div>
-    
-      <div class="post-item" title="909. 蛇梯棋">
-        <div class="time-m-d">2025-03-28</div>
-        <div class="title">
-          <a href="/2025/03/28/%E3%80%90BFS%E3%80%91909-%E8%9B%87%E6%A2%AF%E6%A3%8B/">
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
             
-              
-                <span>909. 蛇梯棋</span>
-              
+              <a href="/2025/04/14/219-%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0-II/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
             
-          </a>
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+              2025-04-14 10:58:22
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="标签"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/LeetCode/" title="LeetCode">
+                        #LeetCode
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
-      </div>
+      
+    </div>
     
-      <div class="post-item" title="222. 完全二叉树的节点个数">
-        <div class="time-m-d">2025-03-26</div>
-        <div class="title">
-          <a href="/2025/03/26/222-%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%8A%82%E7%82%B9%E4%B8%AA%E6%95%B0/">
-            
-              
-                <span>222. 完全二叉树的节点个数</span>
-              
-            
-          </a>
-        </div>
-      </div>
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <div class="post-item" title="173. 二叉搜索树迭代器">
-        <div class="time-m-d">2025-03-26</div>
-        <div class="title">
-          <a href="/2025/03/26/%E3%80%90%E6%A0%88%E6%A8%A1%E6%8B%9F%E9%80%92%E5%BD%92%E3%80%91173-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E8%BF%AD%E4%BB%A3%E5%99%A8/">
-            
-              
-                <span>173. 二叉搜索树迭代器</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="98. 验证二叉搜索树">
-        <div class="time-m-d">2025-03-22</div>
-        <div class="title">
-          <a href="/2025/03/22/%E3%80%90%E9%80%92%E5%BD%92%E3%80%9198-%E9%AA%8C%E8%AF%81%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/">
-            
-              
-                <span>98. 验证二叉搜索树</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="399. 除法求值">
-        <div class="time-m-d">2025-03-21</div>
-        <div class="title">
-          <a href="/2025/03/21/399-%E9%99%A4%E6%B3%95%E6%B1%82%E5%80%BC/">
-            
-              
-                <span>399. 除法求值</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="452. 用最少数量的箭引爆气球">
-        <div class="time-m-d">2025-03-10</div>
-        <div class="title">
-          <a href="/2025/03/10/%E3%80%90%E5%8C%BA%E9%97%B4%E3%80%91452-%E7%94%A8%E6%9C%80%E5%B0%91%E6%95%B0%E9%87%8F%E7%9A%84%E7%AE%AD%E5%BC%95%E7%88%86%E6%B0%94%E7%90%83/">
-            
-              
-                <span>452. 用最少数量的箭引爆气球</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="25. K 个一组反转链表">
-        <div class="time-m-d">2025-03-05</div>
-        <div class="title">
-          <a href="/2025/03/05/25-K-%E4%B8%AA%E4%B8%80%E7%BB%84%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/">
-            
-              
-                <span>25. K 个一组反转链表</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="206. 反转链表">
-        <div class="time-m-d">2025-03-03</div>
-        <div class="title">
-          <a href="/2025/03/03/%E3%80%90%E9%93%BE%E8%A1%A8%E3%80%91206.%20%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/">
-            
-              
-                <span>206. 反转链表</span>
-              
-            
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+
+
+  <div id="gitalk-container"></div>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script>
+    function loadGitalkSuc() {
+      const gitalk = new Gitalk({
+        clientID: 'Ov23liEsmNxfQRDqWAJb',
+        clientSecret: '6353d100eda3d9beeb1755680c7406f982b60e9e',
+        repo: '10ng1000.github.io',
+        owner: '10ng1000',
+        admin: ['10ng1000'],
+        id: md5(location.pathname),
+        distractionFreeMode: false
+      })
+
+      gitalk.render('gitalk-container')
+    }
+  </script>
+  
+    <link rel="stylesheet" href="/plugins/gitalk.css">
+    <script type="text/javascript" src="/plugins/gitalk.min.js" onload="loadGitalkSuc(this)"></script>
+  
+
+
+
       </div>
     
   </div>
-  <nav class="post-navigation">
-    
-    <span class="page-num">1 / 9</span>
-    
-      <a href="/page/2/"><i class="iconfont icon-angleright"></i></a>
-    
-  </nav>
-</div>
+
 
         
 <div class="footer">
@@ -514,6 +559,24 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + 103.%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%94%AF%E9%BD%BF%E5%BD%A2%E5%B1%82%E6%AC%A1%E9%81%8D%E5%8E%86 + '&url=' + https%3A%2F%2F10ng1000.github.io%2F2025%2F04%2F14%2F103-%25E4%25BA%258C%25E5%258F%2589%25E6%25A0%2591%25E7%259A%2584%25E9%2594%25AF%25E9%25BD%25BF%25E5%25BD%25A2%25E5%25B1%2582%25E6%25AC%25A1%25E9%2581%258D%25E5%258E%2586%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://10ng1000.github.io/2025/04/14/103-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%94%AF%E9%BD%BF%E5%BD%A2%E5%B1%82%E6%AC%A1%E9%81%8D%E5%8E%86/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>

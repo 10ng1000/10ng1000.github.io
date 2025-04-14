@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>103. 二叉树的锯齿形层次遍历</title>
+      <link href="/2025/04/14/103-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%94%AF%E9%BD%BF%E5%BD%A2%E5%B1%82%E6%AC%A1%E9%81%8D%E5%8E%86/"/>
+      <url>/2025/04/14/103-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%94%AF%E9%BD%BF%E5%BD%A2%E5%B1%82%E6%AC%A1%E9%81%8D%E5%8E%86/</url>
+      
+        <content type="html"><![CDATA[<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>这题也是按层遍历，因此我们自然想到也用队列来处理。</p><p>那么如何在隔层反向输出呢？其实我们无需更改BFS的遍历顺序，而是不断插入临时链表的头部， 这样我们自然就得到了反向。</p><h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><p>Java的List接口有多种实现，在只需要频繁插入头尾节点时，使用LinkedList会快一点。反之，在需要随机读取时，使用ArrayList会快非常多。</p><h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><pre><code class="java">class Solution &#123;    public List&lt;List&lt;Integer&gt;&gt; zigzagLevelOrder(TreeNode root) &#123;        List&lt;List&lt;Integer&gt;&gt; ans = new ArrayList&lt;&gt;();        Deque&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;();        if (root == null) return ans;        queue.offer(root);        while (!queue.isEmpty()) &#123;            //List也可以是linkedList            List&lt;Integer&gt; curLevel = new LinkedList&lt;&gt;();            int size = queue.size();            for (int i = 0; i &lt; size; i++) &#123;                TreeNode node = queue.poll();                if (ans.size() % 2 == 0) curLevel.add(node.val);                else curLevel.addFirst(node.val);                if (node.left != null) queue.offer(node.left);                if (node.right != null) queue.offer(node.right);            &#125;            ans.add(curLevel);        &#125;        return ans;    &#125;&#125;</code></pre>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>219. 存在重复元素 II</title>
       <link href="/2025/04/14/219-%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0-II/"/>
       <url>/2025/04/14/219-%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0-II/</url>
