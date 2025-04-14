@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>219. 存在重复元素 II</title>
+      <link href="/2025/04/14/219-%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0-II/"/>
+      <url>/2025/04/14/219-%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0-II/</url>
+      
+        <content type="html"><![CDATA[<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>本题思路很明显是使用双指针+哈希表，具体实现上有几个点可以学习。</p><p>首先是在时间几乎无差别（即多一个if语句）的情况下，代码的简洁易懂有时候更为重要。像这题前几个元素的特判，可以不用单独拎一个for循环出来，而是加一个if语句在for循环中，这样便于维护循环不变式。</p><p>本题的循环不变式是，i代表右端点，如果i比k大，那么i - k - 1就是将要移除的左端点。如果右端点的值在<code>[i - k, i - 1]</code>内出现过，那么循环结束，返回true。在循环中，我们每次都把右端点的值加入进集合中，并在每个循环开头移除左端点的值。</p><p>另外这题可以学到的另一个点是，set的add方法有返回值，如果插入的元素已有则会返回false，这样我们就可以少写一个判断语句。</p><h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">containsNearbyDuplicate</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> k)</span> &#123;</span><br><span class="line">        Set&lt;Integer&gt; set = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;Integer&gt;();</span><br><span class="line">        <span class="type">int</span> <span class="variable">length</span> <span class="operator">=</span> nums.length;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i &gt; k) &#123;</span><br><span class="line">                set.remove(nums[i - k - <span class="number">1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (!set.add(nums[i])) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>909. 蛇梯棋</title>
       <link href="/2025/03/28/%E3%80%90BFS%E3%80%91909-%E8%9B%87%E6%A2%AF%E6%A3%8B/"/>
       <url>/2025/03/28/%E3%80%90BFS%E3%80%91909-%E8%9B%87%E6%A2%AF%E6%A3%8B/</url>

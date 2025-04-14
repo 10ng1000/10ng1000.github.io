@@ -15,8 +15,8 @@
   
   <title>
     
-      标签 
-       : LeetCode
+      219. 存在重复元素 II 
+      
       
       |
     
@@ -111,113 +111,168 @@
 
 
       <div class="flex-container">
-        <!-- 标签详情页，展示某个标签下的文章列表，url形式：https://yoursite/tags/某个标签/ -->
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
 
-<div class="container tag-details">
-  <div class="content-title">
-    <h2>
-      <span>LeetCode</span>
-    </h2>
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">219. 存在重复元素 II</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+          2025-04-14 10:36:07
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="标签"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/LeetCode/" title="LeetCode">
+                    #LeetCode
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>本题思路很明显是使用双指针+哈希表，具体实现上有几个点可以学习。</p>
+<p>首先是在时间几乎无差别（即多一个if语句）的情况下，代码的简洁易懂有时候更为重要。像这题前几个元素的特判，可以不用单独拎一个for循环出来，而是加一个if语句在for循环中，这样便于维护循环不变式。</p>
+<p>本题的循环不变式是，i代表右端点，如果i比k大，那么i - k - 1就是将要移除的左端点。如果右端点的值在<code>[i - k, i - 1]</code>内出现过，那么循环结束，返回true。在循环中，我们每次都把右端点的值加入进集合中，并在每个循环开头移除左端点的值。</p>
+<p>另外这题可以学到的另一个点是，set的add方法有返回值，如果插入的元素已有则会返回false，这样我们就可以少写一个判断语句。</p>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">containsNearbyDuplicate</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> k)</span> &#123;</span><br><span class="line">        Set&lt;Integer&gt; set = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;Integer&gt;();</span><br><span class="line">        <span class="type">int</span> <span class="variable">length</span> <span class="operator">=</span> nums.length;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i &gt; k) &#123;</span><br><span class="line">                set.remove(nums[i - k - <span class="number">1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (!set.add(nums[i])) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2025/03/28/%E3%80%90BFS%E3%80%91909-%E8%9B%87%E6%A2%AF%E6%A3%8B/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+              2025-04-14 10:36:07
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="标签"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/LeetCode/" title="LeetCode">
+                        #LeetCode
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
   </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="219. 存在重复元素 II">
-        <span class="time-m-d">2025-04-14</span>
-        <a href="/2025/04/14/219-%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0-II/">
-          <span>219. 存在重复元素 II</span>
-        </a>
-      </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li></ol>
+      
     </div>
+  </div>
+
   
-    <div class="post-list">
-      <div class="post-item" title="909. 蛇梯棋">
-        <span class="time-m-d">2025-03-28</span>
-        <a href="/2025/03/28/%E3%80%90BFS%E3%80%91909-%E8%9B%87%E6%A2%AF%E6%A3%8B/">
-          <span>909. 蛇梯棋</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="222. 完全二叉树的节点个数">
-        <span class="time-m-d">2025-03-26</span>
-        <a href="/2025/03/26/222-%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%8A%82%E7%82%B9%E4%B8%AA%E6%95%B0/">
-          <span>222. 完全二叉树的节点个数</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="173. 二叉搜索树迭代器">
-        <span class="time-m-d">2025-03-26</span>
-        <a href="/2025/03/26/%E3%80%90%E6%A0%88%E6%A8%A1%E6%8B%9F%E9%80%92%E5%BD%92%E3%80%91173-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E8%BF%AD%E4%BB%A3%E5%99%A8/">
-          <span>173. 二叉搜索树迭代器</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="98. 验证二叉搜索树">
-        <span class="time-m-d">2025-03-22</span>
-        <a href="/2025/03/22/%E3%80%90%E9%80%92%E5%BD%92%E3%80%9198-%E9%AA%8C%E8%AF%81%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/">
-          <span>98. 验证二叉搜索树</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="399. 除法求值">
-        <span class="time-m-d">2025-03-21</span>
-        <a href="/2025/03/21/399-%E9%99%A4%E6%B3%95%E6%B1%82%E5%80%BC/">
-          <span>399. 除法求值</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="452. 用最少数量的箭引爆气球">
-        <span class="time-m-d">2025-03-10</span>
-        <a href="/2025/03/10/%E3%80%90%E5%8C%BA%E9%97%B4%E3%80%91452-%E7%94%A8%E6%9C%80%E5%B0%91%E6%95%B0%E9%87%8F%E7%9A%84%E7%AE%AD%E5%BC%95%E7%88%86%E6%B0%94%E7%90%83/">
-          <span>452. 用最少数量的箭引爆气球</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="206. 反转链表">
-        <span class="time-m-d">2025-03-03</span>
-        <a href="/2025/03/03/%E3%80%90%E9%93%BE%E8%A1%A8%E3%80%91206.%20%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/">
-          <span>206. 反转链表</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="bfs和dfs的使用场景">
-        <span class="time-m-d">2025-02-28</span>
-        <a href="/2025/02/28/bfs%E5%92%8Cdfs%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/">
-          <span>bfs和dfs的使用场景</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="289. 生命游戏">
-        <span class="time-m-d">2025-02-28</span>
-        <a href="/2025/02/28/289-%E7%94%9F%E5%91%BD%E6%B8%B8%E6%88%8F/">
-          <span>289. 生命游戏</span>
-        </a>
-      </div>
-    </div>
-  
-  <nav class="post-navigation">
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-    <span class="page-num">1 / 7</span>
+      <div class="comments-container">
+        
+
+
+
+
+
+
+  <div id="gitalk-container"></div>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script>
+    function loadGitalkSuc() {
+      const gitalk = new Gitalk({
+        clientID: 'Ov23liEsmNxfQRDqWAJb',
+        clientSecret: '6353d100eda3d9beeb1755680c7406f982b60e9e',
+        repo: '10ng1000.github.io',
+        owner: '10ng1000',
+        admin: ['10ng1000'],
+        id: md5(location.pathname),
+        distractionFreeMode: false
+      })
+
+      gitalk.render('gitalk-container')
+    }
+  </script>
+  
+    <link rel="stylesheet" href="/plugins/gitalk.css">
+    <script type="text/javascript" src="/plugins/gitalk.min.js" onload="loadGitalkSuc(this)"></script>
+  
+
+
+
+      </div>
     
-      <a href="/tags/LeetCode/page/2/"><i class="iconfont icon-angleright"></i></a>
-    
-  </nav>
-</div>
+  </div>
+
 
         
 <div class="footer">
@@ -483,6 +538,24 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + 219.%20%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0%20II + '&url=' + https%3A%2F%2F10ng1000.github.io%2F2025%2F04%2F14%2F219-%25E5%25AD%2598%25E5%259C%25A8%25E9%2587%258D%25E5%25A4%258D%25E5%2585%2583%25E7%25B4%25A0-II%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://10ng1000.github.io/2025/04/14/219-%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0-II/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
