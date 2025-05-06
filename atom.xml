@@ -6,7 +6,7 @@
   <link href="https://10ng1000.github.io/atom.xml" rel="self"/>
   
   <link href="https://10ng1000.github.io/"/>
-  <updated>2025-04-17T06:35:36.446Z</updated>
+  <updated>2025-05-06T01:29:20.061Z</updated>
   <id>https://10ng1000.github.io/</id>
   
   <author>
@@ -15,6 +15,72 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MT.2004 购买数字</title>
+    <link href="https://10ng1000.github.io/2025/04/30/MT-2004-%E8%B4%AD%E4%B9%B0%E6%95%B0%E5%AD%97/"/>
+    <id>https://10ng1000.github.io/2025/04/30/MT-2004-%E8%B4%AD%E4%B9%B0%E6%95%B0%E5%AD%97/</id>
+    <published>2025-04-30T01:39:30.000Z</published>
+    <updated>2025-05-06T01:29:20.061Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.matiji.net/exam/brushquestion/4/3181/1DC60EA6DF83A333301CFFE1407FBA59&quot;&gt;MT2004</summary>
+        
+      
+    
+    
+    
+    
+    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>212. 单词搜索 II</title>
+    <link href="https://10ng1000.github.io/2025/04/30/%E3%80%90Trie%E6%A0%91%E3%80%91212-%E5%8D%95%E8%AF%8D%E6%90%9C%E7%B4%A2-II/"/>
+    <id>https://10ng1000.github.io/2025/04/30/%E3%80%90Trie%E6%A0%91%E3%80%91212-%E5%8D%95%E8%AF%8D%E6%90%9C%E7%B4%A2-II/</id>
+    <published>2025-04-30T01:39:04.000Z</published>
+    <updated>2025-05-06T01:09:41.167Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;思路&quot;&gt;&lt;a href=&quot;#思路&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>136.只出现一次的数字</title>
+    <link href="https://10ng1000.github.io/2025/04/27/%E3%80%90%E4%BD%8D%E8%BF%90%E7%AE%97%E3%80%91136-%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97/"/>
+    <id>https://10ng1000.github.io/2025/04/27/%E3%80%90%E4%BD%8D%E8%BF%90%E7%AE%97%E3%80%91136-%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97/</id>
+    <published>2025-04-27T06:57:37.000Z</published>
+    <updated>2025-05-06T00:47:29.373Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;思路&quot;&gt;&lt;a href=&quot;#思路&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>17. 电话号码的字母组合</title>
@@ -421,78 +487,6 @@
     <category term="后端" scheme="https://10ng1000.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
     
     <category term="前端" scheme="https://10ng1000.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>mybatis-plus字段大小写的小坑</title>
-    <link href="https://10ng1000.github.io/2025/02/17/Mybatis-plus%E5%AD%97%E6%AE%B5%E5%A4%A7%E5%B0%8F%E5%86%99%E7%9A%84%E5%B0%8F%E5%9D%91/"/>
-    <id>https://10ng1000.github.io/2025/02/17/Mybatis-plus%E5%AD%97%E6%AE%B5%E5%A4%A7%E5%B0%8F%E5%86%99%E7%9A%84%E5%B0%8F%E5%9D%91/</id>
-    <published>2025-02-17T04:56:22.000Z</published>
-    <updated>2025-02-17T05:07:22.704Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;今天在写图书类后端时，发现&lt;code&gt;ISBN&lt;/code&gt;这个字段一直报空，但是前端发出的请求中&lt;code&gt;ISBN&lt;/code&gt;字段是存在的，后来看到报错信息，Mybatis-plus把&lt;code&gt;ISBN&lt;/code&gt;这个类成员解析成了&lt;code&gt;i_s_b_n&lt;/c</summary>
-        
-      
-    
-    
-    
-    
-    <category term="后端" scheme="https://10ng1000.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL初始化数据库</title>
-    <link href="https://10ng1000.github.io/2025/02/16/MySQL%E5%88%9D%E5%A7%8B%E5%8C%96%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    <id>https://10ng1000.github.io/2025/02/16/MySQL%E5%88%9D%E5%A7%8B%E5%8C%96%E6%95%B0%E6%8D%AE%E5%BA%93/</id>
-    <published>2025-02-16T07:11:49.000Z</published>
-    <updated>2025-02-16T07:25:58.433Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;项目需求，给定一个SQL脚本，要使用这个脚本初始化项目数据库。&lt;/p&gt;
-&lt;p&gt;首先，MySQL的初始账号和密码都是&lt;code&gt;root&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;起初，我使用DBeaver来执行SQL语句，但是执行的时候会出现语法错误的warning，后面甚至出现了er</summary>
-        
-      
-    
-    
-    
-    
-    <category term="后端" scheme="https://10ng1000.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>11.盛最多水的容器</title>
-    <link href="https://10ng1000.github.io/2025/02/14/%E3%80%90%E5%8F%8C%E6%8C%87%E9%92%88%E3%80%9111-%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/"/>
-    <id>https://10ng1000.github.io/2025/02/14/%E3%80%90%E5%8F%8C%E6%8C%87%E9%92%88%E3%80%9111-%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/</id>
-    <published>2025-02-14T07:33:02.000Z</published>
-    <updated>2025-02-14T07:45:39.923Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/container-with-most-water/description/&quot;&gt;11.</summary>
-        
-      
-    
-    
-    
-    
-    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
     
   </entry>
   
