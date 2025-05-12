@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>162. 寻找峰值</title>
+      <link href="/2025/05/12/%E3%80%90%E4%BA%8C%E5%88%86%E3%80%91162-%E5%AF%BB%E6%89%BE%E5%B3%B0%E5%80%BC/"/>
+      <url>/2025/05/12/%E3%80%90%E4%BA%8C%E5%88%86%E3%80%91162-%E5%AF%BB%E6%89%BE%E5%B3%B0%E5%80%BC/</url>
+      
+        <content type="html"><![CDATA[<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>这道题可以看到二分的本质，其实数组有序只是二分的一种可能条件，本质上二分要求的是<strong>原问题可以二分为更小规模的子问题</strong>，或者说是“二段性“，舍去另一半规模的问题，仍然可以求出原问题的解。</p><p>在本题中，如果我们找到的区间中点的元素，其右边的元素值小于它，那么这个元素就可能是问题的一个解，我们以这个元素作为新的右边界，否则我们选择右边元素作为左边界。实际上，以为<code>nums[-1]</code>和<code>nums[n]</code>都为负无穷，这个新的右（左）边界也满足了上述性质，问题转为了更小规模的子问题。</p><p>而显然，当问题减小到只有1的规模，这个点就是一个满足要求的峰值点，因此我们不会因为二分区间而找不到峰值点，这个解法是可行的。</p><h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">findPeakElement</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> nums.length;</span><br><span class="line">        <span class="type">int</span> <span class="variable">l</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">r</span> <span class="operator">=</span> n - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (l &lt; r) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> (l + r) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (mid &lt; n - <span class="number">1</span> &amp;&amp; nums[mid] &gt; nums[mid + <span class="number">1</span>]) &#123;</span><br><span class="line">                r = mid;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                l = mid + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> r;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>295. 数据流的中位数</title>
       <link href="/2025/05/12/295-%E6%95%B0%E6%8D%AE%E6%B5%81%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/"/>
       <url>/2025/05/12/295-%E6%95%B0%E6%8D%AE%E6%B5%81%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/</url>
