@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>Huggingface 无法连接的解决方案</title>
+      <link href="/2025/05/19/Huggingface-%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+      <url>/2025/05/19/Huggingface-%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+      
+        <content type="html"><![CDATA[<p>使用<a href="https://hf-mirror.com/">https://hf-mirror.com/</a>代替原来的huggingface链接即可，可以使用网站提供的下载方式，如huggingface-cli，hfd，或者git lfs下载。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> paper </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>162. 寻找峰值</title>
       <link href="/2025/05/12/%E3%80%90%E4%BA%8C%E5%88%86%E3%80%91162-%E5%AF%BB%E6%89%BE%E5%B3%B0%E5%80%BC/"/>
       <url>/2025/05/12/%E3%80%90%E4%BA%8C%E5%88%86%E3%80%91162-%E5%AF%BB%E6%89%BE%E5%B3%B0%E5%80%BC/</url>

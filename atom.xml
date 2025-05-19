@@ -6,7 +6,7 @@
   <link href="https://10ng1000.github.io/atom.xml" rel="self"/>
   
   <link href="https://10ng1000.github.io/"/>
-  <updated>2025-05-12T02:03:47.312Z</updated>
+  <updated>2025-05-19T02:02:33.214Z</updated>
   <id>https://10ng1000.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Huggingface 无法连接的解决方案</title>
+    <link href="https://10ng1000.github.io/2025/05/19/Huggingface-%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+    <id>https://10ng1000.github.io/2025/05/19/Huggingface-%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</id>
+    <published>2025-05-19T01:59:24.000Z</published>
+    <updated>2025-05-19T02:02:33.214Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;使用&lt;a href=&quot;https://hf-mirror.com/&quot;&gt;https://hf-mirror.com/&lt;/a&gt;代替原来的huggingface链接即可，可以使用网站提供的下载方式，如huggingface-cli，hfd，或者git</summary>
+        
+      
+    
+    
+    
+    
+    <category term="paper" scheme="https://10ng1000.github.io/tags/paper/"/>
+    
+  </entry>
   
   <entry>
     <title>162. 寻找峰值</title>
@@ -449,32 +472,6 @@
         
         
     <summary type="html">&lt;p&gt;在做力扣&lt;a href=&quot;https://leetcode.cn/problems/word-ladder/description/&quot;&gt;127.</summary>
-        
-      
-    
-    
-    
-    
-    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>289. 生命游戏</title>
-    <link href="https://10ng1000.github.io/2025/02/28/289-%E7%94%9F%E5%91%BD%E6%B8%B8%E6%88%8F/"/>
-    <id>https://10ng1000.github.io/2025/02/28/289-%E7%94%9F%E5%91%BD%E6%B8%B8%E6%88%8F/</id>
-    <published>2025-02-28T00:19:55.000Z</published>
-    <updated>2025-02-28T00:46:39.498Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/game-of-life/description/&quot;&gt;289. 生命游戏&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&quot;思路&quot;&gt;&lt;a</summary>
         
       
     
