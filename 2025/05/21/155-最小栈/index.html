@@ -15,8 +15,8 @@
   
   <title>
     
-      标签 
-       : LeetCode
+      155. 最小栈 
+      
       
       |
     
@@ -111,115 +111,169 @@
 
 
       <div class="flex-container">
-        <!-- 标签详情页，展示某个标签下的文章列表，url形式：https://yoursite/tags/某个标签/ -->
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
 
-<div class="container tag-details">
-  <div class="content-title">
-    <h2>
-      <span>LeetCode</span>
-    </h2>
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">155. 最小栈</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+          2025-05-21 09:48:52
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="标签"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/LeetCode/" title="LeetCode">
+                    #LeetCode
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>这套题我起初用栈+最小堆+延迟删除来做，但是这样没有利用到栈的性质，时间复杂度较高。</p>
+<p>实际上，利用好了栈的性质，这题可以用另一个最小栈来存储最小值。</p>
+<p>因为栈是先进后出的性质，我们维护这样一个栈来存储最小值，这个栈的栈顶元素是栈当前的最小值。</p>
+<p>首先在原始栈入栈时，我们要维护最小栈的性质。判断这个元素是否比栈顶元素小，如果是的话就把这个元素入栈，否则不入。如果栈为空，则直接入栈。这样显然我们在原始栈入栈时成功维护了最小栈的性质。</p>
+<p>其次在原始栈出栈时，我们判断该元素是否为最小栈的栈顶元素，如果是则最小栈出栈，否则不出。因为最小栈栈顶元素是当前最小值，如果出栈的元素不是它，则一定比它大，那么我们就不必出栈。这样最小栈的性质也得到了维护。</p>
+<p>要想到这个做法，我们要知道栈的性质有很高的顺序性，先进后出，充分利用这个性质，以另一个栈来获取最小元素就是最优解。</p>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MinStack</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Deque&lt;Integer&gt; stack;</span><br><span class="line">    <span class="keyword">private</span> Deque&lt;Integer&gt; minStack;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MinStack</span><span class="params">()</span> &#123;</span><br><span class="line">        stack = <span class="keyword">new</span> <span class="title class_">ArrayDeque</span>&lt;&gt;();</span><br><span class="line">        minStack = <span class="keyword">new</span> <span class="title class_">ArrayDeque</span>&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">push</span><span class="params">(<span class="type">int</span> val)</span> &#123;</span><br><span class="line">        stack.push(val);</span><br><span class="line">        <span class="keyword">if</span> (minStack.isEmpty() || val &lt;= minStack.peek()) &#123;</span><br><span class="line">            minStack.push(val);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">pop</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">val</span> <span class="operator">=</span> stack.pop();</span><br><span class="line">        <span class="keyword">if</span> (val == minStack.peek()) &#123;</span><br><span class="line">            minStack.pop();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">top</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> stack.peek();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getMin</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> minStack.peek();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2025/05/21/137-%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97-II/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+              2025-05-21 09:48:52
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="标签"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/LeetCode/" title="LeetCode">
+                        #LeetCode
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
   </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="909. 蛇梯棋">
-        <span class="time-m-d">2025-03-28</span>
-        <a href="/2025/03/28/%E3%80%90BFS%E3%80%91909-%E8%9B%87%E6%A2%AF%E6%A3%8B/">
-          <span>909. 蛇梯棋</span>
-        </a>
-      </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li></ol>
+      
     </div>
+  </div>
+
   
-    <div class="post-list">
-      <div class="post-item" title="222. 完全二叉树的节点个数">
-        <span class="time-m-d">2025-03-26</span>
-        <a href="/2025/03/26/222-%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%8A%82%E7%82%B9%E4%B8%AA%E6%95%B0/">
-          <span>222. 完全二叉树的节点个数</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="173. 二叉搜索树迭代器">
-        <span class="time-m-d">2025-03-26</span>
-        <a href="/2025/03/26/%E3%80%90%E6%A0%88%E6%A8%A1%E6%8B%9F%E9%80%92%E5%BD%92%E3%80%91173-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E8%BF%AD%E4%BB%A3%E5%99%A8/">
-          <span>173. 二叉搜索树迭代器</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="98. 验证二叉搜索树">
-        <span class="time-m-d">2025-03-22</span>
-        <a href="/2025/03/22/%E3%80%90%E9%80%92%E5%BD%92%E3%80%9198-%E9%AA%8C%E8%AF%81%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/">
-          <span>98. 验证二叉搜索树</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="399. 除法求值">
-        <span class="time-m-d">2025-03-21</span>
-        <a href="/2025/03/21/399-%E9%99%A4%E6%B3%95%E6%B1%82%E5%80%BC/">
-          <span>399. 除法求值</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="452. 用最少数量的箭引爆气球">
-        <span class="time-m-d">2025-03-10</span>
-        <a href="/2025/03/10/%E3%80%90%E5%8C%BA%E9%97%B4%E3%80%91452-%E7%94%A8%E6%9C%80%E5%B0%91%E6%95%B0%E9%87%8F%E7%9A%84%E7%AE%AD%E5%BC%95%E7%88%86%E6%B0%94%E7%90%83/">
-          <span>452. 用最少数量的箭引爆气球</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="206. 反转链表">
-        <span class="time-m-d">2025-03-03</span>
-        <a href="/2025/03/03/%E3%80%90%E9%93%BE%E8%A1%A8%E3%80%91206.%20%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/">
-          <span>206. 反转链表</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="bfs和dfs的使用场景">
-        <span class="time-m-d">2025-02-28</span>
-        <a href="/2025/02/28/bfs%E5%92%8Cdfs%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/">
-          <span>bfs和dfs的使用场景</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="289. 生命游戏">
-        <span class="time-m-d">2025-02-28</span>
-        <a href="/2025/02/28/289-%E7%94%9F%E5%91%BD%E6%B8%B8%E6%88%8F/">
-          <span>289. 生命游戏</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="71. 简化路径">
-        <span class="time-m-d">2025-02-27</span>
-        <a href="/2025/02/27/71-%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84/">
-          <span>71. 简化路径</span>
-        </a>
-      </div>
-    </div>
-  
-  <nav class="post-navigation">
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <a href="/tags/LeetCode/"><i class="iconfont icon-angleleft"></i></a>
+      <div class="comments-container">
+        
+
+
+
+
+
+
+  <div id="gitalk-container"></div>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script>
+    function loadGitalkSuc() {
+      const gitalk = new Gitalk({
+        clientID: 'Ov23liEsmNxfQRDqWAJb',
+        clientSecret: '6353d100eda3d9beeb1755680c7406f982b60e9e',
+        repo: '10ng1000.github.io',
+        owner: '10ng1000',
+        admin: ['10ng1000'],
+        id: md5(location.pathname),
+        distractionFreeMode: false
+      })
+
+      gitalk.render('gitalk-container')
+    }
+  </script>
+  
+    <link rel="stylesheet" href="/plugins/gitalk.css">
+    <script type="text/javascript" src="/plugins/gitalk.min.js" onload="loadGitalkSuc(this)"></script>
+  
+
+
+
+      </div>
     
-    <span class="page-num">2 / 8</span>
-    
-      <a href="/tags/LeetCode/page/3/"><i class="iconfont icon-angleright"></i></a>
-    
-  </nav>
-</div>
+  </div>
+
 
         
 <div class="footer">
@@ -485,6 +539,24 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + 155.%20%E6%9C%80%E5%B0%8F%E6%A0%88 + '&url=' + https%3A%2F%2F10ng1000.github.io%2F2025%2F05%2F21%2F155-%25E6%259C%2580%25E5%25B0%258F%25E6%25A0%2588%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://10ng1000.github.io/2025/05/21/155-%E6%9C%80%E5%B0%8F%E6%A0%88/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
