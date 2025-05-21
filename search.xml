@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>137. 只出现一次的数字 II</title>
+      <link href="/2025/05/21/137-%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97-II/"/>
+      <url>/2025/05/21/137-%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97-II/</url>
+      
+        <content type="html"><![CDATA[<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>这道题我们可以用有限状态自动机（DFA）的思路来做。</p><p>之前的只出现一次的数字中，使用异或运算（也就是模2的加法）可以把所有出现两次的数字抵消掉，最后留下只出现一次的数字。</p><p>本题我们也可以往这个思路去想，使用模3的加法把出现三次的数字抵消掉（模3的加法也满足交换律和结合律）。</p><p>那么如何模拟模3的加法呢？</p><p>从模2的加法入手，我们可以把模2加法看成是一个DFA，状态0（即当前位为0）遇到1变为状态1，状态1遇1变为状态0，遇到0都不变。</p><p>模3的加法也类似，不过因为要有三种状态，我们需要用两个二进制位来表示。<br>00 -&gt; 遇到1 -&gt; 01 -&gt; 遇到1 -&gt; 10 -&gt; 遇到1 -&gt; 00。</p><p>这样，当我们把所有数字都进行模3加法计算完之后，出现三次的数字全部被抵消掉，状态机退化到只有前两个状态。因此，其第二位就是最终的结果。</p><p>最后剩下的问题就是如何模拟这个状态机了。我们可以根据状态机写出真值表，然后通过化简真值表来得到表达式即可。</p><h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">singleNumber</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">ta</span> <span class="operator">=</span> a;</span><br><span class="line">            a = ~a&amp;b&amp;nums[i] | a&amp;~b&amp;~nums[i];</span><br><span class="line">            b = ~ta &amp; (b ^ nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Huggingface 无法连接的解决方案</title>
       <link href="/2025/05/19/Huggingface-%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
       <url>/2025/05/19/Huggingface-%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>

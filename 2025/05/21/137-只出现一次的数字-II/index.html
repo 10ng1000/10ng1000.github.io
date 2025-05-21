@@ -15,8 +15,8 @@
   
   <title>
     
-      标签 
-       : LeetCode
+      137. 只出现一次的数字 II 
+      
       
       |
     
@@ -111,115 +111,171 @@
 
 
       <div class="flex-container">
-        <!-- 标签详情页，展示某个标签下的文章列表，url形式：https://yoursite/tags/某个标签/ -->
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
 
-<div class="container tag-details">
-  <div class="content-title">
-    <h2>
-      <span>LeetCode</span>
-    </h2>
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">137. 只出现一次的数字 II</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+          2025-05-21 09:04:28
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="标签"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/LeetCode/" title="LeetCode">
+                    #LeetCode
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>这道题我们可以用有限状态自动机（DFA）的思路来做。</p>
+<p>之前的只出现一次的数字中，使用异或运算（也就是模2的加法）可以把所有出现两次的数字抵消掉，最后留下只出现一次的数字。</p>
+<p>本题我们也可以往这个思路去想，使用模3的加法把出现三次的数字抵消掉（模3的加法也满足交换律和结合律）。</p>
+<p>那么如何模拟模3的加法呢？</p>
+<p>从模2的加法入手，我们可以把模2加法看成是一个DFA，状态0（即当前位为0）遇到1变为状态1，状态1遇1变为状态0，遇到0都不变。</p>
+<p>模3的加法也类似，不过因为要有三种状态，我们需要用两个二进制位来表示。<br>00 -&gt; 遇到1 -&gt; 01 -&gt; 遇到1 -&gt; 10 -&gt; 遇到1 -&gt; 00。</p>
+<p>这样，当我们把所有数字都进行模3加法计算完之后，出现三次的数字全部被抵消掉，状态机退化到只有前两个状态。因此，其第二位就是最终的结果。</p>
+<p>最后剩下的问题就是如何模拟这个状态机了。我们可以根据状态机写出真值表，然后通过化简真值表来得到表达式即可。</p>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">singleNumber</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">ta</span> <span class="operator">=</span> a;</span><br><span class="line">            a = ~a&amp;b&amp;nums[i] | a&amp;~b&amp;~nums[i];</span><br><span class="line">            b = ~ta &amp; (b ^ nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2025/05/19/Huggingface-%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+              2025-05-21 09:04:28
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="标签"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/LeetCode/" title="LeetCode">
+                        #LeetCode
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
   </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="3164. 优质数对的总数 II">
-        <span class="time-m-d">2024-10-11</span>
-        <a href="/2024/10/11/3164-%E4%BC%98%E8%B4%A8%E6%95%B0%E5%AF%B9%E7%9A%84%E6%80%BB%E6%95%B0-II/">
-          <span>3164. 优质数对的总数 II</span>
-        </a>
-      </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li></ol>
+      
     </div>
+  </div>
+
   
-    <div class="post-list">
-      <div class="post-item" title="871. 最低加油次数">
-        <span class="time-m-d">2024-10-08</span>
-        <a href="/2024/10/08/871-%E6%9C%80%E4%BD%8E%E5%8A%A0%E6%B2%B9%E6%AC%A1%E6%95%B0/">
-          <span>871. 最低加油次数</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="134. 加油站">
-        <span class="time-m-d">2024-10-06</span>
-        <a href="/2024/10/06/134-%E5%8A%A0%E6%B2%B9%E7%AB%99/">
-          <span>134. 加油站</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="135. 分发糖果">
-        <span class="time-m-d">2024-10-06</span>
-        <a href="/2024/10/06/135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/">
-          <span>135. 分发糖果</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="1227. 飞机座位分配概率">
-        <span class="time-m-d">2024-10-04</span>
-        <a href="/2024/10/04/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%911227-%E9%A3%9E%E6%9C%BA%E5%BA%A7%E4%BD%8D%E5%88%86%E9%85%8D%E6%A6%82%E7%8E%87/">
-          <span>1227. 飞机座位分配概率</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="3306. 元音辅音字符串计数 II">
-        <span class="time-m-d">2024-10-02</span>
-        <a href="/2024/10/02/%E3%80%90%E6%81%B0%E5%A5%BD%E5%9E%8B%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E3%80%913306-%E5%85%83%E9%9F%B3%E8%BE%85%E9%9F%B3%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%AE%A1%E6%95%B0-II/">
-          <span>3306. 元音辅音字符串计数 II</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="1870. 准时到达的列车最小时速">
-        <span class="time-m-d">2024-10-02</span>
-        <a href="/2024/10/02/1870-%E5%87%86%E6%97%B6%E5%88%B0%E8%BE%BE%E7%9A%84%E5%88%97%E8%BD%A6%E6%9C%80%E5%B0%8F%E6%97%B6%E9%80%9F/">
-          <span>1870. 准时到达的列车最小时速</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="1845. 座位预约管理系统">
-        <span class="time-m-d">2024-09-30</span>
-        <a href="/2024/09/30/1845-%E5%BA%A7%E4%BD%8D%E9%A2%84%E7%BA%A6%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/">
-          <span>1845. 座位预约管理系统</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="238. 除自身以外数组的乘积">
-        <span class="time-m-d">2024-09-29</span>
-        <a href="/2024/09/29/238-%E9%99%A4%E8%87%AA%E8%BA%AB%E4%BB%A5%E5%A4%96%E6%95%B0%E7%BB%84%E7%9A%84%E4%B9%98%E7%A7%AF/">
-          <span>238. 除自身以外数组的乘积</span>
-        </a>
-      </div>
-    </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="2073. 买票需要的时间">
-        <span class="time-m-d">2024-09-29</span>
-        <a href="/2024/09/29/2073-%E4%B9%B0%E7%A5%A8%E9%9C%80%E8%A6%81%E7%9A%84%E6%97%B6%E9%97%B4/">
-          <span>2073. 买票需要的时间</span>
-        </a>
-      </div>
-    </div>
-  
-  <nav class="post-navigation">
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <a href="/tags/LeetCode/page/5/"><i class="iconfont icon-angleleft"></i></a>
+      <div class="comments-container">
+        
+
+
+
+
+
+
+  <div id="gitalk-container"></div>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script>
+    function loadGitalkSuc() {
+      const gitalk = new Gitalk({
+        clientID: 'Ov23liEsmNxfQRDqWAJb',
+        clientSecret: '6353d100eda3d9beeb1755680c7406f982b60e9e',
+        repo: '10ng1000.github.io',
+        owner: '10ng1000',
+        admin: ['10ng1000'],
+        id: md5(location.pathname),
+        distractionFreeMode: false
+      })
+
+      gitalk.render('gitalk-container')
+    }
+  </script>
+  
+    <link rel="stylesheet" href="/plugins/gitalk.css">
+    <script type="text/javascript" src="/plugins/gitalk.min.js" onload="loadGitalkSuc(this)"></script>
+  
+
+
+
+      </div>
     
-    <span class="page-num">6 / 8</span>
-    
-      <a href="/tags/LeetCode/page/7/"><i class="iconfont icon-angleright"></i></a>
-    
-  </nav>
-</div>
+  </div>
+
 
         
 <div class="footer">
@@ -485,6 +541,24 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + 137.%20%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97%20II + '&url=' + https%3A%2F%2F10ng1000.github.io%2F2025%2F05%2F21%2F137-%25E5%258F%25AA%25E5%2587%25BA%25E7%258E%25B0%25E4%25B8%2580%25E6%25AC%25A1%25E7%259A%2584%25E6%2595%25B0%25E5%25AD%2597-II%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://10ng1000.github.io/2025/05/21/137-%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97-II/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
