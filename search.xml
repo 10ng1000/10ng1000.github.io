@@ -4,6 +4,38 @@
   
     
     <entry>
+      <title>celery与django的连接问题</title>
+      <link href="/2025/06/06/celery%E4%B8%8Edjango%E7%9A%84%E8%BF%9E%E6%8E%A5%E9%97%AE%E9%A2%98/"/>
+      <url>/2025/06/06/celery%E4%B8%8Edjango%E7%9A%84%E8%BF%9E%E6%8E%A5%E9%97%AE%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[<p>在使用celery作为异步任务队列时，我遇到了Django连接不上的问题。具体来说，我已经按照网上的教程在Django的<strong>settings.py</strong>里配置好了celery的设置，写好了<strong>celery.py</strong>和<strong>tasks.py</strong>，使用docker启动celery服务时，也正常显示celery连接到了redis，但是当django调用celery的task时，却抛出了连接异常的错误。</p><p>后来，在网上看了很多错误报告的解决方式之后，我发现是因为在Django里使用celery，还需要在django的__init__.py里进行如下配置：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> myapp.celery <span class="keyword">import</span> app <span class="keyword">as</span> celery_app</span><br><span class="line">__all__ = (<span class="string">&#x27;celery_app&#x27;</span>,)</span><br></pre></td></tr></table></figure><p>这样才能保证在Django启动时celery能够正确被加载。借此来复习一下Python中__init__文件的用法。</p><h1 id="init-py"><a href="#init-py" class="headerlink" title="__init__.py"></a><code>__init__.py</code></h1><p><code>__init__.py</code> 是 Python 包（package）的初始化文件，它的主要作用包括：</p><ul><li><strong>标记目录为 Python 包</strong>：使 Python 将该<strong>目录</strong>视为一个可导入的包（即使文件为空）。</li><li><strong>初始化包级别的代码</strong>：当该包或其子模块被导入时，<code>__init__.py</code> 中的代码会<strong>自动执行</strong>。</li><li><strong>控制模块的导入行为</strong>：可以定义 <code>__all__</code> 来限制 <code>from package import *</code> 时导入的内容。</li></ul><p>在 Django 项目的 <code>__init__.py</code> 中添加：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> myapp.celery <span class="keyword">import</span> app <span class="keyword">as</span> celery_app</span><br></pre></td></tr></table></figure><p>可以确保 Celery 应用 (<code>celery_app</code>) 在 Django 启动时就被加载。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 后端 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>215. 数组中的第K个最大元素</title>
+      <link href="/2025/05/21/215-%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E7%AC%ACK%E4%B8%AA%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0/"/>
+      <url>/2025/05/21/215-%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E7%AC%ACK%E4%B8%AA%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>155. 最小栈</title>
       <link href="/2025/05/21/155-%E6%9C%80%E5%B0%8F%E6%A0%88/"/>
       <url>/2025/05/21/155-%E6%9C%80%E5%B0%8F%E6%A0%88/</url>

@@ -6,7 +6,7 @@
   <link href="https://10ng1000.github.io/atom.xml" rel="self"/>
   
   <link href="https://10ng1000.github.io/"/>
-  <updated>2025-05-21T01:48:52.523Z</updated>
+  <updated>2025-06-06T06:05:56.297Z</updated>
   <id>https://10ng1000.github.io/</id>
   
   <author>
@@ -15,6 +15,42 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>celery与django的连接问题</title>
+    <link href="https://10ng1000.github.io/2025/06/06/celery%E4%B8%8Edjango%E7%9A%84%E8%BF%9E%E6%8E%A5%E9%97%AE%E9%A2%98/"/>
+    <id>https://10ng1000.github.io/2025/06/06/celery%E4%B8%8Edjango%E7%9A%84%E8%BF%9E%E6%8E%A5%E9%97%AE%E9%A2%98/</id>
+    <published>2025-06-06T05:52:35.000Z</published>
+    <updated>2025-06-06T06:05:56.297Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;在使用celery作为异步任务队列时，我遇到了Django连接不上的问题。具体来说，我已经按照网上的教程在Django的&lt;strong&gt;settings.py&lt;/strong&gt;里配置好了celery的设置，写好了&lt;strong&gt;celery.py&lt;/strong&gt;和&lt;str</summary>
+        
+      
+    
+    
+    
+    
+    <category term="后端" scheme="https://10ng1000.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>215. 数组中的第K个最大元素</title>
+    <link href="https://10ng1000.github.io/2025/05/21/215-%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E7%AC%ACK%E4%B8%AA%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0/"/>
+    <id>https://10ng1000.github.io/2025/05/21/215-%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E7%AC%ACK%E4%B8%AA%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0/</id>
+    <published>2025-05-21T01:57:24.000Z</published>
+    <updated>2025-05-21T01:57:24.272Z</updated>
+    
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>155. 最小栈</title>
@@ -430,52 +466,6 @@
     
     
     <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>452. 用最少数量的箭引爆气球</title>
-    <link href="https://10ng1000.github.io/2025/03/10/%E3%80%90%E5%8C%BA%E9%97%B4%E3%80%91452-%E7%94%A8%E6%9C%80%E5%B0%91%E6%95%B0%E9%87%8F%E7%9A%84%E7%AE%AD%E5%BC%95%E7%88%86%E6%B0%94%E7%90%83/"/>
-    <id>https://10ng1000.github.io/2025/03/10/%E3%80%90%E5%8C%BA%E9%97%B4%E3%80%91452-%E7%94%A8%E6%9C%80%E5%B0%91%E6%95%B0%E9%87%8F%E7%9A%84%E7%AE%AD%E5%BC%95%E7%88%86%E6%B0%94%E7%90%83/</id>
-    <published>2025-03-10T05:58:32.000Z</published>
-    <updated>2025-03-10T07:27:08.711Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/description/&quot;&gt;452.</summary>
-        
-      
-    
-    
-    
-    
-    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>25. K 个一组反转链表</title>
-    <link href="https://10ng1000.github.io/2025/03/05/25-K-%E4%B8%AA%E4%B8%80%E7%BB%84%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/"/>
-    <id>https://10ng1000.github.io/2025/03/05/25-K-%E4%B8%AA%E4%B8%80%E7%BB%84%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/</id>
-    <published>2025-03-05T01:11:11.000Z</published>
-    <updated>2025-03-05T01:30:11.455Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/reverse-nodes-in-k-group/description/&quot;&gt;25. K</summary>
-        
-      
-    
-    
-    
     
   </entry>
   
