@@ -6,7 +6,7 @@
   <link href="https://10ng1000.github.io/atom.xml" rel="self"/>
   
   <link href="https://10ng1000.github.io/"/>
-  <updated>2025-06-06T06:05:56.297Z</updated>
+  <updated>2025-07-16T03:18:05.157Z</updated>
   <id>https://10ng1000.github.io/</id>
   
   <author>
@@ -15,6 +15,43 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>30. 串联所有单词的子串</title>
+    <link href="https://10ng1000.github.io/2025/07/16/%E3%80%90%E5%9B%BA%E5%AE%9A%E6%BB%91%E7%AA%97%E3%80%9130-%E4%B8%B2%E8%81%94%E6%89%80%E6%9C%89%E5%8D%95%E8%AF%8D%E7%9A%84%E5%AD%90%E4%B8%B2/"/>
+    <id>https://10ng1000.github.io/2025/07/16/%E3%80%90%E5%9B%BA%E5%AE%9A%E6%BB%91%E7%AA%97%E3%80%9130-%E4%B8%B2%E8%81%94%E6%89%80%E6%9C%89%E5%8D%95%E8%AF%8D%E7%9A%84%E5%AD%90%E4%B8%B2/</id>
+    <published>2025-07-16T02:48:43.000Z</published>
+    <updated>2025-07-16T03:18:05.157Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;思路&quot;&gt;&lt;a href=&quot;#思路&quot; class=&quot;headerlink&quot; title=&quot;思路&quot;&gt;&lt;/a&gt;思路&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;参考灵神&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>373. 查找最小和的k对数字</title>
+    <link href="https://10ng1000.github.io/2025/06/06/373-%E6%9F%A5%E6%89%BE%E6%9C%80%E5%B0%8F%E5%92%8C%E7%9A%84k%E5%AF%B9%E6%95%B0%E5%AD%97/"/>
+    <id>https://10ng1000.github.io/2025/06/06/373-%E6%9F%A5%E6%89%BE%E6%9C%80%E5%B0%8F%E5%92%8C%E7%9A%84k%E5%AF%B9%E6%95%B0%E5%AD%97/</id>
+    <published>2025-06-06T06:16:04.000Z</published>
+    <updated>2025-06-06T06:16:05.024Z</updated>
+    
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>celery与django的连接问题</title>
@@ -411,54 +448,6 @@
         
     <summary type="html">&lt;blockquote&gt;
 &lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/binary-search-tree-iterator/description/&quot;&gt;173.</summary>
-        
-      
-    
-    
-    
-    
-    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>98. 验证二叉搜索树</title>
-    <link href="https://10ng1000.github.io/2025/03/22/%E3%80%90%E9%80%92%E5%BD%92%E3%80%9198-%E9%AA%8C%E8%AF%81%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/"/>
-    <id>https://10ng1000.github.io/2025/03/22/%E3%80%90%E9%80%92%E5%BD%92%E3%80%9198-%E9%AA%8C%E8%AF%81%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/</id>
-    <published>2025-03-22T06:42:56.000Z</published>
-    <updated>2025-03-25T02:14:57.331Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/validate-binary-search-tree/description/&quot;&gt;98.</summary>
-        
-      
-    
-    
-    
-    
-    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>399. 除法求值</title>
-    <link href="https://10ng1000.github.io/2025/03/21/399-%E9%99%A4%E6%B3%95%E6%B1%82%E5%80%BC/"/>
-    <id>https://10ng1000.github.io/2025/03/21/399-%E9%99%A4%E6%B3%95%E6%B1%82%E5%80%BC/</id>
-    <published>2025-03-21T01:06:50.000Z</published>
-    <updated>2025-03-21T02:50:01.671Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/evaluate-division/description/&quot;&gt;399.</summary>
         
       
     

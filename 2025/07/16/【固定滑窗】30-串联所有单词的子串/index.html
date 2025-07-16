@@ -15,7 +15,7 @@
   
   <title>
     
-      celery与django的连接问题 
+      30. 串联所有单词的子串 
       
       
       |
@@ -156,19 +156,19 @@
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">celery与django的连接问题</div>
+      <div class="post-title">30. 串联所有单词的子串</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-          2025-06-06 14:05:56
+          2025-07-16 11:18:05
         </span>
         
               <span class="post-tags">
                 <i class="iconfont icon-tags mr-10" title="标签"></i>
                 
                 <span class="span--tag mr-8">
-                  <a href="/tags/%E5%90%8E%E7%AB%AF/" title="后端">
-                    #后端
+                  <a href="/tags/LeetCode/" title="LeetCode">
+                    #LeetCode
                   </a>
                 </span>
                 
@@ -176,27 +176,24 @@
           
       </div>
       <div class="markdown-body">
-        <p>在使用celery作为异步任务队列时，我遇到了Django连接不上的问题。具体来说，我已经按照网上的教程在Django的<strong>settings.py</strong>里配置好了celery的设置，写好了<strong>celery.py</strong>和<strong>tasks.py</strong>，使用docker启动celery服务时，也正常显示celery连接到了redis，但是当django调用celery的task时，却抛出了连接异常的错误。</p>
-<p>后来，在网上看了很多错误报告的解决方式之后，我发现是因为在Django里使用celery，还需要在django的__init__.py里进行如下配置：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> myapp.celery <span class="keyword">import</span> app <span class="keyword">as</span> celery_app</span><br><span class="line">__all__ = (<span class="string">&#x27;celery_app&#x27;</span>,)</span><br></pre></td></tr></table></figure>
-
-<p>这样才能保证在Django启动时celery能够正确被加载。借此来复习一下Python中__init__文件的用法。</p>
-<h1 id="init-py"><a href="#init-py" class="headerlink" title="__init__.py"></a><code>__init__.py</code></h1><p><code>__init__.py</code> 是 Python 包（package）的初始化文件，它的主要作用包括：</p>
-<ul>
-<li><strong>标记目录为 Python 包</strong>：使 Python 将该<strong>目录</strong>视为一个可导入的包（即使文件为空）。</li>
-<li><strong>初始化包级别的代码</strong>：当该包或其子模块被导入时，<code>__init__.py</code> 中的代码会<strong>自动执行</strong>。</li>
-<li><strong>控制模块的导入行为</strong>：可以定义 <code>__all__</code> 来限制 <code>from package import *</code> 时导入的内容。</li>
-</ul>
-<p>在 Django 项目的 <code>__init__.py</code> 中添加：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> myapp.celery <span class="keyword">import</span> app <span class="keyword">as</span> celery_app</span><br></pre></td></tr></table></figure>
-<p>可以确保 Celery 应用 (<code>celery_app</code>) 在 Django 启动时就被加载。</p>
-
+        <h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><blockquote>
+<p>参考灵神<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/substring-with-concatenation-of-all-words/solutions/3691292/30-ci-ding-chang-hua-dong-chuang-kou-pyt-5vgx">30 次定长滑动窗口（Python&#x2F;Java&#x2F;C++&#x2F;Go&#x2F;JS&#x2F;Rust）</a></p>
+</blockquote>
+<p>因为题目要求的串联子串长度固定，并且为<code>words</code>中所有字符串以任意顺序连接，我们可以想到使用定长的滑动窗口。</p>
+<p>我们可以维护两个哈希表，一个用来表示<code>words</code>里字符串出现的次数，一个用来存储加入到滑动窗口的字符串及次数。</p>
+<p>由于<code>words</code>中的字符串长度相同，我们需要做的每次将窗口移动这个距离。</p>
+<p>首先，不断将这个长度的子串加入到哈希表中。如果我们加入了不在<code>words</code>里的表，或者加入了这个字符串之后出现的次数大于<code>words</code>里出现的次数，我们将<code>overload</code>的标记加一，表示多了一个不符合的字符串。这样，当<code>overload</code>等于0且滑动窗口左端至少在字符串<code>s</code>中时，我们就得到了一个串联子串。</p>
+<p>需要进行的特判是，如果左端<code>index</code>小于0，证明滑动窗口还不完整，这时候我们不判定overload。</p>
+<p>然后，如果最左边有字符串，将最左边的子串在哈希表的记录减一，如果是不符合的字符串则<code>overload</code>对应地减少一个。</p>
+<p>最后需要注意的是，对于一个起始点<code>i</code>，我们使用步长为<code>l</code>的滑动窗口，只能检查到所有<code>i + k * l</code>的起始点，这样我们可能会漏掉一些起始点。为了解决这个问题，我们做<code>l</code>次滑动窗口，起始点从<code>0</code>一直到<code>l - 1</code>，这样我们就不会漏掉起始点。</p>
+<p>总结来说，对于固定滑动窗口的题目，主体的框架就是入滑窗、检查是否符合、出滑窗，其他的小细节就是左端判断以及滑动次数。</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;Integer&gt; <span class="title function_">findSubstring</span><span class="params">(String s, String[] words)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">wordLen</span> <span class="operator">=</span> words[<span class="number">0</span>].length(); <span class="comment">// 一个单词的长度</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">windowLen</span> <span class="operator">=</span> wordLen * words.length; <span class="comment">// 所有单词的总长度，即窗口大小</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 目标：窗口中的单词出现次数必须与 targetCnt 完全一致</span></span><br><span class="line">        Map&lt;String, Integer&gt; targetCnt = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (String w : words) &#123;</span><br><span class="line">            targetCnt.merge(w, <span class="number">1</span>, Integer::sum); <span class="comment">// targetCnt[w]++</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        List&lt;Integer&gt; ans = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="comment">// 枚举窗口起点，做 wordLen 次滑动窗口</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">start</span> <span class="operator">=</span> <span class="number">0</span>; start &lt; wordLen; start++) &#123;</span><br><span class="line">            Map&lt;String, Integer&gt; cnt = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">            <span class="type">int</span> <span class="variable">overload</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">            <span class="comment">// 枚举窗口最后一个单词的右端点+1</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">right</span> <span class="operator">=</span> start + wordLen; right &lt;= s.length(); right += wordLen) &#123;</span><br><span class="line">                <span class="comment">// 1. inWord 进入窗口</span></span><br><span class="line">                <span class="type">String</span> <span class="variable">inWord</span> <span class="operator">=</span> s.substring(right - wordLen, right);</span><br><span class="line">                <span class="comment">// 下面 cnt[inWord]++ 后，inWord 的出现次数过多</span></span><br><span class="line">                <span class="keyword">if</span> (cnt.getOrDefault(inWord, <span class="number">0</span>).equals(targetCnt.getOrDefault(inWord, <span class="number">0</span>))) &#123;</span><br><span class="line">                    overload++;</span><br><span class="line">                &#125;</span><br><span class="line">                cnt.merge(inWord, <span class="number">1</span>, Integer::sum); <span class="comment">// cnt[inWord]++</span></span><br><span class="line"></span><br><span class="line">                <span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> right - windowLen; <span class="comment">// 窗口第一个单词的左端点</span></span><br><span class="line">                <span class="keyword">if</span> (left &lt; <span class="number">0</span>) &#123; <span class="comment">// 窗口大小不足 windowLen</span></span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 2. 更新答案</span></span><br><span class="line">                <span class="comment">// 如果没有超出 targetCnt 的单词，那么也不会有少于 targetCnt 的单词</span></span><br><span class="line">                <span class="keyword">if</span> (overload == <span class="number">0</span>) &#123;</span><br><span class="line">                    ans.add(left);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 3. 窗口最左边的单词 outWord 离开窗口，为下一轮循环做准备</span></span><br><span class="line">                <span class="type">String</span> <span class="variable">outWord</span> <span class="operator">=</span> s.substring(left, left + wordLen);</span><br><span class="line">                cnt.merge(outWord, -<span class="number">1</span>, Integer::sum); <span class="comment">// cnt[outWord]--</span></span><br><span class="line">                <span class="keyword">if</span> (cnt.get(outWord).equals(targetCnt.getOrDefault(outWord, <span class="number">0</span>))) &#123;</span><br><span class="line">                    overload--;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       </div>
       
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2025/05/21/215-%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E7%AC%ACK%E4%B8%AA%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0/" target="_self">
+              <a href="/2025/06/06/373-%E6%9F%A5%E6%89%BE%E6%9C%80%E5%B0%8F%E5%92%8C%E7%9A%84k%E5%AF%B9%E6%95%B0%E5%AD%97/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>上一页</span>
               </a>
@@ -205,15 +202,15 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-              2025-06-06 14:05:56
+              2025-07-16 11:18:05
             </span>
             
                   <span class="post-tags">
                     <i class="iconfont icon-tags mr-10" title="标签"></i>
                     
                     <span class="span--tag mr-8">
-                      <a href="/tags/%E5%90%8E%E7%AB%AF/" title="后端">
-                        #后端
+                      <a href="/tags/LeetCode/" title="LeetCode">
+                        #LeetCode
                       </a>
                     </span>
                     
@@ -221,11 +218,6 @@
               
           </div>
           <div class="post-foot-prev">
-            
-              <a href="/2025/06/06/373-%E6%9F%A5%E6%89%BE%E6%9C%80%E5%B0%8F%E5%92%8C%E7%9A%84k%E5%AF%B9%E6%95%B0%E5%AD%97/" target="_self">
-                <span>下一页</span>
-                <i class="iconfont icon-chevronright"></i>
-              </a>
             
           </div>
         </div>
@@ -239,7 +231,7 @@
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#init-py"><span class="toc-text">__init__.py</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-text">代码</span></a></li></ol>
       
     </div>
   </div>
@@ -559,12 +551,12 @@
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + celery%E4%B8%8Edjango%E7%9A%84%E8%BF%9E%E6%8E%A5%E9%97%AE%E9%A2%98 + '&url=' + https%3A%2F%2F10ng1000.github.io%2F2025%2F06%2F06%2Fcelery%25E4%25B8%258Edjango%25E7%259A%2584%25E8%25BF%259E%25E6%258E%25A5%25E9%2597%25AE%25E9%25A2%2598%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + 30.%20%E4%B8%B2%E8%81%94%E6%89%80%E6%9C%89%E5%8D%95%E8%AF%8D%E7%9A%84%E5%AD%90%E4%B8%B2 + '&url=' + https%3A%2F%2F10ng1000.github.io%2F2025%2F07%2F16%2F%25E3%2580%2590%25E5%259B%25BA%25E5%25AE%259A%25E6%25BB%2591%25E7%25AA%2597%25E3%2580%259130-%25E4%25B8%25B2%25E8%2581%2594%25E6%2589%2580%25E6%259C%2589%25E5%258D%2595%25E8%25AF%258D%25E7%259A%2584%25E5%25AD%2590%25E4%25B8%25B2%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://10ng1000.github.io/2025/06/06/celery%E4%B8%8Edjango%E7%9A%84%E8%BF%9E%E6%8E%A5%E9%97%AE%E9%A2%98/" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://10ng1000.github.io/2025/07/16/%E3%80%90%E5%9B%BA%E5%AE%9A%E6%BB%91%E7%AA%97%E3%80%9130-%E4%B8%B2%E8%81%94%E6%89%80%E6%9C%89%E5%8D%95%E8%AF%8D%E7%9A%84%E5%AD%90%E4%B8%B2/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         
