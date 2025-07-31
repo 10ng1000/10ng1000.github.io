@@ -6,7 +6,7 @@
   <link href="https://10ng1000.github.io/atom.xml" rel="self"/>
   
   <link href="https://10ng1000.github.io/"/>
-  <updated>2025-07-16T03:18:05.157Z</updated>
+  <updated>2025-07-26T06:11:11.551Z</updated>
   <id>https://10ng1000.github.io/</id>
   
   <author>
@@ -15,6 +15,74 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>279. 完全平方数</title>
+    <link href="https://10ng1000.github.io/2025/07/26/279-%E5%AE%8C%E5%85%A8%E5%B9%B3%E6%96%B9%E6%95%B0/"/>
+    <id>https://10ng1000.github.io/2025/07/26/279-%E5%AE%8C%E5%85%A8%E5%B9%B3%E6%96%B9%E6%95%B0/</id>
+    <published>2025-07-26T03:07:40.000Z</published>
+    <updated>2025-07-26T06:11:11.551Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;思路&quot;&gt;&lt;a href=&quot;#思路&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>31. 下一个排列</title>
+    <link href="https://10ng1000.github.io/2025/07/24/31.%20%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%8E%92%E5%88%97/"/>
+    <id>https://10ng1000.github.io/2025/07/24/31.%20%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%8E%92%E5%88%97/</id>
+    <published>2025-07-24T05:51:34.000Z</published>
+    <updated>2025-07-31T06:49:13.080Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;通过观察下一个排列数的规律，我们注意到要更改的那个数总是倒序第一个&lt;strong&gt;比右侧某个数小&lt;/strong&gt;的第一个数，这样这个数才能变大，而且是尽可能小地变大。同时也因为这个定义，这个数右侧的数一定是从右往左看&lt;strong&gt;单调递增&lt;/strong&gt;的，否则在右侧</summary>
+        
+      
+    
+    
+    
+    
+    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>84. 柱状图中最大的矩形</title>
+    <link href="https://10ng1000.github.io/2025/07/17/84-%E6%9F%B1%E7%8A%B6%E5%9B%BE%E4%B8%AD%E6%9C%80%E5%A4%A7%E7%9A%84%E7%9F%A9%E5%BD%A2/"/>
+    <id>https://10ng1000.github.io/2025/07/17/84-%E6%9F%B1%E7%8A%B6%E5%9B%BE%E4%B8%AD%E6%9C%80%E5%A4%A7%E7%9A%84%E7%9F%A9%E5%BD%A2/</id>
+    <published>2025-07-17T01:45:58.000Z</published>
+    <updated>2025-07-17T01:48:20.912Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;参考灵神&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title>30. 串联所有单词的子串</title>
@@ -375,79 +443,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;思路&quot;&gt;&lt;a href=&quot;#思路&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>909. 蛇梯棋</title>
-    <link href="https://10ng1000.github.io/2025/03/28/%E3%80%90BFS%E3%80%91909-%E8%9B%87%E6%A2%AF%E6%A3%8B/"/>
-    <id>https://10ng1000.github.io/2025/03/28/%E3%80%90BFS%E3%80%91909-%E8%9B%87%E6%A2%AF%E6%A3%8B/</id>
-    <published>2025-03-28T01:11:57.000Z</published>
-    <updated>2025-04-14T02:00:06.775Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/snakes-and-ladders/description/&quot;&gt;909. 蛇梯棋&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1</summary>
-        
-      
-    
-    
-    
-    
-    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>222. 完全二叉树的节点个数</title>
-    <link href="https://10ng1000.github.io/2025/03/26/222-%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%8A%82%E7%82%B9%E4%B8%AA%E6%95%B0/"/>
-    <id>https://10ng1000.github.io/2025/03/26/222-%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%8A%82%E7%82%B9%E4%B8%AA%E6%95%B0/</id>
-    <published>2025-03-26T06:02:39.000Z</published>
-    <updated>2025-03-27T07:33:01.230Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span</summary>
-        
-      
-    
-    
-    
-    
-    <category term="LeetCode" scheme="https://10ng1000.github.io/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>173. 二叉搜索树迭代器</title>
-    <link href="https://10ng1000.github.io/2025/03/26/%E3%80%90%E6%A0%88%E6%A8%A1%E6%8B%9F%E9%80%92%E5%BD%92%E3%80%91173-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E8%BF%AD%E4%BB%A3%E5%99%A8/"/>
-    <id>https://10ng1000.github.io/2025/03/26/%E3%80%90%E6%A0%88%E6%A8%A1%E6%8B%9F%E9%80%92%E5%BD%92%E3%80%91173-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E8%BF%AD%E4%BB%A3%E5%99%A8/</id>
-    <published>2025-03-26T01:27:07.000Z</published>
-    <updated>2025-03-27T07:09:16.134Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/binary-search-tree-iterator/description/&quot;&gt;173.</summary>
         
       
     
